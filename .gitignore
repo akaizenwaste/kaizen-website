@@ -1,0 +1,12 @@
+# Cursor directory
+Cursor/
+
+# macOS system files
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+
+# Node modules (if you add any JavaScript dependencies later)
+node_modules/ 

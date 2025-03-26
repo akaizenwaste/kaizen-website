@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Driven Efficiency Tracking - Kaizen Waste</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ff6347;
+            --secondary-color: #e74c3c;
+            --accent-color: #ff7f50;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--light-bg);
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+            height: 80px;
+            overflow: visible;
+        }
+
+        .header.scrolled {
+            background: var(--white);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            height: 100%;
+            z-index: 1000;
+        }
+
+        .logo {
+            height: 45px;
+            transition: var(--transition);
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1002;
+            top: 20%;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            margin-left: auto;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            right: 2rem;
+            z-index: 1001;
+        }
+
+        .nav-menu li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            background: var(--gradient);
+            box-shadow: 0 4px 15px rgba(255,99,71,0.2);
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,99,71,0.3);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://img1.wsimg.com/isteam/stock/109128/:/rs=w:1920,h:1080');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+            padding: 0 1rem;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            padding: 0 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .content-section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--gradient);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            width: 50%;
+            padding-right: 3rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: 50%;
+            padding-right: 0;
+            padding-left: 3rem;
+            justify-content: flex-start;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+            width: 80%;
+            min-height: 200px;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            right: auto;
+            left: -20px;
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .timeline-image {
+            position: absolute;
+            width: 80%;
+            min-height: 200px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-image {
+            right: -90%;
+        }
+
+        .timeline-item:nth-child(even) .timeline-image {
+            left: -90%;
+        }
+
+        .timeline-text {
+            flex: 1;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255,99,71,0.15);
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .benefit-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--gradient);
+            color: var(--white);
+            margin-top: 4rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--white);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: var(--transition);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 1200px) {
+            .timeline-image {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item {
+                width: 100%;
+                padding-left: 3rem;
+                padding-right: 0;
+                margin-left: 0;
+                justify-content: flex-start;
+            }
+
+            .timeline-item:nth-child(even) {
+                margin-left: 0;
+                padding-left: 3rem;
+                justify-content: flex-start;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -20px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+                padding: 0 0.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+
+            .header {
+                height: 70px;
+            }
+
+            .logo {
+                height: 35px;
+                position: static;
+                transform: none;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .timeline-image {
+                width: 100%;
+            }
+        }
+
+        .conclusion-box {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-top: 4rem;
+            text-align: left;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .conclusion-title {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .conclusion-box p {
+            color: var(--text-color);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .conclusion-points {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .conclusion-point {
+            padding: 1.5rem;
+            background: var(--light-bg);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .conclusion-point:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .conclusion-point h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .conclusion-point p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .conclusion-box {
+                padding: 1.5rem;
+                margin: 2rem 1rem;
+            }
+
+            .conclusion-title {
+                font-size: 1.5rem;
+            }
+
+            .conclusion-box p {
+                font-size: 1rem;
+            }
+
+            .conclusion-point {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="../index.html">
+                <img src="https://img1.wsimg.com/isteam/ip/01bc495d-6774-4b39-b524-0672041c6694/Kaizen%20Waste%20Logo.png" alt="Kaizen Waste Logo" class="logo">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#top" class="nav-link">Home</a></li>
+                <li><a href="../index.html#services" class="nav-link">Services</a></li>
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Valet Trash 2.0: Smarter, Faster, Transparent</h1>
+            <p class="hero-subtitle">Smarter Service, Stronger Accountability: Powered by Computer Vision & Live Tracking</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Precision Property Mapping</h3>
+                    <p class="timeline-description">Our team manually walks your property to document unit locations, service paths, and potential obstacles. This creates a custom blueprint for optimizing efficiency and preemptively addressing challenges unique to your layout.</p>
+                </div>
+                <div class="timeline-image">
+                    Property Mapping Process
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">AI Model Customization</h3>
+                    <p class="timeline-description">We train proprietary computer vision systems using your property's mapped data. These models track and optimize service routes for minimal downtime, time benchmarks for task completion, and high-risk zones (e.g., tight pathways, accessibility hurdles).</p>
+                </div>
+                <div class="timeline-image">
+                    AI Model Training
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Real-Time Accountability & Proactive Adjustments</h3>
+                    <p class="timeline-description">Runners record all service activity via bodycams. Our systems analyze this footage to confirm completions with timestamped visual proof, identify inefficiencies (missed units, redundant routes), and predict and resolve issues (delays, equipment needs). We refine operations daily using this data, ensuring problems are fixed before they impact you.</p>
+                </div>
+                <div class="timeline-image">
+                    Real-Time Monitoring
+                </div>
+            </div>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <i class="fas fa-camera benefit-icon"></i>
+                <h3 class="benefit-title">Real-Time Verification</h3>
+                <p class="benefit-description">Instant confirmation of service completion with detailed photographic evidence and quality metrics.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-chart-line benefit-icon"></i>
+                <h3 class="benefit-title">Performance Tracking</h3>
+                <p class="benefit-description">Comprehensive analytics dashboard showing service metrics, efficiency rates, and improvement opportunities.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-shield-alt benefit-icon"></i>
+                <h3 class="benefit-title">Quality Assurance</h3>
+                <p class="benefit-description">Automated quality checks ensure consistent service delivery and proper waste handling procedures.</p>
+            </div>
+        </div>
+
+        <div class="conclusion-box">
+            <h3 class="conclusion-title">Why Does Trash Collection Need Computer Vision? (We Get It—It Sounds Weird)</h3>
+            <p>Our computer vision tech isn't here to overcomplicate trash pickup. Think of it like a supercharged security camera for property waste service. Here's the no-BS breakdown:</p>
+            <div class="conclusion-points">
+                <div class="conclusion-point">
+                    <h4>No More Guesswork</h4>
+                    <p>We use video footage to track exactly when, where, and how trash gets picked up. Waste issues on property? We'll catch them before you have to.</p>
+                </div>
+                <div class="conclusion-point">
+                    <h4>Stop Paying for Invisible Work</h4>
+                    <p>Property managers get a cheat sheet: timestamps, photo proof, and route maps. No more wondering if your collection team actually showed up.</p>
+                </div>
+                <div class="conclusion-point">
+                    <h4>Faster Pickups, Fewer Complaints</h4>
+                    <p>Computer vision spots patterns (like "Hey, Building C always takes longer") so we can tweak routes and keep residents happy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Ready to Experience the Future of Waste Management?</h2>
+        <p>Contact us today to learn how our AI-driven solutions can transform your property's waste management.</p>
+        <a href="../index.html#contact" class="cta-button">Get Started</a>
+    </section>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html> 
