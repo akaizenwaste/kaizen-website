@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Property Managers - Kaizen Waste</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ff6347;  /* Tomato Red */
+            --secondary-color: #e74c3c;  /* Darker Red */
+            --accent-color: #ff7f50;  /* Coral Red */
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+            background: var(--light-bg);
+        }
+
+        /* Header styles from main page */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+            height: 80px;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            height: 100%;
+        }
+
+        .logo {
+            height: 45px;
+            transition: var(--transition);
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            margin-left: auto;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            right: 2rem;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            background: var(--gradient);
+            box-shadow: 0 4px 15px rgba(255,99,71,0.2);
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,99,71,0.3);
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: var(--white);
+            min-width: 200px;
+            box-shadow: var(--shadow);
+            border-radius: 12px;
+            padding: 0.8rem 0;
+            z-index: 1000;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: var(--transition);
+            top: 100%;
+            right: 0;
+        }
+
+        .nav-dropdown:hover .dropdown-content {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .dropdown-link {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .dropdown-link:hover {
+            background: var(--light-bg);
+            color: var(--primary-color);
+            padding-left: 2rem;
+        }
+
+        .page-wrapper {
+            padding-top: 80px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(255,99,71,0.05) 0%, rgba(231,76,60,0.05) 100%);
+        }
+
+        .hero-section {
+            position: relative;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%);
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--white);
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: -100px auto 0;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .main-content {
+            grid-column: 1 / 9;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,99,71,0.05) 0%, rgba(231,76,60,0.05) 100%);
+            z-index: 0;
+        }
+
+        .sidebar {
+            grid-column: 9 / 13;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255,99,71,0.15);
+        }
+
+        .info-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .info-card p {
+            color: var(--text-color);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--light-bg);
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .feature-item:hover {
+            transform: translateX(10px);
+            background: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+
+        .feature-content h4 {
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-content p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--gradient);
+            border-radius: 20px;
+            color: var(--white);
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: var(--white);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content, .sidebar {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .main-content {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <img src="https://img1.wsimg.com/isteam/ip/01bc495d-6774-4b39-b524-0672041c6694/Kaizen%20Waste%20Logo.png" alt="Kaizen Waste Logo" class="logo">
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-dropdown">
+                    <a href="#" class="nav-link">For You</a>
+                    <div class="dropdown-content">
+                        <a href="property-managers.html" class="dropdown-link">For Property Managers</a>
+                        <a href="residents.html" class="dropdown-link">For Residents</a>
+                        <a href="owners.html" class="dropdown-link">For Owners</a>
+                    </div>
+                </li>
+                <li><a href="../index.html#services" class="nav-link">Services</a></li>
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-wrapper">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">For Property Managers</h1>
+                <p class="hero-subtitle">Streamline Your Operations with Smart Waste Management Solutions</p>
+            </div>
+        </section>
+
+        <div class="content-grid">
+            <main class="main-content">
+                <h2>Optimize Your Property Management</h2>
+                <p>At Kaizen Waste, we provide property managers with innovative waste management solutions that streamline operations, reduce costs, and enhance resident satisfaction. Our technology-driven approach makes waste management efficient and hassle-free.</p>
+
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Streamlined Operations</h4>
+                            <p>Automated waste collection scheduling and real-time monitoring for efficient property management.</p>
+                        </div>
+                    </li>
+                    <li class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Performance Analytics</h4>
+                            <p>Detailed insights and reporting to optimize waste management strategies and reduce costs.</p>
+                        </div>
+                    </li>
+                    <li class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Resident Satisfaction</h4>
+                            <p>Enhanced resident experience with convenient waste disposal and responsive service.</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="cta-section">
+                    <h3>Ready to Optimize Your Property?</h3>
+                    <p>Get a personalized quote and see how we can streamline your waste management operations.</p>
+                    <a href="../index.html#contact" class="cta-button">
+                        Request a Quote <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </main>
+
+            <aside class="sidebar">
+                <div class="info-card">
+                    <h3>Management Tools</h3>
+                    <p>• Comprehensive platform for service tracking and property maintenance</p>
+                    <p>• Professional runners with video capabilities for quality assurance</p>
+                    <p>• Smart routing system for reliable service timing</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>Why Choose Us</h3>
+                    <p>• Complete service tracking and reporting system</p>
+                    <p>• Daily doorstep collection status updates</p>
+                    <p>• Expert waste leveling and advisory services</p>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
