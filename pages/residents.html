@@ -248,6 +248,33 @@
             line-height: 1.6;
         }
 
+        .step-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-number {
+            background: var(--gradient);
+            color: var(--white);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            flex-shrink: 0;
+            box-shadow: 0 4px 8px rgba(255,99,71,0.2);
+        }
+
+        .step-text {
+            margin: 0;
+            padding-top: 4px;
+        }
+
         .feature-list {
             list-style: none;
             margin-top: 2rem;
@@ -394,8 +421,8 @@
                             <i class="fas fa-mobile-alt"></i>
                         </div>
                         <div class="feature-content">
-                            <h4>Easy Scheduling</h4>
-                            <p>Flexible pickup times and convenient scheduling through our mobile app.</p>
+                            <h4>Consistent Service</h4>
+                            <p>Reliable nightly pickup at the same time, every time - you can set your watch to it.</p>
                         </div>
                     </li>
                     <li class="feature-item">
@@ -403,8 +430,8 @@
                             <i class="fas fa-recycle"></i>
                         </div>
                         <div class="feature-content">
-                            <h4>Eco-Friendly Service</h4>
-                            <p>Sustainable waste management practices that help protect the environment.</p>
+                            <h4>Waste Sorting</h4>
+                            <p>Our runners sort your waste and recycling at the on-site dumpsters - so you can be at ease knowing it's properly handled.</p>
                         </div>
                     </li>
                 </ul>
@@ -423,16 +450,23 @@
                     <h3>Resident Benefits</h3>
                     <p>• Convenient doorstep collection</p>
                     <p>• No more trips to the dumpster</p>
-                    <p>• Flexible pickup times</p>
                     <p>• Clean and hygienic environment</p>
                 </div>
 
                 <div class="info-card">
                     <h3>How It Works</h3>
-                    <p>• Place waste outside your door</p>
-                    <p>• We collect at scheduled times</p>
-                    <p>• Proper disposal and recycling</p>
-                    <p>• Regular service updates</p>
+                    <div class="step-container">
+                        <div class="step-number">1</div>
+                        <p class="step-text">Bag and tie your waste in the community provided Kaizen Can</p>
+                    </div>
+                    <div class="step-container">
+                        <div class="step-number">2</div>
+                        <p class="step-text">Place the Kaizen Can outside your door at the designated time</p>
+                    </div>
+                    <div class="step-container">
+                        <div class="step-number">3</div>
+                        <p class="step-text">Our Runners take care of the rest</p>
+                    </div>
                 </div>
             </aside>
         </div>

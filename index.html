@@ -473,6 +473,13 @@
             font-weight: 500;
         }
 
+        .stat-small {
+            font-size: 0.8rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-top: 0.25rem;
+        }
+
         .about-image-container {
             position: relative;
             border-radius: 20px;
@@ -705,86 +712,64 @@
 
         .form-group label {
             display: block;
-            font-size: 1rem;
-            color: var(--text-color);
             margin-bottom: 0.5rem;
+            color: var(--text-color);
             font-weight: 500;
         }
 
-        .form-group input[type="text"],
-        .form-group input[type="email"],
-        .form-group input[type="tel"],
-        .form-group select {
+        .form-group label.required::after {
+            content: '*';
+            color: var(--primary-color);
+            margin-left: 4px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
             width: 100%;
-            padding: 0.8rem 1rem;
+            padding: 0.8rem;
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 1rem;
             transition: var(--transition);
-            background-color: var(--white);
         }
 
-        .form-group select {
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 1rem center;
-            background-size: 1em;
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
         }
 
         .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
+        .form-group select:focus,
+        .form-group textarea:focus {
             border-color: var(--primary-color);
+            outline: none;
             box-shadow: 0 0 0 2px rgba(255,99,71,0.1);
         }
 
-        .checkbox-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 8px;
-            transition: var(--transition);
-        }
-
-        .checkbox-label:hover {
-            background: var(--light-bg);
-        }
-
-        .checkbox-label input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--primary-color);
+        .form-note {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-top: 1rem;
         }
 
         .submit-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
             background: var(--gradient);
             color: var(--white);
             border: none;
+            padding: 1rem 2rem;
             border-radius: 50px;
-            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
             width: 100%;
-            justify-content: center;
+            margin-top: 1rem;
         }
 
         .submit-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(255,99,71,0.2);
+            box-shadow: 0 6px 20px rgba(255,99,71,0.3);
         }
 
         @media (max-width: 1024px) {
@@ -801,10 +786,6 @@
         @media (max-width: 768px) {
             .contact-form {
                 padding: 2rem;
-            }
-
-            .checkbox-group {
-                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -866,16 +847,17 @@
         <div class="about-grid">
             <div class="about-content">
                 <div class="about-text">
-                    <h3 class="about-title">Revolutionizing Waste Management</h3>
-                    <p class="about-description">At Kaizen Waste, we're transforming the way properties handle waste management. Our innovative approach combines cutting-edge technology with sustainable practices to create a cleaner, more efficient future.</p>
+                    <h3 class="about-title">Simplifying Waste Management</h3>
+                    <p class="about-description">At Kaizen Waste, we're optimizing the way properties handle waste management. From doorstep removal, to waste leveling, to equipment advising - we're everything but your hauler.</p>
                     <div class="stats-grid">
                         <div class="stat-item">
-                            <div class="stat-number">500+</div>
-                            <div class="stat-label">Properties Served</div>
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Service Guarantee</div>
+                            <div class="stat-small">*Or Your Money Back*</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">98%</div>
-                            <div class="stat-label">Client Satisfaction</div>
+                            <div class="stat-number">5-7</div>
+                            <div class="stat-label">Day Service Week</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-number">24/7</div>
@@ -885,48 +867,48 @@
                 </div>
                 <div class="about-image-container">
                     <div class="about-image">
-                        <img src="https://img1.wsimg.com/isteam/stock/109128/:/rs=w:1920,h:1080" alt="Modern Waste Management">
+                        <img src="https://img1.wsimg.com/isteam/ip/01bc495d-6774-4b39-b524-0672041c6694/team-photo.jpg" alt="Kaizen Waste Team Members">
                         <div class="image-overlay"></div>
                     </div>
                 </div>
             </div>
-            <div class="values-grid">
-                <div class="value-card">
-                    <i class="fas fa-leaf value-icon"></i>
-                    <h4 class="value-title">Sustainability</h4>
-                    <div class="value-dropdown">
-                        <ul class="value-list">
-                            <li>Eco-friendly waste disposal methods</li>
-                            <li>Recycling optimization programs</li>
-                            <li>Carbon footprint reduction</li>
-                            <li>Green technology implementation</li>
-                        </ul>
-                    </div>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <i class="fas fa-leaf value-icon"></i>
+                <h4 class="value-title">Sustainability</h4>
+                <div class="value-dropdown">
+                    <ul class="value-list">
+                        <li>Eco-friendly waste disposal methods</li>
+                        <li>Recycling optimization programs</li>
+                        <li>Carbon footprint reduction</li>
+                        <li>Green technology implementation</li>
+                    </ul>
                 </div>
-                <div class="value-card">
-                    <i class="fas fa-microchip value-icon"></i>
-                    <h4 class="value-title">Innovation</h4>
-                    <div class="value-dropdown">
-                        <ul class="value-list">
-                            <li>AI-Driven Efficiency Tracking <a href="pages/ai-efficiency.html" style="color: var(--primary-color); text-decoration: none; margin-left: 0.5rem; font-size: 0.9rem;">Learn More →</a></li>
-                            <li>Audit-Ready Service Documentation</li>
-                            <li>Live GPS Monitoring of Runners</li>
-                            <li>Real-Time Occupancy/Departure Alerts</li>
-                            <li>Performance Analytics Dashboard</li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-microchip value-icon"></i>
+                <h4 class="value-title">Innovation</h4>
+                <div class="value-dropdown">
+                    <ul class="value-list">
+                        <li>AI-Driven Efficiency Tracking <a href="pages/ai-efficiency.html" style="color: var(--primary-color); text-decoration: none; margin-left: 0.5rem; font-size: 0.9rem;">Learn More →</a></li>
+                        <li>Audit-Ready Service Documentation</li>
+                        <li>Live GPS Monitoring of Runners</li>
+                        <li>Real Time Arrival/Departure Alerts</li>
+                        <li>Performance Analytics Dashboard</li>
+                    </ul>
                 </div>
-                <div class="value-card">
-                    <i class="fas fa-handshake value-icon"></i>
-                    <h4 class="value-title">Partnership</h4>
-                    <div class="value-dropdown">
-                        <ul class="value-list">
-                            <li>Dedicated account management</li>
-                            <li>24/7 support availability</li>
-                            <li>Customized service solutions</li>
-                            <li>Regular performance reviews</li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-handshake value-icon"></i>
+                <h4 class="value-title">Partnership</h4>
+                <div class="value-dropdown">
+                    <ul class="value-list">
+                        <li>Dedicated Account Manager</li>
+                        <li>24/7 Remediation Support</li>
+                        <li>Tailored Service Solutions</li>
+                        <li>Monthly Performance Reviews</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -950,58 +932,50 @@
                         </div>
                     </div>
                 </div>
-                <form class="contact-form" id="contactForm">
+                <form id="contactForm" class="contact-form">
                     <div class="form-group">
-                        <label for="name">Name *</label>
+                        <label for="name" class="required">Name</label>
                         <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email *</label>
+                        <label for="email" class="required">Email</label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="phone">Phone Number (Optional)</label>
-                        <input type="tel" id="phone" name="phone">
+                        <label for="propertyName">Property Name</label>
+                        <input type="text" id="propertyName" name="propertyName">
                     </div>
                     <div class="form-group">
-                        <label for="propertyStyle">Property Style (Optional)</label>
-                        <input type="text" id="propertyStyle" name="propertyStyle" placeholder="e.g., Apartment Complex, Condo, etc.">
+                        <label for="complexSize">Size of Complex (# of Units)</label>
+                        <input type="number" id="complexSize" name="complexSize" min="1">
                     </div>
                     <div class="form-group">
-                        <label for="units">Number of Units *</label>
-                        <select id="units" name="units" required>
-                            <option value="">Select number of units</option>
-                            <option value="less-than-50">Less than 50</option>
-                            <option value="50-100">50-100</option>
-                            <option value="101-200">101-200</option>
-                            <option value="201-300">201-300</option>
-                            <option value="300-plus">300+</option>
+                        <label for="complexStyle">Complex Style</label>
+                        <select id="complexStyle" name="complexStyle">
+                            <option value="">Select a style</option>
+                            <option value="garden">Garden Style</option>
+                            <option value="midrise">Mid-Rise</option>
+                            <option value="highrise">High-Rise</option>
+                            <option value="townhome">Townhome</option>
+                            <option value="other">Other</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Services Interested In *</label>
-                        <div class="checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="services" value="doorstep" required>
-                                <span>Doorstep Removal</span>
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="services" value="leveling" required>
-                                <span>Waste Leveling</span>
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="services" value="advising" required>
-                                <span>Waste Advising</span>
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="services" value="talk">
-                                <span>Just Wanting to Talk Trash</span>
-                            </label>
-                        </div>
+                        <label for="role" class="required">I am a...</label>
+                        <select id="role" name="role" required>
+                            <option value="">Select your role</option>
+                            <option value="owner">Property Owner</option>
+                            <option value="manager">Property Manager</option>
+                            <option value="resident">Resident</option>
+                            <option value="other">Other</option>
+                        </select>
                     </div>
-                    <button type="submit" class="submit-button">
-                        Send Request <i class="fas fa-paper-plane"></i>
-                    </button>
+                    <div class="form-group">
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" name="notes" rows="4" placeholder="Any additional information you'd like to share..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Send Message</button>
+                    <p class="form-note">* Required fields</p>
                 </form>
             </div>
         </div>
@@ -1017,6 +991,30 @@
                 header.classList.remove('scrolled');
             }
         });
+
+        // Units Counter with API
+        const counterElement = document.getElementById('unitsCounter');
+        let unitsCount = 4000;
+
+        // Initial count fetch
+        fetch('https://api.kaizen-waste.com/counter')
+            .then(response => response.json())
+            .then(data => {
+                unitsCount = data.count;
+                counterElement.textContent = unitsCount.toLocaleString();
+            })
+            .catch(error => console.error('Error fetching count:', error));
+
+        // Update count every 5 seconds
+        setInterval(() => {
+            fetch('https://api.kaizen-waste.com/counter/increment', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    unitsCount = data.count;
+                    counterElement.textContent = unitsCount.toLocaleString();
+                })
+                .catch(error => console.error('Error updating count:', error));
+        }, 5000);
 
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
