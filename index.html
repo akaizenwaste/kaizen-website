@@ -93,20 +93,22 @@
         }
 
         .nav-link {
-            color: var(--white);
+            color: var(--primary-color); /* Changed from var(--white) */
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
             transition: var(--transition);
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            background: var(--gradient);
-            box-shadow: 0 4px 15px rgba(255,99,71,0.2);
+            padding: 0.6rem 1.2rem; /* Kept padding for click area */
+            border-radius: 4px; /* Changed from 50px */
+            /* background: var(--gradient); Removed */
+            /* box-shadow: 0 4px 15px rgba(255,99,71,0.2); Removed */
         }
 
         .nav-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255,99,71,0.3);
+            color: var(--accent-color); /* Changed */
+            /* transform: translateY(-2px); Removed */
+            /* box-shadow: 0 6px 20px rgba(255,99,71,0.3); Removed */
+            background-color: rgba(255, 99, 71, 0.05); /* Subtle hover background */
         }
 
         .nav-dropdown {
@@ -156,7 +158,7 @@
         }
 
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://img1.wsimg.com/isteam/stock/109128/:/rs=w:1920,h:1080');
+            background: linear-gradient(135deg, var(--secondary-color) 0%, color-mix(in srgb, var(--secondary-color) 70%, black) 100%); /* Changed background */
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -170,16 +172,7 @@
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.2) 100%);
-            z-index: 1;
-        }
+        /* The .hero::before pseudo-element and its styles have been removed as it's no longer needed. */
 
         .hero-content {
             max-width: 1000px;
@@ -191,7 +184,7 @@
             font-size: 4.5rem;
             font-weight: 800;
             margin-bottom: 1.5rem;
-            line-height: 1.1;
+            line-height: 1.2; /* Adjusted */
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
             animation: fadeInUp 1s ease;
         }
@@ -210,7 +203,7 @@
             align-items: center;
             gap: 1rem;
             padding: 1.2rem 2.5rem;
-            background: var(--gradient);
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%); /* Changed gradient for better contrast */
             color: var(--white);
             text-decoration: none;
             border-radius: 50px;
@@ -246,7 +239,7 @@
         .section-title {
             text-align: center;
             font-size: 3rem;
-            margin-bottom: 4rem;
+            margin-bottom: 5rem; /* Adjusted */
             color: var(--text-color);
             position: relative;
             display: inline-block;
@@ -275,12 +268,12 @@
         .feature-card {
             background: var(--white);
             padding: 2.5rem;
-            border-radius: 20px;
+            border-radius: 16px; /* Standardized */
             box-shadow: var(--shadow);
             transition: var(--transition);
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255,99,71,0.1);
+            border: 1px solid rgba(255,99,71,0.1); /* Kept existing border */
         }
 
         .feature-card::before {
@@ -297,25 +290,28 @@
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255,99,71,0.15);
+            transform: translateY(-8px); /* Standardized */
+            box-shadow: 0 18px 35px rgba(255,99,71,0.15); /* Standardized */
         }
 
         .feature-card:hover::before {
             opacity: 0.05;
         }
 
-        .feature-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
+        .feature-icon { /* This class will be repurposed for the img or a wrapper */
+            display: block; /* Ensure image behaves as a block */
+            width: 100%;
+            height: 200px; /* Or desired fixed height */
+            object-fit: cover;
             margin-bottom: 1.5rem;
             position: relative;
             z-index: 2;
             transition: var(--transition);
+            border-radius: 8px 8px 0 0; /* Optional: round top corners of image */
         }
 
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1);
+        .feature-card:hover .feature-icon { /* Adjust if scaling is still desired */
+            transform: scale(1.05); /* Slightly less aggressive scale for images */
         }
 
         .feature-title {
@@ -324,14 +320,16 @@
             color: var(--text-color);
             position: relative;
             z-index: 2;
+            line-height: 1.3; /* Added */
         }
 
         .feature-description {
             color: #666;
-            line-height: 1.6;
+            line-height: 1.7; /* Adjusted */
             position: relative;
             z-index: 2;
             font-size: 1.1rem;
+            margin-bottom: 0; /* Ensure no extra space if it's the last element */
         }
 
         @keyframes fadeInUp {
@@ -419,6 +417,7 @@
             margin-bottom: 1.5rem;
             position: relative;
             display: inline-block;
+            line-height: 1.3; /* Added */
         }
 
         .about-title::after {
@@ -434,7 +433,7 @@
 
         .about-description {
             font-size: 1.1rem;
-            line-height: 1.8;
+            line-height: 1.7; /* Adjusted */
             color: var(--text-color);
             margin-bottom: 2rem;
         }
@@ -450,14 +449,22 @@
             text-align: center;
             padding: 1.5rem;
             background: var(--white);
-            border-radius: 15px;
+            border-radius: 16px; /* Standardized */
             box-shadow: var(--shadow);
             transition: var(--transition);
+            border: 1px solid rgba(255,99,71,0.1); /* Added standard border */
         }
 
         .stat-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(255,99,71,0.15);
+            transform: translateY(-5px); /* Kept as per plan */
+            box-shadow: 0 12px 25px rgba(255,99,71,0.12); /* Standardized */
+        }
+
+        .stat-icon {
+            font-size: 2rem; /* Adjust size as needed */
+            color: var(--primary-color);
+            margin-bottom: 0.75rem; /* Space between icon and number */
+            display: block; 
         }
 
         .stat-number {
@@ -533,7 +540,7 @@
         .value-card {
             background: var(--white);
             padding: 2rem;
-            border-radius: 20px;
+            border-radius: 16px; /* Standardized */
             box-shadow: var(--shadow);
             transition: var(--transition);
             text-align: center;
@@ -541,6 +548,7 @@
             overflow: visible;
             cursor: pointer;
             margin-bottom: 200px;
+            border: 1px solid rgba(255,99,71,0.1); /* Added standard border */
         }
 
         .value-dropdown {
@@ -549,10 +557,11 @@
             left: 0;
             right: 0;
             background: var(--white);
-            border-radius: 15px;
+            border-radius: 16px; /* Standardized */
             box-shadow: var(--shadow);
             padding: 1.5rem;
             opacity: 0;
+            border: 1px solid rgba(255,99,71,0.1); /* Added standard border */
             visibility: hidden;
             transform: translateY(10px);
             transition: var(--transition);
@@ -560,7 +569,13 @@
             min-height: 200px;
         }
 
-        .value-card:hover .value-dropdown {
+        /* .value-card:hover .value-dropdown (Interaction moved to JS) */
+        /* opacity: 1; */
+        /* visibility: visible; */
+        /* transform: translateY(0); */
+        /* } */
+
+        .value-dropdown.active { /* New class for JS control */
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
@@ -597,9 +612,10 @@
             margin-right: 0.5rem;
         }
 
-        .value-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255,99,71,0.15);
+        .value-card:hover,
+        .value-card.active { /* Apply hover styles also when card is active */
+            transform: translateY(-8px); 
+            box-shadow: 0 18px 35px rgba(255,99,71,0.15); 
         }
 
         .value-icon {
@@ -615,13 +631,31 @@
             transform: scale(1.1);
         }
 
+        .value-title-container { /* New wrapper for title and icon */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem; /* Or adjust as needed */
+        }
+
         .value-title {
             font-size: 1.5rem;
-            margin-bottom: 1rem;
+            /* margin-bottom: 1rem; Removed, handled by container */
             color: var(--text-color);
             position: relative;
             z-index: 2;
         }
+
+        .value-toggle-icon {
+            font-size: 1rem; /* Adjust size as needed */
+            color: var(--primary-color);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .value-toggle-icon.rotated {
+            transform: rotate(180deg);
+        }
+
 
         @media (max-width: 1024px) {
             .values-grid {
@@ -670,7 +704,7 @@
 
         .contact-description {
             font-size: 1.1rem;
-            line-height: 1.6;
+            line-height: 1.7; /* Adjusted */
             color: var(--text-color);
             margin-bottom: 2rem;
         }
@@ -788,6 +822,60 @@
                 padding: 2rem;
             }
         }
+
+        /* Footer Styles */
+        .footer-section {
+            background-color: var(--text-color);
+            color: var(--light-bg);
+            padding: 3rem 2rem; /* Reduced padding for footer */
+            text-align: center;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0 0;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--light-bg);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-social {
+            margin-top: 1rem;
+        }
+
+        .footer-social a {
+            color: var(--light-bg);
+            text-decoration: none;
+            font-size: 1.2rem; /* Increased icon size */
+            margin: 0 0.75rem; /* Spacing between icons */
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body id="top">
@@ -799,8 +887,8 @@
                 <li><a href="#services" class="nav-link">Services</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li class="nav-dropdown">
-                    <a href="#" class="nav-link">For You</a>
-                    <div class="dropdown-content">
+                    <a href="#" class="nav-link" id="for-you-nav-link" aria-haspopup="true" aria-expanded="false">For You</a>
+                    <div class="dropdown-content" aria-labelledby="for-you-nav-link">
                         <a href="pages/property-managers.html" class="dropdown-link">For Property Managers</a>
                         <a href="pages/residents.html" class="dropdown-link">For Residents</a>
                         <a href="pages/owners.html" class="dropdown-link">For Owners</a>
@@ -825,19 +913,22 @@
         <h2 class="section-title">Our Services</h2>
         <div class="features-grid">
             <div class="feature-card">
-                <i class="fas fa-door-open feature-icon"></i>
+                <!-- TODO: Replace with actual image for Valet Doorstep Removal -->
+                <img src="images/service-valet-doorstep.jpg" alt="Convenient valet doorstep waste removal service in action" class="feature-icon" loading="lazy">
                 <h3 class="feature-title">Valet Doorstep Removal</h3>
-                <p class="feature-description">Convenient doorstep collection service that saves time and enhances property cleanliness.</p>
+                <p class="feature-description">Effortless doorstep trash and recycling collection, boosting resident convenience and maintaining a pristine property appearance.</p>
             </div>
             <div class="feature-card">
-                <i class="fas fa-balance-scale feature-icon"></i>
+                <!-- TODO: Replace with actual image for Waste Leveling -->
+                <img src="images/service-waste-leveling.jpg" alt="Waste leveling process ensuring optimal dumpster capacity" class="feature-icon" loading="lazy">
                 <h3 class="feature-title">Waste Leveling</h3>
-                <p class="feature-description">Smart waste management solutions that optimize collection schedules and reduce costs.</p>
+                <p class="feature-description">Intelligent waste leveling in dumpsters to maximize capacity, optimize hauler pick-ups, and significantly lower disposal costs.</p>
             </div>
             <div class="feature-card">
-                <i class="fas fa-lightbulb feature-icon"></i>
+                <!-- TODO: Replace with actual image for Waste Advising -->
+                <img src="images/service-waste-advising.jpg" alt="Expert waste advising consultation for sustainable practices" class="feature-icon" loading="lazy">
                 <h3 class="feature-title">Waste Advising</h3>
-                <p class="feature-description">Expert guidance on waste management strategies to improve efficiency and sustainability.</p>
+                <p class="feature-description">Strategic waste stream analysis and expert advising to implement sustainable practices, improve recycling rates, and ensure regulatory compliance.</p>
             </div>
         </div>
     </section>
@@ -848,18 +939,21 @@
             <div class="about-content">
                 <div class="about-text">
                     <h3 class="about-title">Simplifying Waste Management</h3>
-                    <p class="about-description">At Kaizen Waste, we're optimizing the way properties handle waste management. From doorstep removal, to waste leveling, to equipment advising - we're everything but your hauler.</p>
+                    <p class="about-description">Kaizen Waste is dedicated to revolutionizing property waste management. We provide comprehensive solutions—from convenient doorstep collection and cost-saving waste leveling to expert equipment advising—partnering with you to streamline operations and enhance sustainability. We're your all-in-one waste service, minus the hauling.</p>
                     <div class="stats-grid">
                         <div class="stat-item">
+                            <i class="fas fa-check-circle stat-icon"></i>
                             <div class="stat-number">100%</div>
                             <div class="stat-label">Service Guarantee</div>
                             <div class="stat-small">*Or Your Money Back*</div>
                         </div>
                         <div class="stat-item">
+                            <i class="fas fa-calendar-alt stat-icon"></i>
                             <div class="stat-number">5-7</div>
                             <div class="stat-label">Day Service Week</div>
                         </div>
                         <div class="stat-item">
+                            <i class="fas fa-headset stat-icon"></i>
                             <div class="stat-number">24/7</div>
                             <div class="stat-label">Support Available</div>
                         </div>
@@ -867,17 +961,21 @@
                 </div>
                 <div class="about-image-container">
                     <div class="about-image">
-                        <img src="https://img1.wsimg.com/isteam/ip/01bc495d-6774-4b39-b524-0672041c6694/team-photo.jpg" alt="Kaizen Waste Team Members">
+                        <!-- TODO: Replace with actual image for About Section -->
+                        <img src="images/about-kaizen-waste-team.jpg" alt="The Kaizen Waste team committed to service excellence" class="feature-icon" loading="lazy">
                         <div class="image-overlay"></div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="values-grid">
-            <div class="value-card">
+            <div class="value-card" id="value-card-sustainability">
                 <i class="fas fa-leaf value-icon"></i>
-                <h4 class="value-title">Sustainability</h4>
-                <div class="value-dropdown">
+                <div class="value-title-container" role="button" tabindex="0" aria-expanded="false" aria-controls="value-dropdown-sustainability">
+                    <h4 class="value-title">Sustainability</h4>
+                    <i class="fas fa-chevron-down value-toggle-icon" aria-hidden="true"></i>
+                </div>
+                <div class="value-dropdown" id="value-dropdown-sustainability" role="region" aria-labelledby="value-card-sustainability">
                     <ul class="value-list">
                         <li>Eco-friendly waste disposal methods</li>
                         <li>Recycling optimization programs</li>
@@ -886,10 +984,13 @@
                     </ul>
                 </div>
             </div>
-            <div class="value-card">
+            <div class="value-card" id="value-card-innovation">
                 <i class="fas fa-microchip value-icon"></i>
-                <h4 class="value-title">Innovation</h4>
-                <div class="value-dropdown">
+                <div class="value-title-container" role="button" tabindex="0" aria-expanded="false" aria-controls="value-dropdown-innovation">
+                    <h4 class="value-title">Innovation</h4>
+                    <i class="fas fa-chevron-down value-toggle-icon" aria-hidden="true"></i>
+                </div>
+                <div class="value-dropdown" id="value-dropdown-innovation" role="region" aria-labelledby="value-card-innovation">
                     <ul class="value-list">
                         <li>AI-Driven Efficiency Tracking <a href="pages/ai-efficiency.html" style="color: var(--primary-color); text-decoration: none; margin-left: 0.5rem; font-size: 0.9rem;">Learn More →</a></li>
                         <li>Audit-Ready Service Documentation</li>
@@ -899,10 +1000,13 @@
                     </ul>
                 </div>
             </div>
-            <div class="value-card">
+            <div class="value-card" id="value-card-partnership">
                 <i class="fas fa-handshake value-icon"></i>
-                <h4 class="value-title">Partnership</h4>
-                <div class="value-dropdown">
+                <div class="value-title-container" role="button" tabindex="0" aria-expanded="false" aria-controls="value-dropdown-partnership">
+                    <h4 class="value-title">Partnership</h4>
+                    <i class="fas fa-chevron-down value-toggle-icon" aria-hidden="true"></i>
+                </div>
+                <div class="value-dropdown" id="value-dropdown-partnership" role="region" aria-labelledby="value-card-partnership">
                     <ul class="value-list">
                         <li>Dedicated Account Manager</li>
                         <li>24/7 Remediation Support</li>
@@ -981,6 +1085,43 @@
         </div>
     </section>
 
+    <footer class="footer-section section">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p>&copy; 2025 Kaizen Waste. All Rights Reserved.</p>
+                <!-- Placeholder for future links -->
+                <!-- 
+                <ul class="footer-links">
+                    <li><a href="#top">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                -->
+            </div>
+        </div>
+    </footer>
+
+    <style> /* Basic styles for validation feedback */
+        .form-group .error-message {
+            display: block;
+            color: var(--primary-color);
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+        }
+        .form-group input.invalid,
+        .form-group select.invalid,
+        .form-group textarea.invalid {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(255,99,71,0.1);
+        }
+    </style>
+
     <script>
         // Header scroll effect
         window.addEventListener('scroll', () => {
@@ -991,6 +1132,52 @@
                 header.classList.remove('scrolled');
             }
         });
+
+        // "For You" Navigation Dropdown ARIA and Keyboard Support
+        const navDropdownLink = document.getElementById('for-you-nav-link');
+        if (navDropdownLink) {
+            const dropdownContent = navDropdownLink.nextElementSibling;
+
+            navDropdownLink.addEventListener('mouseenter', () => {
+                navDropdownLink.setAttribute('aria-expanded', 'true');
+            });
+            navDropdownLink.addEventListener('mouseleave', () => {
+                // Only set to false if focus is not within the dropdown content
+                setTimeout(() => { // Timeout to allow focus to shift
+                    if (!dropdownContent.contains(document.activeElement)) {
+                         navDropdownLink.setAttribute('aria-expanded', 'false');
+                    }
+                }, 100);
+            });
+            navDropdownLink.addEventListener('focus', () => {
+                navDropdownLink.setAttribute('aria-expanded', 'true');
+            });
+            navDropdownLink.addEventListener('blur', (event) => {
+                // Check if the new focused element is part of the dropdown
+                if (!event.relatedTarget || !dropdownContent.contains(event.relatedTarget)) {
+                    navDropdownLink.setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            // Close dropdown if Escape key is pressed
+            dropdownContent.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    navDropdownLink.setAttribute('aria-expanded', 'false');
+                    navDropdownLink.focus(); // Return focus to the main link
+                }
+            });
+            
+            // Ensure dropdown closes when focus moves out of it
+            const dropdownLinks = dropdownContent.querySelectorAll('.dropdown-link');
+            dropdownLinks.forEach(link => {
+                link.addEventListener('blur', (event) => {
+                    // Check if focus is still within the dropdown content or its trigger
+                    if (!dropdownContent.contains(event.relatedTarget) && event.relatedTarget !== navDropdownLink) {
+                        navDropdownLink.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+        }
 
         // Units Counter with API
         const counterElement = document.getElementById('unitsCounter');
@@ -1043,21 +1230,147 @@
             observer.observe(el);
         });
 
-        // Form submission handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Value card dropdown toggle
+        const valuesGrid = document.querySelector('.values-grid');
+
+        function toggleValueCard(cardElement) {
+            const isActive = cardElement.classList.contains('active');
             
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
-            
-            // Here you would typically send the data to your server
-            console.log('Form submitted:', data);
-            
-            // Show success message
-            alert('Thank you for your request! We will get back to you soon.');
-            this.reset();
-        });
+            // Close all other active cards
+            valuesGrid.querySelectorAll('.value-card.active').forEach(activeCard => {
+                if (activeCard !== cardElement) {
+                    activeCard.classList.remove('active');
+                    activeCard.querySelector('.value-dropdown').classList.remove('active');
+                    activeCard.querySelector('.value-toggle-icon').classList.remove('rotated');
+                    activeCard.querySelector('.value-title-container').setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Toggle current card
+            cardElement.classList.toggle('active', !isActive);
+            const dropdown = cardElement.querySelector('.value-dropdown');
+            const titleContainer = cardElement.querySelector('.value-title-container');
+            const icon = cardElement.querySelector('.value-toggle-icon');
+
+            if (dropdown) dropdown.classList.toggle('active', !isActive);
+            if (icon) icon.classList.toggle('rotated', !isActive);
+            if (titleContainer) titleContainer.setAttribute('aria-expanded', !isActive);
+        }
+
+        if (valuesGrid) {
+            valuesGrid.addEventListener('click', function(event) {
+                const clickedTitleContainer = event.target.closest('.value-title-container');
+                if (clickedTitleContainer) {
+                    const cardToToggle = clickedTitleContainer.closest('.value-card');
+                    if (cardToToggle) {
+                        toggleValueCard(cardToToggle);
+                    }
+                }
+            });
+
+            valuesGrid.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    const focusedTitleContainer = event.target.closest('.value-title-container');
+                    if (focusedTitleContainer && focusedTitleContainer.matches('[role="button"]')) {
+                        event.preventDefault(); // Prevent page scroll on space
+                        const cardToToggle = focusedTitleContainer.closest('.value-card');
+                        if (cardToToggle) {
+                            toggleValueCard(cardToToggle);
+                        }
+                    }
+                }
+            });
+        }
+
+
+        // Form submission handling with client-side validation
+        const contactForm = document.getElementById('contactForm');
+        
+        if (contactForm) {
+            contactForm.setAttribute('novalidate', true); // Disable default browser validation UI
+
+            const requiredFields = contactForm.querySelectorAll('input[required], select[required], textarea[required]');
+
+            requiredFields.forEach(field => {
+                field.addEventListener('blur', function() {
+                    validateField(this);
+                });
+                field.addEventListener('input', function() {
+                    // Clear error as user types if field becomes valid
+                    if (this.validity.valid) {
+                        clearError(this);
+                    } else {
+                        // Optionally, re-validate on input to give instant feedback for some error types
+                        // validateField(this); 
+                    }
+                });
+            });
+
+            contactForm.addEventListener('submit', function(event) {
+                let isFormValid = true;
+                requiredFields.forEach(field => {
+                    if (!validateField(field)) { // validateField now returns true/false
+                        isFormValid = false;
+                    }
+                });
+
+                if (!isFormValid) {
+                    event.preventDefault();
+                    // Find first invalid field and focus it for better UX
+                    const firstInvalidField = Array.from(requiredFields).find(f => !f.validity.valid);
+                    if (firstInvalidField) {
+                        firstInvalidField.focus();
+                    }
+                } else {
+                    // If form is valid, proceed with submission logic
+                    event.preventDefault(); // Keep this to handle submission manually as before
+                    const formData = new FormData(this);
+                    const data = Object.fromEntries(formData.entries());
+                    console.log('Form submitted (valid):', data);
+                    alert('Thank you for your request! We will get back to you soon.');
+                    this.reset();
+                    requiredFields.forEach(clearError); // Clear any lingering error states after successful submission
+                }
+            });
+        }
+
+        function validateField(field) {
+            let errorMessage = '';
+            if (field.validity.valueMissing) {
+                errorMessage = `${field.labels[0] ? field.labels[0].textContent.replace('*','').trim() : 'This field'} is required.`;
+            } else if (field.type === 'email' && field.validity.typeMismatch) {
+                errorMessage = 'Please enter a valid email address.';
+            } else if (field.type === 'number' && field.validity.rangeUnderflow) {
+                errorMessage = `Must be at least ${field.min}.`;
+            }
+            // Add more custom validation checks here if needed
+
+            if (errorMessage) {
+                showError(field, errorMessage);
+                return false; // Invalid
+            } else {
+                clearError(field);
+                return true; // Valid
+            }
+        }
+
+        function showError(field, message) {
+            clearError(field); // Remove any existing error message first
+            field.classList.add('invalid');
+            const errorSpan = document.createElement('span');
+            errorSpan.className = 'error-message';
+            errorSpan.textContent = message;
+            // Insert after the field, or adjust as per your form structure
+            field.parentNode.appendChild(errorSpan);
+        }
+
+        function clearError(field) {
+            field.classList.remove('invalid');
+            const errorSpan = field.parentNode.querySelector('.error-message');
+            if (errorSpan) {
+                errorSpan.remove();
+            }
+        }
     </script>
 </body>
-</html> 
+</html>
