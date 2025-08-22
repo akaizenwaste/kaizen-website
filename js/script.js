@@ -8,6 +8,89 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// Initialize carousel functionality
+function initializeCarousel() {
+    const carousel = document.getElementById('valueCarousel');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    if (!carousel || !prevBtn || !nextBtn) return;
+    
+    const cardWidth = 350 + 32; // card width + gap
+    let currentPosition = 0;
+    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+    
+    prevBtn.addEventListener('click', () => {
+        currentPosition = Math.max(0, currentPosition - cardWidth);
+        carousel.scrollTo({
+            left: currentPosition,
+            behavior: 'smooth'
+        });
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        currentPosition = Math.min(maxScroll, currentPosition + cardWidth);
+        carousel.scrollTo({
+            left: currentPosition,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Update button states based on scroll position
+    carousel.addEventListener('scroll', () => {
+        const scrollLeft = carousel.scrollLeft;
+        prevBtn.style.opacity = scrollLeft <= 0 ? '0.5' : '1';
+        nextBtn.style.opacity = scrollLeft >= maxScroll ? '0.5' : '1';
+    });
+    
+    // Initialize button states
+    prevBtn.style.opacity = '0.5';
+    nextBtn.style.opacity = maxScroll > 0 ? '1' : '0.5';
+}
+
+// Handle video playback (placeholder for future video implementation)
+function handleVideoPlayback() {
+    const videoBackground = document.querySelector('.hero-video-background video');
+    if (videoBackground) {
+        videoBackground.muted = true;
+        videoBackground.autoplay = true;
+        videoBackground.loop = true;
+        videoBackground.playsInline = true;
+    }
+}
+
+// Animate elements on scroll
+function animateOnScroll() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements that should animate in
+    document.querySelectorAll('.carousel-card, .expertise-column, .mission-statement-box').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+}
+
+// Initialize all functionality when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initializeCarousel();
+    handleVideoPlayback();
+    animateOnScroll();
+});
+
 // "For You" Navigation Dropdown ARIA and Keyboard Support
 const navDropdownLink = document.getElementById('for-you-nav-link');
 if (navDropdownLink) {
