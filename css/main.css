@@ -1041,7 +1041,7 @@ body {
 }
 
 .problem-solution-content .solution-statement {
-    font-size: 3.5rem;
+    font-size: 4.0rem;
     font-weight: 300;
     line-height: 1.1;
     color: var(--text-color);
@@ -1059,7 +1059,7 @@ body {
 /* Approach Section */
 .approach-section {
     background: #ffffff;
-    padding: var(--spacing-xxl) 0;
+    padding: var(--spacing-xl) 0;
 }
 
 .approach-content {
@@ -1081,7 +1081,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: var(--spacing-xl);
-    margin-top: var(--spacing-xxl);
+    margin-top: var(--spacing-l);
 }
 
 .approach-column {
@@ -1151,7 +1151,7 @@ body {
     gap: var(--spacing-xxxl);
     max-width: 1400px;
     margin: 0 auto;
-    padding: var(--spacing-xxxl) var(--spacing-md);
+    padding: var(--spacing-xxl) var(--spacing-md);
 }
 
 .mission-statement-box {

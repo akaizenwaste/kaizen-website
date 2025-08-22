@@ -32,7 +32,7 @@
             <h1 class="hero-title">Premium Waste Services<br>for Multi-family Communities</h1>
             <p class="hero-subtitle">From doorstep pickup to bulk waste management, we keep your community clean, compliant and care-free.</p>
             <div style="display: flex; gap: 1.5rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 3rem;">
-                <div style="width: 60px; height: 60px; border: 2px solid rgba(255,255,255,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(10px);" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+                <div style="width: 60px; height: 60px; border: 2px solid rgba(255,255,255,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(10px);" onclick="window.location.href='pages/quote.html'">
                     <i class="fas fa-arrow-right" style="color: white; font-size: 1.25rem;"></i>
                 </div>
                 <div style="width: 60px; height: 60px; border: 2px solid rgba(255,255,255,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(10px);" onclick="window.location.href='tel:(602) 341-5575'">
@@ -48,7 +48,7 @@
     </section>
 
     <!-- Industry Problem & Promise -->
-    <section style="background: #f5f6f7; padding: 8rem 0;">
+    <section style="background: #f5f6f7; padding: 2rem 0;">
         <div class="problem-solution-container">
             <div class="problem-solution-content corner-brackets">
                 <div class="problem-text">
@@ -129,7 +129,7 @@
             </div>
             
             <!-- Our Mission moved here -->
-            <div class="mission-section" style="margin-top: 6rem;">
+            <div class="mission-section" style="margin-top: 4rem;">
                 <span class="section-label" style="color: var(--primary-color);">OUR MISSION</span>
                 <div class="mission-content">
                     <p class="mission-statement">
@@ -141,7 +141,7 @@
     </section>
 
     <!-- Our Story -->
-    <section style="background: #fafbfc; padding: 8rem 0;">
+    <section style="background: #fafbfc; padding: 6rem 0;">
         <div class="story-layout">
             <div class="story-left-content">
                 <span class="section-label" style="color: var(--primary-color);">OUR STORY</span>
@@ -268,7 +268,7 @@
         <div class="careers-content">
             <h2 class="careers-title">Want to work with us?</h2>
             <p class="careers-subtitle">We're always looking for dependable people committed to clean, safe communities.</p>
-            <a href="#contact" class="pill-button" style="color: #ffffff; border-color: #ffffff;">
+            <a href="pages/quote.html" class="pill-button" style="color: #ffffff; border-color: #ffffff;">
                 Speak with our team <i class="fas fa-arrow-right"></i>
             </a>
         </div>
@@ -279,79 +279,12 @@
         <div class="final-hero-content">
             <h2 class="final-hero-title">Our work keeps communities clean</h2>
             <p class="final-hero-subtitle">We provide mission-critical waste services that thousands of residents rely on every day.</p>
-            <a href="#contact" class="cta-button primary">
+            <a href="pages/quote.html" class="cta-button primary">
                 Get Your Quote <i class="fas fa-arrow-right"></i>
             </a>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact-section">
-        <h2 class="section-title">Get Your Quote</h2>
-        <div class="contact-container">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3 class="contact-title">Ready to Reduce Your Waste Costs?</h3>
-                    <p class="contact-description">Tell us about your property and we'll provide a customized quote showing potential cost savings and service options.</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>support@kaizen-waste.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>(602) 341-5575</span>
-                        </div>
-                    </div>
-                </div>
-                <form id="contactForm" class="contact-form">
-                    <div class="form-group">
-                        <label for="name" class="required">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="required">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="propertyName">Property Name</label>
-                        <input type="text" id="propertyName" name="propertyName">
-                    </div>
-                    <div class="form-group">
-                        <label for="complexSize">Size of Complex (# of Units)</label>
-                        <input type="number" id="complexSize" name="complexSize" min="1">
-                    </div>
-                    <div class="form-group">
-                        <label for="complexStyle">Complex Style</label>
-                        <select id="complexStyle" name="complexStyle">
-                            <option value="">Select a style</option>
-                            <option value="garden">Garden Style</option>
-                            <option value="midrise">Mid-Rise</option>
-                            <option value="highrise">High-Rise</option>
-                            <option value="townhome">Townhome</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="role" class="required">I am a...</label>
-                        <select id="role" name="role" required>
-                            <option value="">Select your role</option>
-                            <option value="owner">Property Owner</option>
-                            <option value="manager">Property Manager</option>
-                            <option value="resident">Resident</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="notes">Notes</label>
-                        <textarea id="notes" name="notes" rows="4" placeholder="Any additional information you'd like to share..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-button">Send Message</button>
-                    <p class="form-note">* Required fields</p>
-                </form>
-            </div>
-        </div>
-    </section>
 
     <footer class="footer-section section">
         <div class="footer-container">
