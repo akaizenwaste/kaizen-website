@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Areas - Kaizen Waste</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <div style="width: 40px; height: 40px; border: 2px solid white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <div style="width: 20px; height: 20px; background: white; border-radius: 50%;"></div>
+                </div>
+                <a href="../index.html" style="color: white; font-weight: 500; font-size: 1.125rem; text-decoration: none;">Kaizen Waste</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="services-dropdown">
+                    <a href="services.html" class="nav-link">Services</a>
+                    <div class="services-dropdown-content">
+                        <a href="doorstep-collection.html" class="services-dropdown-link">
+                            <i class="fas fa-home"></i>
+                            Doorstep Collection
+                        </a>
+                        <a href="bulk-waste-removal.html" class="services-dropdown-link">
+                            <i class="fas fa-truck"></i>
+                            Bulk Waste Removal
+                        </a>
+                        <a href="waste-advisory.html" class="services-dropdown-link">
+                            <i class="fas fa-chart-line"></i>
+                            Waste Advisory
+                        </a>
+                    </div>
+                </li>
+                <li><a href="technology.html" class="nav-link">Technology</a></li>
+                <li class="nav-dropdown">
+                    <a href="#" class="nav-link">Company</a>
+                    <div class="dropdown-content">
+                        <a href="about.html" class="dropdown-link">About Us</a>
+                        <a href="careers.html" class="dropdown-link">Careers</a>
+                    </div>
+                </li>
+                <li><a href="service-areas.html" class="nav-link">Service Areas</a></li>
+                <li><a href="property-managers.html" class="nav-link">Property Managers</a></li>
+                <li><a href="residents.html" class="nav-link">Residents</a></li>
+                <li><a href="quote.html" class="nav-link">Get Quote</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Service Areas Hero -->
+    <section class="service-hero-banner" style="background-image: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 100%), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+        <div class="service-hero-content">
+            <span class="section-label" style="color: rgba(255,255,255,0.8);">SERVICE AREAS</span>
+            <h1 class="service-hero-title">Serving All of Arizona</h1>
+            <p class="service-hero-subtitle">Comprehensive waste management coverage across the Grand Canyon State</p>
+            <a href="quote.html" class="pill-button primary">
+                Get Your Quote <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Coverage Overview -->
+    <section style="background: #ffffff; padding: var(--spacing-xl) 0;">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 var(--spacing-md); text-align: center;">
+            <span class="section-label" style="color: var(--primary-color);">STATEWIDE COVERAGE</span>
+            <h2 style="font-size: 3rem; font-weight: 300; line-height: 1.2; margin-bottom: var(--spacing-md); color: var(--text-color); max-width: 800px; margin-left: auto; margin-right: auto;">
+                Mission-critical waste services wherever you need them
+            </h2>
+            <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text-light); max-width: 700px; margin: 0 auto var(--spacing-xl) auto;">
+                From the bustling Phoenix metropolitan area to growing communities across Arizona, Kaizen Waste provides reliable, professional waste management services that property managers trust.
+            </p>
+        </div>
+    </section>
+
+    <!-- Arizona Map -->
+    <section class="coverage-map">
+        <div class="map-container">
+            <h3 style="font-size: 1.5rem; font-weight: 300; margin-bottom: var(--spacing-lg); color: var(--text-color); text-align: center;">
+                Arizona Service Coverage Map
+            </h3>
+            
+            <!-- SVG Map of Arizona -->
+            <div class="arizona-map">
+                <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background US outline (simplified) -->
+                    <g class="other-states">
+                        <!-- Simplified surrounding states for context -->
+                        <rect x="0" y="0" width="120" height="150" fill="currentColor" opacity="0.1"/>
+                        <rect x="280" y="0" width="120" height="200" fill="currentColor" opacity="0.1"/>
+                        <rect x="120" y="0" width="160" height="80" fill="currentColor" opacity="0.1"/>
+                        <rect x="0" y="150" width="400" height="150" fill="currentColor" opacity="0.1"/>
+                    </g>
+                    
+                    <!-- Arizona state shape (simplified) -->
+                    <path class="arizona-state" d="M120 80 L280 80 L280 100 L300 100 L300 120 L320 120 L320 140 L340 140 L340 160 L360 160 L360 180 L340 180 L340 200 L320 200 L300 200 L280 200 L260 200 L240 200 L220 200 L200 200 L180 200 L160 200 L140 200 L120 200 L120 180 L100 180 L100 160 L80 160 L80 140 L60 140 L60 120 L80 120 L80 100 L100 100 L100 80 L120 80 Z" 
+                          fill="currentColor" 
+                          stroke="rgba(255,255,255,0.3)" 
+                          stroke-width="2"/>
+                    
+                    <!-- Major cities markers -->
+                    <circle cx="180" cy="160" r="4" fill="#ffffff" stroke="var(--primary-color)" stroke-width="2"/>
+                    <text x="185" y="165" fill="var(--text-color)" font-size="12" font-weight="500">Phoenix</text>
+                    
+                    <circle cx="220" cy="180" r="3" fill="#ffffff" stroke="var(--primary-color)" stroke-width="2"/>
+                    <text x="225" y="185" fill="var(--text-color)" font-size="10">Tucson</text>
+                    
+                    <circle cx="200" cy="140" r="3" fill="#ffffff" stroke="var(--primary-color)" stroke-width="2"/>
+                    <text x="205" y="145" fill="var(--text-color)" font-size="10">Flagstaff</text>
+                    
+                    <circle cx="160" cy="170" r="3" fill="#ffffff" stroke="var(--primary-color)" stroke-width="2"/>
+                    <text x="165" y="175" fill="var(--text-color)" font-size="10">Glendale</text>
+                    
+                    <circle cx="200" cy="170" r="3" fill="#ffffff" stroke="var(--primary-color)" stroke-width="2"/>
+                    <text x="205" y="175" fill="var(--text-color)" font-size="10">Scottsdale</text>
+                    
+                    <circle cx="190" cy="180" r="3" fill="#ffffff" stroke="var(--primary-color)" stroke-width="2"/>
+                    <text x="195" y="185" fill="var(--text-color)" font-size="10">Tempe</text>
+                </svg>
+            </div>
+            
+            <p style="text-align: center; margin-top: var(--spacing-md); color: var(--text-light); font-size: 0.9rem;">
+                <i class="fas fa-map-marker-alt" style="color: var(--primary-color); margin-right: 0.5rem;"></i>
+                Currently serving properties across Arizona with plans for continued expansion
+            </p>
+        </div>
+        
+        <!-- Service Areas Legend -->
+        <div class="map-legend">
+            <div class="legend-item">
+                <h4 class="legend-title">Phoenix Metropolitan Area</h4>
+                <p class="legend-description">
+                    Full service coverage including Phoenix, Scottsdale, Tempe, Glendale, Mesa, Chandler, and surrounding communities. Our primary service hub with same-day emergency response.
+                </p>
+            </div>
+            
+            <div class="legend-item">
+                <h4 class="legend-title">Tucson Region</h4>
+                <p class="legend-description">
+                    Comprehensive waste management services for Tucson and surrounding areas. Regular service schedules with 24-hour emergency response capability.
+                </p>
+            </div>
+            
+            <div class="legend-item">
+                <h4 class="legend-title">Northern Arizona</h4>
+                <p class="legend-description">
+                    Service coverage for Flagstaff, Sedona, and northern communities. Specialized scheduling to accommodate seasonal variations and tourism patterns.
+                </p>
+            </div>
+            
+            <div class="legend-item">
+                <h4 class="legend-title">Statewide Coverage</h4>
+                <p class="legend-description">
+                    We provide services to properties throughout Arizona. Contact us to discuss service availability and scheduling for your specific location.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Capabilities by Region -->
+    <section style="background: var(--light-bg); padding: var(--spacing-xl) 0;">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 var(--spacing-md); text-align: center;">
+            <span class="section-label" style="color: var(--primary-color);">REGIONAL CAPABILITIES</span>
+            <h2 style="font-size: 2.5rem; font-weight: 300; line-height: 1.2; margin-bottom: var(--spacing-xl); color: var(--text-color);">
+                Tailored services for Arizona's diverse communities
+            </h2>
+        </div>
+        
+        <div class="approach-columns">
+            <div class="approach-column">
+                <div class="approach-icon">
+                    <i class="fas fa-city"></i>
+                </div>
+                <h3 class="approach-column-title">Urban Properties</h3>
+                <p class="approach-column-description">
+                    High-density service solutions for metropolitan properties including doorstep collection, bulk waste management, and rapid response capabilities.
+                </p>
+            </div>
+            
+            <div class="approach-column">
+                <div class="approach-icon">
+                    <i class="fas fa-mountain"></i>
+                </div>
+                <h3 class="approach-column-title">Resort Communities</h3>
+                <p class="approach-column-description">
+                    Specialized services for resort and vacation properties with flexible scheduling to accommodate seasonal occupancy variations.
+                </p>
+            </div>
+            
+            <div class="approach-column">
+                <div class="approach-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3 class="approach-column-title">Suburban Developments</h3>
+                <p class="approach-column-description">
+                    Comprehensive waste management for growing suburban communities with scalable solutions that adapt to development expansion.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coverage Statistics -->
+    <section style="background: #ffffff; padding: var(--spacing-xl) 0;">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 var(--spacing-md); text-align: center;">
+            <span class="section-label" style="color: var(--primary-color);">COVERAGE STATISTICS</span>
+            <h2 style="font-size: 2.5rem; font-weight: 300; line-height: 1.2; margin-bottom: var(--spacing-xl); color: var(--text-color);">
+                Extensive reach across the Grand Canyon State
+            </h2>
+        </div>
+        
+        <div class="metrics-display">
+            <div class="metric-item">
+                <span class="metric-number">15+</span>
+                <div class="metric-label">Cities Served</div>
+                <div class="metric-description">Major metropolitan and suburban areas</div>
+            </div>
+            <div class="metric-item">
+                <span class="metric-number">50+</span>
+                <div class="metric-label">Properties</div>
+                <div class="metric-description">Multi-family communities under management</div>
+            </div>
+            <div class="metric-item">
+                <span class="metric-number">24hr</span>
+                <div class="metric-label">Response Time</div>
+                <div class="metric-description">Emergency service availability statewide</div>
+            </div>
+            <div class="metric-item">
+                <span class="metric-number">100%</span>
+                <div class="metric-label">Arizona Coverage</div>
+                <div class="metric-description">Service available throughout the state</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expansion Plans -->
+    <section style="background: var(--light-bg); padding: var(--spacing-xl) 0;">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 var(--spacing-md);">
+            <div class="story-layout">
+                <div class="story-left-content">
+                    <span class="section-label" style="color: var(--primary-color);">EXPANSION PLANS</span>
+                    <h2 style="font-size: 2.5rem; font-weight: 300; line-height: 1.2; margin-bottom: var(--spacing-md); color: var(--text-color);">
+                        Growing with Arizona's communities
+                    </h2>
+                    <p class="company-description">
+                        As Arizona continues to grow, Kaizen Waste expands our service capabilities to meet increasing demand. We're actively developing enhanced service coverage in emerging markets and strengthening our presence in established communities.
+                    </p>
+                    <p class="company-description">
+                        Our strategic expansion focuses on maintaining the same high-quality, reliable service that has made us Arizona's trusted waste management partner while scaling to serve more properties across the state.
+                    </p>
+                </div>
+                
+                <div class="story-right-tiles">
+                    <div class="story-tile">
+                        <div class="story-tile-icon">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                <path d="M16 8V16L20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="story-tile-content">
+                            <h3 class="story-tile-title">Rapid Response Network</h3>
+                            <p class="story-tile-description">
+                                Expanding our emergency response capabilities to ensure 24-hour service availability across all Arizona markets.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="story-tile">
+                        <div class="story-tile-icon">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 2L28 8V24L16 30L4 24V8L16 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                <path d="M16 2V30" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M4 8L16 14L28 8" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+                        <div class="story-tile-content">
+                            <h3 class="story-tile-title">Technology Infrastructure</h3>
+                            <p class="story-tile-description">
+                                Deploying advanced monitoring and verification systems to maintain service quality as we expand coverage areas.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="story-tile">
+                        <div class="story-tile-icon">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 2C18.5 2 20.5 4 20.5 6.5C20.5 9 18.5 11 16 11C13.5 11 11.5 9 11.5 6.5C11.5 4 13.5 2 16 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                <path d="M24 21C24 23.5 21.5 26 16 26C10.5 26 8 23.5 8 21C8 18.5 10.5 16 16 16C21.5 16 24 18.5 24 21Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            </svg>
+                        </div>
+                        <div class="story-tile-content">
+                            <h3 class="story-tile-title">Local Partnerships</h3>
+                            <p class="story-tile-description">
+                                Building relationships with local communities and property management companies to ensure seamless service integration.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact for Service -->
+    <section style="background: #ffffff; padding: var(--spacing-xl) 0;">
+        <div style="max-width: 1000px; margin: 0 auto; padding: 0 var(--spacing-md); text-align: center;">
+            <span class="section-label" style="color: var(--primary-color);">GET STARTED</span>
+            <h2 style="font-size: 2.5rem; font-weight: 300; line-height: 1.2; margin-bottom: var(--spacing-md); color: var(--text-color);">
+                Ready to serve your Arizona property
+            </h2>
+            <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text-light); margin-bottom: var(--spacing-lg);">
+                Contact us today to discuss service availability for your property. Our team will work with you to develop a customized waste management solution that meets your specific needs and location requirements.
+            </p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-lg);">
+                <div style="text-align: center; padding: var(--spacing-md);">
+                    <i class="fas fa-phone" style="font-size: 2rem; color: var(--primary-color); margin-bottom: var(--spacing-sm);"></i>
+                    <h4 style="font-size: 1.1rem; font-weight: 500; margin-bottom: var(--spacing-xs); color: var(--text-color);">Call Us</h4>
+                    <p style="color: var(--text-light);">(602) 341-5575</p>
+                </div>
+                
+                <div style="text-align: center; padding: var(--spacing-md);">
+                    <i class="fas fa-envelope" style="font-size: 2rem; color: var(--primary-color); margin-bottom: var(--spacing-sm);"></i>
+                    <h4 style="font-size: 1.1rem; font-weight: 500; margin-bottom: var(--spacing-xs); color: var(--text-color);">Email Us</h4>
+                    <p style="color: var(--text-light);">service@kaizenwaste.com</p>
+                </div>
+                
+                <div style="text-align: center; padding: var(--spacing-md);">
+                    <i class="fas fa-clock" style="font-size: 2rem; color: var(--primary-color); margin-bottom: var(--spacing-sm);"></i>
+                    <h4 style="font-size: 1.1rem; font-weight: 500; margin-bottom: var(--spacing-xs); color: var(--text-color);">Response Time</h4>
+                    <p style="color: var(--text-light);">24 hours or less</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="final-hero" style="background-image: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.8) 100%), url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+        <div class="final-hero-content">
+            <h2 class="final-hero-title">Serving Arizona with pride</h2>
+            <p class="final-hero-subtitle">Join property managers across the state who trust Kaizen for reliable waste management</p>
+            <div style="display: flex; gap: 1.5rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: var(--spacing-lg);">
+                <a href="quote.html" class="cta-button primary">
+                    Get Your Quote <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="tel:(602) 341-5575" class="pill-button" style="color: #ffffff; border-color: #ffffff;">
+                    Call (602) 341-5575 <i class="fas fa-phone"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p>&copy; 2025 Kaizen Waste. All Rights Reserved.</p>
+                <ul class="footer-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="quote.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

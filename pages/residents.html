@@ -5,355 +5,263 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Residents - Kaizen Waste</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/main.css">
     <style>
+        /* Salient Motion inspired overrides */
         :root {
-            --primary-color: #ff6347;  /* Tomato Red */
-            --secondary-color: #e74c3c;  /* Darker Red */
-            --accent-color: #ff7f50;  /* Coral Red */
-            --text-color: #333;
-            --light-bg: #f8f9fa;
-            --white: #ffffff;
-            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --salient-text: #2c3e50;
+            --salient-text-light: #7f8c8d;
+            --salient-text-muted: #bdc3c7;
+            --salient-bg: #ffffff;
+            --salient-light-bg: #f8f9fa;
+            --salient-border: rgba(0,0,0,0.1);
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            font-weight: 300;
             line-height: 1.6;
-            color: var(--text-color);
-            overflow-x: hidden;
-            background: var(--light-bg);
+            color: var(--salient-text);
         }
 
-        /* Header styles from main page */
         .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: var(--transition);
-            height: 80px;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            height: 100%;
-        }
-
-        .logo {
-            height: 45px;
-            transition: var(--transition);
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-            margin-left: auto;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            position: absolute;
-            right: 2rem;
+            background: var(--salient-bg);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-bottom: 1px solid var(--salient-border);
         }
 
         .nav-link {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            background: var(--gradient);
-            box-shadow: 0 4px 15px rgba(255,99,71,0.2);
+            color: var(--salient-text);
+            font-weight: 300;
+            font-size: 0.875rem;
+            text-transform: none;
+            letter-spacing: normal;
         }
 
         .nav-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255,99,71,0.3);
-        }
-
-        .nav-dropdown {
-            position: relative;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background: var(--white);
-            min-width: 200px;
-            box-shadow: var(--shadow);
-            border-radius: 12px;
-            padding: 0.8rem 0;
-            z-index: 1000;
-            transform: translateY(10px);
-            opacity: 0;
-            transition: var(--transition);
-            top: 100%;
-            right: 0;
-        }
-
-        .nav-dropdown:hover .dropdown-content {
-            display: block;
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .dropdown-link {
-            display: block;
-            padding: 0.8rem 1.5rem;
-            color: var(--text-color);
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 0.95rem;
-        }
-
-        .dropdown-link:hover {
-            background: var(--light-bg);
             color: var(--primary-color);
-            padding-left: 2rem;
+            opacity: 1;
         }
 
         .page-wrapper {
             padding-top: 80px;
-            min-height: 100vh;
-            background: linear-gradient(135deg, rgba(255,99,71,0.05) 0%, rgba(231,76,60,0.05) 100%);
         }
 
         .hero-section {
-            position: relative;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%);
+            background: var(--salient-bg);
+            padding: 4rem 2rem 2rem;
+            text-align: left;
+            border-bottom: 1px solid var(--salient-border);
         }
 
         .hero-content {
-            text-align: center;
-            color: var(--white);
-            z-index: 2;
-            max-width: 800px;
-            padding: 0 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .hero-title {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .hero-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--salient-text);
+            margin-bottom: 1rem;
+            line-height: 1.1;
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+            font-size: 1.125rem;
+            font-weight: 300;
+            color: var(--salient-text-light);
+            margin-bottom: 0;
         }
 
         .content-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 2rem;
             max-width: 1400px;
-            margin: -100px auto 0;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            align-items: start;
         }
 
-        .main-content {
-            grid-column: 1 / 9;
-            background: var(--white);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
+        .main-content h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--salient-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
         }
 
-        .main-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255,99,71,0.05) 0%, rgba(231,76,60,0.05) 100%);
-            z-index: 0;
-        }
-
-        .sidebar {
-            grid-column: 9 / 13;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .info-card {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(255,99,71,0.15);
-        }
-
-        .info-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .info-card p {
-            color: var(--text-color);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        .step-container {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .step-number {
-            background: var(--gradient);
-            color: var(--white);
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            font-weight: 600;
-            flex-shrink: 0;
-            box-shadow: 0 4px 8px rgba(255,99,71,0.2);
-        }
-
-        .step-text {
-            margin: 0;
-            padding-top: 4px;
+        .main-content p {
+            font-size: 1.125rem;
+            font-weight: 300;
+            line-height: 1.7;
+            color: var(--salient-text);
+            margin-bottom: 2rem;
         }
 
         .feature-list {
             list-style: none;
-            margin-top: 2rem;
+            padding: 0;
+            margin: 3rem 0;
         }
 
         .feature-item {
             display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: var(--light-bg);
-            border-radius: 12px;
-            transition: var(--transition);
+            gap: 1.5rem;
+            align-items: flex-start;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--salient-border);
         }
 
-        .feature-item:hover {
-            transform: translateX(10px);
-            background: var(--white);
-            box-shadow: var(--shadow);
+        .feature-item:last-child {
+            border-bottom: none;
         }
 
         .feature-icon {
+            flex-shrink: 0;
             width: 40px;
             height: 40px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 1.2rem;
+            color: var(--salient-text-light);
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+
+        .feature-icon i {
+            font-size: 1.5rem;
         }
 
         .feature-content h4 {
-            color: var(--text-color);
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--salient-text);
             margin-bottom: 0.5rem;
+            line-height: 1.3;
         }
 
         .feature-content p {
-            color: #666;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--salient-text-light);
+            margin: 0;
         }
 
         .cta-section {
-            text-align: center;
-            margin-top: 3rem;
+            background: var(--salient-light-bg);
             padding: 2rem;
-            background: var(--gradient);
-            border-radius: 20px;
-            color: var(--white);
+            border-radius: 8px;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .cta-section h3 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--salient-text);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1rem;
+            color: var(--salient-text-light);
+            margin-bottom: 1.5rem;
         }
 
         .cta-button {
             display: inline-flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem 2rem;
-            background: var(--white);
-            color: var(--primary-color);
+            gap: 0.75rem;
+            padding: 0.875rem 2rem;
+            border: 1px solid var(--salient-border);
+            background: var(--salient-bg);
+            color: var(--salient-text);
             text-decoration: none;
             border-radius: 50px;
-            font-weight: 600;
-            margin-top: 1.5rem;
-            transition: var(--transition);
+            font-weight: 300;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            background: var(--salient-light-bg);
+            border-color: var(--salient-text-light);
+            transform: translateY(-1px);
+        }
+
+        .sidebar {
+            padding-left: 2rem;
+        }
+
+        .info-card {
+            background: var(--salient-bg);
+            border: 1px solid var(--salient-border);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--salient-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .info-card p {
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--salient-text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-container {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-container:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 30px;
+            height: 30px;
+            background: var(--salient-text);
+            color: var(--salient-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 400;
+        }
+
+        .step-text {
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--salient-text-light);
+            margin: 0;
         }
 
         @media (max-width: 1024px) {
             .content-grid {
                 grid-template-columns: 1fr;
+                gap: 3rem;
             }
 
-            .main-content, .sidebar {
-                grid-column: 1 / -1;
+            .sidebar {
+                padding-left: 0;
             }
         }
 
@@ -362,12 +270,18 @@
                 font-size: 2.5rem;
             }
 
-            .hero-subtitle {
-                font-size: 1.2rem;
+            .content-grid {
+                padding: 3rem 1rem;
             }
 
-            .main-content {
-                padding: 2rem;
+            .feature-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .feature-icon {
+                margin: 0 auto;
             }
         }
     </style>
@@ -375,7 +289,12 @@
 <body>
     <header class="header">
         <nav class="nav-container">
-            <img src="https://img1.wsimg.com/isteam/ip/01bc495d-6774-4b39-b524-0672041c6694/Kaizen%20Waste%20Logo.png" alt="Kaizen Waste Logo" class="logo">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <div style="width: 40px; height: 40px; border: 2px solid var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <div style="width: 20px; height: 20px; background: var(--primary-color); border-radius: 50%;"></div>
+                </div>
+                <span style="color: var(--text-color); font-weight: 500; font-size: 1.125rem;">Kaizen Waste</span>
+            </div>
             <ul class="nav-menu">
                 <li><a href="../index.html" class="nav-link">Home</a></li>
                 <li><a href="../index.html#services" class="nav-link">Services</a></li>
@@ -397,7 +316,7 @@
         <section class="hero-section">
             <div class="hero-content">
                 <h1 class="hero-title">For Residents</h1>
-                <p class="hero-subtitle">Convenient Waste Management Solutions for Your Home</p>
+                <p class="hero-subtitle">Convenient waste management solutions for your home</p>
             </div>
         </section>
 
@@ -494,4 +413,4 @@
         });
     </script>
 </body>
-</html> 
+</html>
