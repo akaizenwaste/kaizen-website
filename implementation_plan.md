@@ -1,175 +1,103 @@
 # Implementation Plan
 
 ## Overview
-Create additional pages for the Kaizen Waste website that mirror Salient Motion's design and structure exactly, focusing on waste management services for multi-family communities with an AI-first technology platform.
+Optimize the spacing and vertical rhythm across the Kaizen Waste landing page to create a more natural, professional flow that guides users smoothly through the content without jarring spacing jumps.
 
-This implementation will expand the existing Kaizen website with new service pages, audience-specific pages, and enhanced existing pages. The goal is to replicate Salient's elegant visual hierarchy, section organization, and mission-critical tone while adapting the content for waste management services. All pages will emphasize reliability, cost transparency, and AI-powered service verification rather than sustainability messaging.
+The current landing page suffers from excessive and inconsistent spacing that disrupts the user experience. The spacing system uses values that are either too tight or too loose, with no middle ground for natural content flow. This implementation will establish a harmonious spacing scale, optimize vertical rhythm, normalize viewport sections, and fine-tune content flow to create a cohesive, professional presentation that maintains visual hierarchy while improving readability and user engagement.
 
 ## Types
-Enhanced page structure types and content organization patterns.
+Define new spacing scale values and standardize viewport height proportions.
 
-**Page Layout Types:**
-- Service Landing Hub: Grid-based service cards with hero introduction and CTA bar
-- Individual Service Pages: Hero → Overview → Benefits → Process Timeline → Testimonial → FAQ → CTA
-- Audience Pages: Hero statement → Pain points → Solutions → Metrics → Testimonials → CTAs
-- Technology Platform: Hero → AI-first architecture → Proof of service → Verification systems → Integration
-- Service Coverage: Hero → Map visualization → Coverage areas → Contact encouragement
-- Enhanced About: Mission → Story → Team structure → Values → CTA
-- Full Careers: Culture hero → Company description → Open roles → Benefits → Application CTA
+**New Spacing Scale:**
+```css
+--spacing-xs: 0.5rem;     /* 8px - unchanged */
+--spacing-sm: 1rem;       /* 16px - unchanged */
+--spacing-md: 2rem;       /* 32px - unchanged */
+--spacing-lg: 3rem;       /* 48px - reduced from 4rem */
+--spacing-xl: 4rem;       /* 64px - reduced from 6rem */
+--spacing-xxl: 5rem;      /* 80px - reduced from 8rem */
+--spacing-xxxl: 6rem;     /* 96px - reduced from 10rem */
+```
 
-**Content Section Types:**
-- Hero banners with service-specific imagery and headlines
-- Three-column benefit grids with icons and descriptions
-- Process timeline sections with numbered steps
-- Testimonial blocks with client quotes
-- FAQ accordion sections
-- Metrics displays with quantifiable results
-- Technology feature showcases with AI emphasis
+**Viewport Height Standards:**
+- Primary hero sections: 80vh
+- Secondary showcase sections: 50vh
+- Content sections: auto with consistent padding
 
 ## Files
-File structure modifications and new page creation.
+Modify CSS spacing system and section-specific styles.
 
-**New Files to Create:**
-- `pages/services.html` - Services landing page with three service cards
-- `pages/doorstep-collection.html` - Individual service page for doorstep pickup
-- `pages/bulk-waste-removal.html` - Individual service page for bulk waste management
-- `pages/waste-advisory.html` - Individual service page for waste consulting
-- `pages/technology.html` - AI-first platform showcase for property managers
-- `pages/service-areas.html` - Arizona coverage map and area listings
-- `pages/careers.html` - Full careers page expanding the existing teaser
+**Files to be modified:**
+- `css/main.css` - Complete spacing system overhaul
+  - Update CSS custom properties for spacing scale
+  - Modify `.section` base padding from 8rem to 5rem
+  - Reduce `.section-title` margin from 5rem to 2.5rem
+  - Optimize approach section column gaps
+  - Standardize story layout spacing
+  - Normalize viewport heights across hero sections
+  - Fine-tune internal component spacing
 
-**Existing Files to Modify:**
-- `pages/about.html` - Complete placeholder content with full company story and team structure
-- `pages/property-managers.html` - Redesign to match Salient's exact visual style and section organization
-- `pages/residents.html` - Redesign to match Salient's exact visual style and section organization
-- `index.html` - Update navigation to include new pages and service links
-- `css/main.css` - Add new CSS classes for service pages, timeline components, and map visualizations
-
-**Configuration Updates:**
-- Navigation menu updates to include Services dropdown and new page links
-- Footer updates to include all new pages in site structure
-- Internal linking updates throughout existing pages
+**No new files required.**
+**No files to be deleted.**
 
 ## Functions
-JavaScript functionality enhancements and new interactive features.
+No JavaScript function modifications required.
 
-**New Functions:**
-- `initializeServiceCarousel()` - Service card carousel functionality for services landing page
-- `initializeTimelineAnimation()` - Process timeline step-by-step animation on scroll
-- `initializeFAQAccordion()` - Expandable FAQ sections for service pages
-- `initializeMapInteraction()` - Interactive Arizona map with hover states and area highlighting
-- `initializeTestimonialRotation()` - Rotating testimonial display for audience pages
-- `initializeServiceNavigation()` - Service page navigation and breadcrumb functionality
-
-**Modified Functions:**
-- `animateOnScroll()` - Extend to support new page elements (timelines, service cards, map elements)
-- `initializeCarousel()` - Enhance to support multiple carousel types across different pages
-- Navigation dropdown handling - Update to support Services submenu structure
-
-**Enhanced Functions:**
-- Form validation for service-specific contact forms
-- Smooth scrolling enhancements for longer service pages
-- Mobile navigation improvements for expanded menu structure
+This is purely a CSS spacing optimization that doesn't require changes to existing JavaScript functionality.
 
 ## Classes
-CSS class structure additions and modifications for new page types.
+Modify existing CSS classes to implement new spacing system.
 
-**New Classes:**
-- `.service-landing-grid` - Three-column service card layout
-- `.service-card` - Individual service card styling with hover effects
-- `.service-hero-banner` - Service-specific hero sections with background images
-- `.process-timeline` - Numbered timeline component for service processes
-- `.timeline-step` - Individual timeline step styling
-- `.faq-accordion` - Collapsible FAQ section styling
-- `.faq-item` - Individual FAQ item with expand/collapse functionality
-- `.metrics-display` - Quantifiable results showcase grid
-- `.metric-item` - Individual metric display with large numbers and descriptions
-- `.testimonial-block` - Client testimonial styling with quotes and attribution
-- `.technology-feature` - AI platform feature showcase blocks
-- `.verification-showcase` - Proof of service display components
-- `.coverage-map` - Arizona map container and styling
-- `.map-legend` - Map legend and area listing components
-- `.careers-role-card` - Job opening display cards
-- `.benefits-grid` - Employee benefits showcase layout
+**Modified classes:**
+- `.section` - Reduce padding from 8rem to 5rem
+- `.section-title` - Reduce margin-bottom from 5rem to 2.5rem
+- `.approach-section` - Adjust padding to 4rem
+- `.approach-columns` - Reduce gap from 4rem to 2.5rem
+- `.story-layout` - Reduce gap from 8rem to 4rem
+- `.problem-solution-container` - Optimize padding and min-height
+- `.problem-solution-content` - Reduce internal gaps from 6rem to 3rem
+- `.mission-section` - Adjust top margin from 4rem to 2.5rem
+- `.expertise-columns` - Optimize padding from 8rem to 5rem
+- `.hero` - Standardize to 80vh
+- `.operations-showcase` - Standardize to 50vh
+- `.careers-teaser` - Standardize to 50vh
+- `.final-hero` - Reduce from 70vh to 60vh
 
-**Modified Classes:**
-- `.hero-section` - Enhanced to support service-specific background images and varied heights
-- `.section-title` - Extended with service-specific styling variations
-- `.feature-card` - Enhanced for service benefits and technology features
-- `.nav-dropdown` - Extended to support Services submenu structure
-- `.cta-button` - Additional variants for different page contexts
-
-**Enhanced Classes:**
-- `.story-layout` - Extended for About page team and company story sections
-- `.approach-columns` - Enhanced for technology platform feature displays
-- `.expertise-columns` - Adapted for service benefit presentations
+**No new classes required.**
+**No classes to be removed.**
 
 ## Dependencies
-Package and integration requirements for new functionality.
+No new dependencies required.
 
-**Existing Dependencies (maintained):**
-- Font Awesome 6.0.0 - Icon library for service icons, timeline markers, and UI elements
-- CSS custom properties system - Maintained color scheme and spacing variables
-- Existing JavaScript modules - Header scroll effects, form validation, carousel functionality
-
-**New Integration Requirements:**
-- SVG map creation tools or libraries for Arizona coverage visualization
-- Enhanced CSS Grid and Flexbox layouts for service page structures
-- CSS animation libraries or custom keyframes for timeline and scroll animations
-- Responsive image optimization for service-specific hero backgrounds
-
-**Performance Considerations:**
-- Lazy loading implementation for service page images
-- CSS optimization for new page layouts
-- JavaScript module organization for page-specific functionality
-- Image compression for service hero backgrounds and technology screenshots
+This implementation uses only existing CSS custom properties and doesn't require additional packages or external resources.
 
 ## Testing
-Validation approach for new pages and enhanced functionality.
+Visual regression testing and responsive design validation.
 
-**Cross-browser Testing:**
-- Service page layouts across Chrome, Firefox, Safari, Edge
-- Interactive elements (timelines, accordions, maps) functionality testing
-- Mobile responsiveness for all new pages and components
-- Navigation dropdown behavior with expanded menu structure
+**Testing approach:**
+- Visual comparison before/after screenshots at multiple breakpoints
+- Scroll flow testing to ensure smooth content transitions
+- Mobile responsiveness validation (768px, 1024px, 1400px)
+- Cross-browser compatibility check
+- Content readability assessment
 
-**Content Validation:**
-- Service page content accuracy and tone consistency
-- Technology platform messaging alignment with property manager audience
-- About page content structure and team information display
-- Careers page job listings and benefits presentation
-
-**Performance Testing:**
-- Page load times for image-heavy service pages
-- Animation performance on mobile devices
-- Map rendering and interaction responsiveness
-- Form submission functionality across all new contact forms
-
-**Accessibility Testing:**
-- Screen reader compatibility for new page structures
-- Keyboard navigation for interactive elements (timelines, accordions, maps)
-- Color contrast validation for new design elements
-- ARIA label implementation for complex components
+**Validation criteria:**
+- Consistent visual rhythm between sections
+- Appropriate breathing room without excessive gaps
+- Smooth scrolling experience
+- Maintained visual hierarchy
+- Preserved responsive behavior
 
 ## Implementation Order
-Logical sequence of development to minimize conflicts and ensure successful integration.
+Sequential CSS modifications to minimize conflicts and ensure successful integration.
 
-**Phase 1: Foundation Enhancement (Steps 1-3)**
-1. **Update CSS Foundation** - Add new CSS classes and enhance existing styles to support all new page types
-2. **Enhance Navigation Structure** - Update header navigation to include Services dropdown and all new page links
-3. **Create Services Landing Page** - Build the central hub page with three service cards and navigation structure
-
-**Phase 2: Core Service Pages (Steps 4-6)**
-4. **Build Individual Service Pages** - Create doorstep-collection.html, bulk-waste-removal.html, and waste-advisory.html with full content structure
-5. **Implement Technology Page** - Create AI-first platform showcase with property manager focus
-6. **Develop Service Areas Page** - Build Arizona coverage page with SVG map and area listings
-
-**Phase 3: Enhanced Existing Pages (Steps 7-9)**
-7. **Redesign Property Managers Page** - Modify existing page to match Salient's exact style and structure
-8. **Redesign Residents Page** - Modify existing page to match Salient's exact style and structure  
-9. **Complete About Us Page** - Fill in placeholder content and enhance page structure
-
-**Phase 4: Final Pages and Polish (Steps 10-12)**
-10. **Create Full Careers Page** - Expand existing teaser into complete careers page with job listings and benefits
-11. **Implement Interactive Features** - Add JavaScript functionality for timelines, accordions, map interactions, and carousels
-12. **Final Testing and Optimization** - Cross-browser testing, performance optimization, and accessibility validation
+1. **Update spacing scale variables** - Modify CSS custom properties for new spacing values
+2. **Optimize base section padding** - Reduce `.section` padding from 8rem to 5rem
+3. **Adjust section title spacing** - Reduce `.section-title` margin-bottom to 2.5rem
+4. **Normalize viewport heights** - Standardize hero and showcase section heights
+5. **Optimize approach section** - Reduce padding and column gaps for better flow
+6. **Balance story layout** - Reduce excessive gap between left/right content
+7. **Fine-tune problem/solution section** - Optimize container and content spacing
+8. **Adjust expertise section** - Reduce padding for better proportion
+9. **Optimize mission section** - Reduce top margin for smoother transition
+10. **Test and validate** - Visual testing and responsive behavior verification

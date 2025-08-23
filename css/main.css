@@ -21,10 +21,10 @@
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 2rem;
-    --spacing-lg: 4rem;
-    --spacing-xl: 6rem;
-    --spacing-xxl: 8rem;
-    --spacing-xxxl: 10rem;  /* Added for more generous spacing */
+    --spacing-lg: 3rem;      /* Reduced from 4rem */
+    --spacing-xl: 4.5rem;    /* Reduced from 6rem */
+    --spacing-xxl: 6rem;     /* Reduced from 8rem */
+    --spacing-xxxl: 8rem;    /* Reduced from 10rem */
 }
 
 * {
@@ -238,7 +238,7 @@ body {
 }
 
 .section {
-    padding: 8rem 2rem;
+    padding: 5rem 2rem;
     position: relative;
     overflow: hidden;
 }
@@ -247,7 +247,7 @@ body {
     text-align: center;
     font-size: 3rem;
     font-weight: 300;
-    margin-bottom: 5rem; /* Adjusted */
+    margin-bottom: 2.5rem;
     color: var(--text-color);
     position: relative;
     display: inline-block;
@@ -1013,8 +1013,8 @@ body {
 .problem-solution-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: var(--spacing-xxl) var(--spacing-md);
-    min-height: 60vh;
+    padding: var(--spacing-xl) var(--spacing-md);
+    min-height: 50vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1024,12 +1024,12 @@ body {
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-xl);
+    gap: var(--spacing-lg);
     align-items: center;
     width: 100%;
     max-width: 1200px;
-    padding: var(--spacing-lg);
-    min-height: 400px;
+    padding: var(--spacing-md);
+    min-height: 350px;
 }
 
 .problem-solution-content .problem-text {
@@ -1072,7 +1072,7 @@ body {
     font-size: 3rem;
     font-weight: 300;
     line-height: 1.2;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
     color: var(--text-color);
     max-width: 800px;
 }
@@ -1080,8 +1080,8 @@ body {
 .approach-columns {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--spacing-xl);
-    margin-top: var(--spacing-l);
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-md);
 }
 
 .approach-column {
@@ -1251,7 +1251,7 @@ body {
 /* Operations Showcase */
 .operations-showcase {
     position: relative;
-    height: 60vh;
+    height: 65vh;
     background-size: cover;
     background-position: center;
     display: flex;
@@ -1292,7 +1292,7 @@ body {
     gap: 0;
     max-width: 1400px;
     margin: 0 auto;
-    padding: var(--spacing-xxl) var(--spacing-md);
+    padding: var(--spacing-xl) var(--spacing-md);
 }
 
 .expertise-column {
@@ -1333,7 +1333,7 @@ body {
 /* Careers Teaser */
 .careers-teaser {
     position: relative;
-    height: 50vh;
+    height: 65vh;
     background-size: cover;
     background-position: center;
     display: flex;
@@ -1378,7 +1378,7 @@ body {
 /* Final Hero */
 .final-hero {
     position: relative;
-    height: 70vh;
+    height: 65vh;
     background-size: cover;
     background-position: center;
     display: flex;
@@ -1447,12 +1447,12 @@ body {
     text-align: center;
     max-width: 800px;
     margin: 0 auto;
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-md) 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .mission-content {
-    margin-top: var(--spacing-md);
+    margin-top: var(--spacing-sm);
 }
 
 .mission-statement {
@@ -1468,7 +1468,7 @@ body {
 .story-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-xxl);
+    gap: var(--spacing-xl);
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
@@ -1554,7 +1554,7 @@ body {
 .salient-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-xxl);
+    gap: var(--spacing-xl);
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
