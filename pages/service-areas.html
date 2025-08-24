@@ -6,6 +6,8 @@
     <title>Service Areas - Kaizen Waste</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
 </head>
 <body>
     <header class="header">
@@ -82,44 +84,8 @@
                 Arizona Service Coverage Map
             </h3>
             
-            <!-- SVG Map of Arizona -->
-            <div class="arizona-map">
-                <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Background US outline (simplified) -->
-                    <g class="other-states">
-                        <!-- Simplified surrounding states for context -->
-                        <rect x="0" y="0" width="120" height="150" fill="currentColor" opacity="0.1"/>
-                        <rect x="280" y="0" width="120" height="200" fill="currentColor" opacity="0.1"/>
-                        <rect x="120" y="0" width="160" height="80" fill="currentColor" opacity="0.1"/>
-                        <rect x="0" y="150" width="400" height="150" fill="currentColor" opacity="0.1"/>
-                    </g>
-                    
-                    <!-- Arizona state shape (simplified) -->
-                    <path class="arizona-state" d="M120 80 L280 80 L280 100 L300 100 L300 120 L320 120 L320 140 L340 140 L340 160 L360 160 L360 180 L340 180 L340 200 L320 200 L300 200 L280 200 L260 200 L240 200 L220 200 L200 200 L180 200 L160 200 L140 200 L120 200 L120 180 L100 180 L100 160 L80 160 L80 140 L60 140 L60 120 L80 120 L80 100 L100 100 L100 80 L120 80 Z" 
-                          fill="currentColor" 
-                          stroke="rgba(255,255,255,0.3)" 
-                          stroke-width="2"/>
-                    
-                    <!-- Major cities markers -->
-                    <circle cx="180" cy="160" r="4" fill="#ffffff" stroke="var(--primary-color)" stroke-width="2"/>
-                    <text x="185" y="165" fill="var(--text-color)" font-size="12" font-weight="500">Phoenix</text>
-                    
-                    <circle cx="220" cy="180" r="3" fill="#ffffff" stroke="var(--primary-color)" stroke-width="2"/>
-                    <text x="225" y="185" fill="var(--text-color)" font-size="10">Tucson</text>
-                    
-                    <circle cx="200" cy="140" r="3" fill="#ffffff" stroke="var(--primary-color)" stroke-width="2"/>
-                    <text x="205" y="145" fill="var(--text-color)" font-size="10">Flagstaff</text>
-                    
-                    <circle cx="160" cy="170" r="3" fill="#ffffff" stroke="var(--primary-color)" stroke-width="2"/>
-                    <text x="165" y="175" fill="var(--text-color)" font-size="10">Glendale</text>
-                    
-                    <circle cx="200" cy="170" r="3" fill="#ffffff" stroke="var(--primary-color)" stroke-width="2"/>
-                    <text x="205" y="175" fill="var(--text-color)" font-size="10">Scottsdale</text>
-                    
-                    <circle cx="190" cy="180" r="3" fill="#ffffff" stroke="var(--primary-color)" stroke-width="2"/>
-                    <text x="195" y="185" fill="var(--text-color)" font-size="10">Tempe</text>
-                </svg>
-            </div>
+            <!-- Interactive Mapbox Map -->
+            <div id="arizona-mapbox" style="width: 100%; height: 500px; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow);"></div>
             
             <p style="text-align: center; margin-top: var(--spacing-md); color: var(--text-light); font-size: 0.9rem;">
                 <i class="fas fa-map-marker-alt" style="color: var(--primary-color); margin-right: 0.5rem;"></i>
@@ -366,5 +332,95 @@
     </footer>
 
     <script src="../js/script.js"></script>
+    
+    <script>
+        // Initialize Mapbox map
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYWthaXplbndhc3RlIiwiYSI6ImNtZXBuYnE0cjBkOXgyanE1cnZkOW10bTUifQ.kaqZ9-JIhAo1Kw-ssacq1g';
+        
+        const map = new mapboxgl.Map({
+            container: 'arizona-mapbox',
+            style: 'mapbox://styles/mapbox/light-v11',
+            center: [-98.5795, 39.8283], // Center of United States
+            zoom: 3.5,
+            pitch: 0,
+            bearing: 0
+        });
+
+        map.on('load', function() {
+            // Add Arizona state boundary highlight
+            map.addSource('arizona-boundary', {
+                type: 'geojson',
+                data: {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Polygon',
+                        coordinates: [[
+                            [-114.8165, 32.4942],
+                            [-114.7236, 32.7153],
+                            [-114.6307, 33.0434],
+                            [-114.4449, 33.5434],
+                            [-114.1734, 34.2926],
+                            [-114.0805, 34.4391],
+                            [-114.0376, 35.0022],
+                            [-114.0376, 36.1201],
+                            [-114.0376, 37.0043],
+                            [-109.0452, 37.0043],
+                            [-109.0452, 36.9951],
+                            [-109.0452, 31.3328],
+                            [-111.0742, 31.3328],
+                            [-114.8165, 32.4942]
+                        ]]
+                    }
+                }
+            });
+
+
+            // Add Arizona state fill
+            map.addLayer({
+                id: 'arizona-fill',
+                type: 'fill',
+                source: 'arizona-boundary',
+                paint: {
+                    'fill-color': '#e74c3c',
+                    'fill-opacity': 0.3
+                }
+            });
+
+            // Add Arizona state outline
+            map.addLayer({
+                id: 'arizona-outline',
+                type: 'line',
+                source: 'arizona-boundary',
+                paint: {
+                    'line-color': '#e74c3c',
+                    'line-width': 3,
+                    'line-opacity': 1
+                }
+            });
+
+            // Add navigation controls
+            map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+
+            // Add fullscreen control
+            map.addControl(new mapboxgl.FullscreenControl(), 'top-right');
+        });
+
+        // Add custom CSS for popups
+        const style = document.createElement('style');
+        style.textContent = `
+            .mapboxgl-popup-content {
+                border-radius: 8px !important;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+                border: 1px solid rgba(231, 76, 60, 0.1) !important;
+            }
+            .mapboxgl-popup-tip {
+                border-top-color: #ffffff !important;
+            }
+            .custom-marker:hover {
+                z-index: 1000;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
