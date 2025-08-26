@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Areas - Kaizen Waste</title>
+    <title>Southwest Service Areas - Kaizen Waste</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../css/main.css">
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
 </head>
 <body>
     <header class="header">
@@ -56,8 +54,8 @@
     <section class="service-hero-banner" style="background-image: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 100%), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
         <div class="service-hero-content">
             <span class="section-label" style="color: rgba(255,255,255,0.8);">SERVICE AREAS</span>
-            <h1 class="service-hero-title">Serving All of Arizona</h1>
-            <p class="service-hero-subtitle">Comprehensive waste management coverage across the Grand Canyon State</p>
+            <h1 class="service-hero-title">Serving the American Southwest</h1>
+            <p class="service-hero-subtitle">Comprehensive waste management coverage across the Southwest region including Arizona, New Mexico, Nevada, Utah, Colorado, and Texas</p>
             <a href="quote.html" class="pill-button primary">
                 Get Your Quote <i class="fas fa-arrow-right"></i>
             </a>
@@ -67,12 +65,12 @@
     <!-- Coverage Overview -->
     <section style="background: #ffffff; padding: var(--spacing-xl) 0;">
         <div style="max-width: 1400px; margin: 0 auto; padding: 0 var(--spacing-md); text-align: center;">
-            <span class="section-label" style="color: var(--primary-color);">STATEWIDE COVERAGE</span>
+            <span class="section-label" style="color: var(--primary-color);">SOUTHWEST COVERAGE</span>
             <h2 style="font-size: 3rem; font-weight: 300; line-height: 1.2; margin-bottom: var(--spacing-md); color: var(--text-color); max-width: 800px; margin-left: auto; margin-right: auto;">
                 Mission-critical waste services wherever you need them
             </h2>
             <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text-light); max-width: 700px; margin: 0 auto var(--spacing-xl) auto;">
-                From the bustling Phoenix metropolitan area to growing communities across Arizona, Kaizen Waste provides reliable, professional waste management services that property managers trust.
+                From Arizona's bustling Phoenix metropolitan area to Texas's major cities and throughout New Mexico, Nevada, Utah, and Colorado, Kaizen Waste provides reliable, professional waste management services that property managers trust across the entire Southwest region.
             </p>
         </div>
     </section>
@@ -81,45 +79,47 @@
     <section class="coverage-map">
         <div class="map-container">
             <h3 style="font-size: 1.5rem; font-weight: 300; margin-bottom: var(--spacing-lg); color: var(--text-color); text-align: center;">
-                Arizona Service Coverage Map
+                Southwest Region Service Coverage Map
             </h3>
             
-            <!-- Interactive Mapbox Map -->
-            <div id="arizona-mapbox" style="width: 100%; height: 500px; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow);"></div>
+            <!-- Static Southwest Map -->
+            <img src="https://api.mapbox.com/styles/v1/mapbox/light-v11/static/pin-l-building+e74c3c(-112.074,33.4484),pin-l-building+e74c3c(-110.9747,32.2226),pin-l-building+e74c3c(-111.6513,35.1983),pin-l-building+e74c3c(-106.6504,35.0844),pin-l-building+e74c3c(-115.1398,36.1699),pin-l-building+e74c3c(-111.8910,40.7608),pin-l-building+e74c3c(-105.0178,39.7392),pin-l-building+e74c3c(-97.7431,30.2672),pin-l-building+e74c3c(-106.4424,31.7619),pin-l-building+e74c3c(-95.3698,29.7604),pin-l-building+e74c3c(-96.7970,32.7767)/-106.5,34.0,4.5/900x500@2x?access_token=pk.eyJ1IjoiYWthaXplbndhc3RlIiwiYSI6ImNtZXBuYnE0cjBkOXgyanE1cnZkOW10bTUifQ.kaqZ9-JIhAo1Kw-ssacq1g" 
+                 alt="Southwest Region Service Coverage Map showing comprehensive coverage across Arizona, New Mexico, Nevada, Utah, Colorado, and Texas" 
+                 style="width: 100%; height: 500px; border-radius: 12px; box-shadow: var(--shadow); object-fit: cover;">
             
             <p style="text-align: center; margin-top: var(--spacing-md); color: var(--text-light); font-size: 0.9rem;">
                 <i class="fas fa-map-marker-alt" style="color: var(--primary-color); margin-right: 0.5rem;"></i>
-                Currently serving properties across Arizona with plans for continued expansion
+                <span style="color: #e74c3c;">●</span> Southwest Region Coverage Areas
             </p>
         </div>
         
         <!-- Service Areas Legend -->
         <div class="map-legend">
             <div class="legend-item">
-                <h4 class="legend-title">Phoenix Metropolitan Area</h4>
+                <h4 class="legend-title">Arizona Service Region</h4>
                 <p class="legend-description">
-                    Full service coverage including Phoenix, Scottsdale, Tempe, Glendale, Mesa, Chandler, and surrounding communities. Our primary service hub with same-day emergency response.
+                    Comprehensive service coverage including Phoenix, Scottsdale, Tempe, Glendale, Mesa, Chandler, Tucson, Flagstaff, and surrounding communities with same-day emergency response capabilities.
                 </p>
             </div>
             
             <div class="legend-item">
-                <h4 class="legend-title">Tucson Region</h4>
+                <h4 class="legend-title">New Mexico Service Region</h4>
                 <p class="legend-description">
-                    Comprehensive waste management services for Tucson and surrounding areas. Regular service schedules with 24-hour emergency response capability.
+                    Service coverage for Albuquerque, Santa Fe, and Las Cruces regions. Comprehensive waste management services with 24-hour emergency response capability throughout the state.
                 </p>
             </div>
             
             <div class="legend-item">
-                <h4 class="legend-title">Northern Arizona</h4>
+                <h4 class="legend-title">Nevada & Utah Service Regions</h4>
                 <p class="legend-description">
-                    Service coverage for Flagstaff, Sedona, and northern communities. Specialized scheduling to accommodate seasonal variations and tourism patterns.
+                    Service coverage for Las Vegas, Salt Lake City, and surrounding areas. Specialized scheduling to accommodate diverse community needs and tourism patterns across both states.
                 </p>
             </div>
             
             <div class="legend-item">
-                <h4 class="legend-title">Statewide Coverage</h4>
+                <h4 class="legend-title">Colorado & Texas Service Regions</h4>
                 <p class="legend-description">
-                    We provide services to properties throughout Arizona. Contact us to discuss service availability and scheduling for your specific location.
+                    Service coverage for Denver, Austin, Houston, Dallas, El Paso, and surrounding markets. Reliable waste management services for these growing Southwest communities.
                 </p>
             </div>
         </div>
@@ -130,7 +130,7 @@
         <div style="max-width: 1400px; margin: 0 auto; padding: 0 var(--spacing-md); text-align: center;">
             <span class="section-label" style="color: var(--primary-color);">REGIONAL CAPABILITIES</span>
             <h2 style="font-size: 2.5rem; font-weight: 300; line-height: 1.2; margin-bottom: var(--spacing-xl); color: var(--text-color);">
-                Tailored services for Arizona's diverse communities
+                Tailored services for the Southwest's diverse communities
             </h2>
         </div>
         
@@ -172,15 +172,15 @@
         <div style="max-width: 1400px; margin: 0 auto; padding: 0 var(--spacing-md); text-align: center;">
             <span class="section-label" style="color: var(--primary-color);">COVERAGE STATISTICS</span>
             <h2 style="font-size: 2.5rem; font-weight: 300; line-height: 1.2; margin-bottom: var(--spacing-xl); color: var(--text-color);">
-                Extensive reach across the Grand Canyon State
+                Extensive reach across the American Southwest
             </h2>
         </div>
         
         <div class="metrics-display">
             <div class="metric-item">
-                <span class="metric-number">15+</span>
+                <span class="metric-number">25+</span>
                 <div class="metric-label">Cities Served</div>
-                <div class="metric-description">Major metropolitan and suburban areas</div>
+                <div class="metric-description">Major Southwest metropolitan areas</div>
             </div>
             <div class="metric-item">
                 <span class="metric-number">50+</span>
@@ -190,12 +190,12 @@
             <div class="metric-item">
                 <span class="metric-number">24hr</span>
                 <div class="metric-label">Response Time</div>
-                <div class="metric-description">Emergency service availability statewide</div>
+                <div class="metric-description">Emergency service availability region-wide</div>
             </div>
             <div class="metric-item">
-                <span class="metric-number">100%</span>
-                <div class="metric-label">Arizona Coverage</div>
-                <div class="metric-description">Service available throughout the state</div>
+                <span class="metric-number">6</span>
+                <div class="metric-label">Southwest States</div>
+                <div class="metric-description">Comprehensive regional coverage</div>
             </div>
         </div>
     </section>
@@ -205,15 +205,15 @@
         <div style="max-width: 1400px; margin: 0 auto; padding: 0 var(--spacing-md);">
             <div class="story-layout">
                 <div class="story-left-content">
-                    <span class="section-label" style="color: var(--primary-color);">EXPANSION PLANS</span>
+                    <span class="section-label" style="color: var(--primary-color);">SOUTHWEST OPERATIONS</span>
                     <h2 style="font-size: 2.5rem; font-weight: 300; line-height: 1.2; margin-bottom: var(--spacing-md); color: var(--text-color);">
-                        Growing with Arizona's communities
+                        Serving the Southwest region
                     </h2>
                     <p class="company-description">
-                        As Arizona continues to grow, Kaizen Waste expands our service capabilities to meet increasing demand. We're actively developing enhanced service coverage in emerging markets and strengthening our presence in established communities.
+                        Kaizen Waste operates across the Southwest region, providing comprehensive waste management services in Arizona, New Mexico, Nevada, Utah, Colorado, and Texas. We serve these dynamic markets with the same high-quality, reliable service standards throughout our coverage area.
                     </p>
                     <p class="company-description">
-                        Our strategic expansion focuses on maintaining the same high-quality, reliable service that has made us Arizona's trusted waste management partner while scaling to serve more properties across the state.
+                        Our Southwest operations focus on maintaining consistent, professional service delivery while adapting to the unique needs of each community we serve across the entire region.
                     </p>
                 </div>
                 
@@ -228,7 +228,7 @@
                         <div class="story-tile-content">
                             <h3 class="story-tile-title">Rapid Response Network</h3>
                             <p class="story-tile-description">
-                                Expanding our emergency response capabilities to ensure 24-hour service availability across all Arizona markets.
+                                Comprehensive emergency response capabilities ensuring 24-hour service availability across all Southwest markets.
                             </p>
                         </div>
                     </div>
@@ -244,7 +244,7 @@
                         <div class="story-tile-content">
                             <h3 class="story-tile-title">Technology Infrastructure</h3>
                             <p class="story-tile-description">
-                                Deploying advanced monitoring and verification systems to maintain service quality as we expand coverage areas.
+                                Advanced monitoring and verification systems maintaining consistent service quality across all coverage areas.
                             </p>
                         </div>
                     </div>
@@ -273,10 +273,10 @@
         <div style="max-width: 1000px; margin: 0 auto; padding: 0 var(--spacing-md); text-align: center;">
             <span class="section-label" style="color: var(--primary-color);">GET STARTED</span>
             <h2 style="font-size: 2.5rem; font-weight: 300; line-height: 1.2; margin-bottom: var(--spacing-md); color: var(--text-color);">
-                Ready to serve your Arizona property
+                Ready to serve your Southwest property
             </h2>
             <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text-light); margin-bottom: var(--spacing-lg);">
-                Contact us today to discuss service availability for your property. Our team will work with you to develop a customized waste management solution that meets your specific needs and location requirements.
+                Contact us today to discuss service availability for your property across the Southwest region. Our team will work with you to develop a customized waste management solution that meets your specific needs and location requirements.
             </p>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-lg);">
@@ -304,8 +304,8 @@
     <!-- Call to Action -->
     <section class="final-hero" style="background-image: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.8) 100%), url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
         <div class="final-hero-content">
-            <h2 class="final-hero-title">Serving Arizona with pride</h2>
-            <p class="final-hero-subtitle">Join property managers across the state who trust Kaizen for reliable waste management</p>
+            <h2 class="final-hero-title">Serving the Southwest with pride</h2>
+            <p class="final-hero-subtitle">Join property managers across the region who trust Kaizen for reliable waste management</p>
             <div style="display: flex; gap: 1.5rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: var(--spacing-lg);">
                 <a href="quote.html" class="cta-button primary">
                     Get Your Quote <i class="fas fa-arrow-right"></i>
@@ -333,94 +333,5 @@
 
     <script src="../js/script.js"></script>
     
-    <script>
-        // Initialize Mapbox map
-        mapboxgl.accessToken = 'pk.eyJ1IjoiYWthaXplbndhc3RlIiwiYSI6ImNtZXBuYnE0cjBkOXgyanE1cnZkOW10bTUifQ.kaqZ9-JIhAo1Kw-ssacq1g';
-        
-        const map = new mapboxgl.Map({
-            container: 'arizona-mapbox',
-            style: 'mapbox://styles/mapbox/light-v11',
-            center: [-98.5795, 39.8283], // Center of United States
-            zoom: 3.5,
-            pitch: 0,
-            bearing: 0
-        });
-
-        map.on('load', function() {
-            // Add Arizona state boundary highlight
-            map.addSource('arizona-boundary', {
-                type: 'geojson',
-                data: {
-                    type: 'Feature',
-                    geometry: {
-                        type: 'Polygon',
-                        coordinates: [[
-                            [-114.8165, 32.4942],
-                            [-114.7236, 32.7153],
-                            [-114.6307, 33.0434],
-                            [-114.4449, 33.5434],
-                            [-114.1734, 34.2926],
-                            [-114.0805, 34.4391],
-                            [-114.0376, 35.0022],
-                            [-114.0376, 36.1201],
-                            [-114.0376, 37.0043],
-                            [-109.0452, 37.0043],
-                            [-109.0452, 36.9951],
-                            [-109.0452, 31.3328],
-                            [-111.0742, 31.3328],
-                            [-114.8165, 32.4942]
-                        ]]
-                    }
-                }
-            });
-
-
-            // Add Arizona state fill
-            map.addLayer({
-                id: 'arizona-fill',
-                type: 'fill',
-                source: 'arizona-boundary',
-                paint: {
-                    'fill-color': '#e74c3c',
-                    'fill-opacity': 0.3
-                }
-            });
-
-            // Add Arizona state outline
-            map.addLayer({
-                id: 'arizona-outline',
-                type: 'line',
-                source: 'arizona-boundary',
-                paint: {
-                    'line-color': '#e74c3c',
-                    'line-width': 3,
-                    'line-opacity': 1
-                }
-            });
-
-            // Add navigation controls
-            map.addControl(new mapboxgl.NavigationControl(), 'top-right');
-
-            // Add fullscreen control
-            map.addControl(new mapboxgl.FullscreenControl(), 'top-right');
-        });
-
-        // Add custom CSS for popups
-        const style = document.createElement('style');
-        style.textContent = `
-            .mapboxgl-popup-content {
-                border-radius: 8px !important;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-                border: 1px solid rgba(231, 76, 60, 0.1) !important;
-            }
-            .mapboxgl-popup-tip {
-                border-top-color: #ffffff !important;
-            }
-            .custom-marker:hover {
-                z-index: 1000;
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
 </body>
 </html>
