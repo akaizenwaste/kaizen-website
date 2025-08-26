@@ -2158,6 +2158,16 @@ body {
     color: var(--text-light);
 }
 
+/* Process Section Title */
+.process-section-title {
+    font-size: 1.5rem !important;
+    font-weight: 400 !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1.5rem !important;
+    color: var(--text-color) !important;
+    text-align: center !important;
+}
+
 /* Careers Role Cards */
 .careers-role-card {
     background: var(--white);
