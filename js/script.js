@@ -89,6 +89,40 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeCarousel();
     handleVideoPlayback();
     animateOnScroll();
+
+    // Mobile nav toggle
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.getElementById('primary-navigation');
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+            const isOpen = navMenu.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', String(isOpen));
+            // Swap icon
+            menuToggle.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close menu on resize to desktop
+        window.addEventListener('resize', () => {
+            if (window.matchMedia('(min-width: 769px)').matches) {
+                navMenu.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+    }
+
+    // Mobile submenu toggles
+    const hasSubmenus = document.querySelectorAll('.nav-menu .has-submenu > .nav-link');
+    hasSubmenus.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+            if (isMobile) {
+                e.preventDefault();
+                const parentLi = link.closest('.has-submenu');
+                parentLi.classList.toggle('open');
+            }
+        });
+    });
 });
 
 // "For You" Navigation Dropdown ARIA and Keyboard Support

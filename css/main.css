@@ -115,6 +115,21 @@ body {
     opacity: 0.7;
 }
 
+/* Mobile menu toggle (hamburger) */
+.mobile-menu-toggle {
+    display: none;
+    background: transparent;
+    border: 0;
+    color: var(--white);
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.header.scrolled .mobile-menu-toggle {
+    color: var(--text-color);
+}
+
 /* Change nav link colors when header is scrolled */
 .header.scrolled .nav-link {
     color: var(--text-color);
@@ -393,8 +408,51 @@ body {
         transform: none;
     }
 
+    .mobile-menu-toggle {
+        display: block;
+    }
+
     .nav-menu {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
         display: none;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem 1.25rem 1.25rem;
+        background: var(--white);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+        border-bottom: 1px solid #eee;
+    }
+
+    .nav-menu.open {
+        display: flex;
+    }
+
+    .nav-link {
+        color: var(--text-color);
+        font-size: 0.95rem;
+        padding: 0.5rem 0.25rem;
+    }
+
+    /* Submenu behavior on mobile */
+    .nav-dropdown .dropdown-content,
+    .services-dropdown .services-dropdown-content {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        padding: 0.25rem 0 0.5rem;
+        background: transparent;
+        margin-top: 0;
+        display: none;
+    }
+
+    .nav-dropdown.open .dropdown-content,
+    .services-dropdown.open .services-dropdown-content {
+        display: block;
     }
 
     .hero-title {
@@ -411,6 +469,16 @@ body {
 
     .feature-card {
         padding: 2rem;
+    }
+}
+
+/* Extra small-screen refinements */
+@media (max-width: 768px) {
+    .problem-solution-content .solution-statement {
+        font-size: 2.25rem;
+        line-height: 1.2;
+        text-align: left;
+        margin-left: 0;
     }
 }
 
@@ -1084,6 +1152,60 @@ body {
 .solution-statement strong {
     font-weight: 600;
     color: var(--text-color);
+}
+
+/* Problem/Solution responsive layout */
+@media (max-width: 1024px) {
+    .problem-solution-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+        padding: var(--spacing-sm);
+    }
+}
+
+@media (max-width: 768px) {
+    .problem-solution-container {
+        padding: var(--spacing-lg) var(--spacing-md);
+        min-height: unset;
+    }
+
+    .corner-brackets {
+        display: block;
+        padding: 0.75rem 1rem;
+    }
+
+    .corner-brackets::before,
+    .corner-brackets::after {
+        width: 18px;
+        height: 18px;
+        border-width: 1.5px;
+    }
+
+    .problem-solution-content {
+        /* Switch to flex to control vertical spacing */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1rem;
+        min-height: 55vh; /* ensures room to push the statement down */
+    }
+
+    .problem-solution-content .problem-text {
+        max-width: none;
+        font-size: 1rem;
+        line-height: 1.6;
+        hyphens: auto;
+        overflow-wrap: anywhere;
+    }
+
+    .problem-solution-content .solution-statement {
+        font-size: clamp(1.8rem, 6vw, 2.4rem);
+        line-height: 1.15;
+        text-align: left;
+        margin-left: 0;
+        max-width: none;
+        align-self: flex-start;
+    }
 }
 
 /* Approach Section */
