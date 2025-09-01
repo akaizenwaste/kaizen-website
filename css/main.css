@@ -208,7 +208,8 @@ body {
 }
 
 .hero {
-    background: linear-gradient(135deg, var(--secondary-color) 0%, color-mix(in srgb, var(--secondary-color) 70%, black) 100%); /* Changed background */
+    /* Use a neutral dark fallback to avoid red flash before hero image loads */
+    background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.85) 100%);
     background-size: cover;
     background-position: center;
     height: 100vh;
