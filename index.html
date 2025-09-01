@@ -3,1061 +3,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaizen Waste - Modern Waste Management</title>
+    <title>Kaizen Waste - Mission-Critical Waste Services for Multifamily Communities</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #ff6347;  /* Tomato Red */
-            --secondary-color: #e74c3c;  /* Darker Red */
-            --accent-color: #ff7f50;  /* Coral Red */
-            --text-color: #333;
-            --light-bg: #f8f9fa;
-            --white: #ffffff;
-            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            overflow-x: hidden;
-        }
-
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: var(--transition);
-            height: 80px;
-            overflow: visible;
-        }
-
-        .header.scrolled {
-            background: var(--white);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            height: 100%;
-            z-index: 1000;
-        }
-
-        .logo {
-            height: 45px;
-            transition: var(--transition);
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-            margin-left: auto;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            position: absolute;
-            right: 2rem;
-            z-index: 1001;
-        }
-
-        .nav-menu li {
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-link {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            background: var(--gradient);
-            box-shadow: 0 4px 15px rgba(255,99,71,0.2);
-        }
-
-        .nav-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255,99,71,0.3);
-        }
-
-        .nav-dropdown {
-            position: relative;
-            z-index: 1002;
-        }
-
-        .dropdown-content {
-            display: block;
-            position: absolute;
-            background: var(--white);
-            min-width: 200px;
-            box-shadow: var(--shadow);
-            border-radius: 12px;
-            padding: 0.8rem 0;
-            z-index: 1003;
-            transform: translateY(10px);
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            top: 100%;
-            right: 0;
-            margin-top: 0.5rem;
-        }
-
-        .nav-dropdown:hover .dropdown-content {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .dropdown-link {
-            display: block;
-            padding: 0.7rem 1.5rem;
-            color: var(--text-color);
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 0.95rem;
-            position: relative;
-            z-index: 1004;
-        }
-
-        .dropdown-link:hover {
-            background: var(--light-bg);
-            color: var(--primary-color);
-            padding-left: 2rem;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://img1.wsimg.com/isteam/stock/109128/:/rs=w:1920,h:1080');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            padding: 0 1rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.2) 100%);
-            z-index: 1;
-        }
-
-        .hero-content {
-            max-width: 1000px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: 4.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero-subtitle {
-            font-size: 1.8rem;
-            margin-bottom: 2.5rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-            animation: fadeInUp 1s ease 0.2s;
-            opacity: 0;
-            animation-fill-mode: forwards;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.2rem 2.5rem;
-            background: var(--gradient);
-            color: var(--white);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.2rem;
-            transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(255,99,71,0.3);
-            animation: fadeInUp 1s ease 0.4s;
-            opacity: 0;
-            animation-fill-mode: forwards;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255,99,71,0.4);
-        }
-
-        .cta-button i {
-            font-size: 1.4rem;
-            transition: var(--transition);
-        }
-
-        .cta-button:hover i {
-            transform: translateX(5px);
-        }
-
-        .section {
-            padding: 8rem 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 4rem;
-            color: var(--text-color);
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255,99,71,0.1);
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient);
-            opacity: 0;
-            transition: var(--transition);
-            z-index: 1;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255,99,71,0.15);
-        }
-
-        .feature-card:hover::before {
-            opacity: 0.05;
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 2;
-            transition: var(--transition);
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1);
-        }
-
-        .feature-title {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-            position: relative;
-            z-index: 2;
-        }
-
-        .feature-description {
-            color: #666;
-            line-height: 1.6;
-            position: relative;
-            z-index: 2;
-            font-size: 1.1rem;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                height: 70px;
-            }
-
-            .logo {
-                height: 35px;
-                position: static;
-                transform: none;
-            }
-
-            .nav-menu {
-                display: none;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
-
-            .feature-card {
-                padding: 2rem;
-            }
-        }
-
-        .about-section {
-            background: var(--light-bg);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255,99,71,0.05) 0%, rgba(231,76,60,0.05) 100%);
-            z-index: 0;
-        }
-
-        .about-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-bottom: 4rem;
-        }
-
-        .about-text {
-            padding-right: 2rem;
-        }
-
-        .about-title {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .about-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-
-        .about-description {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-color);
-            margin-bottom: 2rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 1.5rem;
-            background: var(--white);
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(255,99,71,0.15);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            color: var(--text-color);
-            font-weight: 500;
-        }
-
-        .stat-small {
-            font-size: 0.8rem;
-            color: var(--text-color);
-            opacity: 0.8;
-            margin-top: 0.25rem;
-        }
-
-        .about-image-container {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-
-        .about-image {
-            position: relative;
-            padding-top: 75%;
-            overflow: hidden;
-        }
-
-        .about-image img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255,99,71,0.2) 0%, rgba(231,76,60,0.2) 100%);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .about-image-container:hover .about-image img {
-            transform: scale(1.05);
-        }
-
-        .about-image-container:hover .image-overlay {
-            opacity: 1;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 4rem;
-            position: relative;
-        }
-
-        .value-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            text-align: center;
-            position: relative;
-            overflow: visible;
-            cursor: pointer;
-            margin-bottom: 200px;
-        }
-
-        .value-dropdown {
-            position: absolute;
-            top: calc(100% + 1rem);
-            left: 0;
-            right: 0;
-            background: var(--white);
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            padding: 1.5rem;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: var(--transition);
-            z-index: 100;
-            min-height: 200px;
-        }
-
-        .value-card:hover .value-dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .value-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: left;
-        }
-
-        .value-list li {
-            padding: 0.8rem 0;
-            color: var(--text-color);
-            font-size: 1rem;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            transition: var(--transition);
-        }
-
-        .value-list li:hover {
-            color: var(--primary-color);
-            padding-left: 0.5rem;
-        }
-
-        .value-list li:last-child {
-            border-bottom: none;
-        }
-
-        .value-list li::before {
-            content: '•';
-            color: var(--primary-color);
-            font-weight: bold;
-            margin-right: 0.5rem;
-        }
-
-        .value-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255,99,71,0.15);
-        }
-
-        .value-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 2;
-            transition: var(--transition);
-        }
-
-        .value-card:hover .value-icon {
-            transform: scale(1.1);
-        }
-
-        .value-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-            position: relative;
-            z-index: 2;
-        }
-
-        @media (max-width: 1024px) {
-            .values-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .value-card {
-                margin-bottom: 150px;
-            }
-        }
-
-        .contact-section {
-            background: var(--light-bg);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .contact-info {
-            padding-right: 2rem;
-        }
-
-        .contact-title {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-description {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: var(--text-color);
-            margin-bottom: 2rem;
-        }
-
-        .contact-details {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .contact-item i {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-top: 0.2rem;
-        }
-
-        .contact-item span {
-            font-size: 1.1rem;
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        .contact-form {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
-            font-weight: 500;
-        }
-
-        .form-group label.required::after {
-            content: '*';
-            color: var(--primary-color);
-            margin-left: 4px;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(255,99,71,0.1);
-        }
-
-        .form-note {
-            font-size: 0.9rem;
-            color: var(--text-color);
-            opacity: 0.8;
-            margin-top: 1rem;
-        }
-
-        .submit-button {
-            background: var(--gradient);
-            color: var(--white);
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            width: 100%;
-            margin-top: 1rem;
-        }
-
-        .submit-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255,99,71,0.3);
-        }
-
-        @media (max-width: 1024px) {
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .contact-info {
-                padding-right: 0;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .contact-form {
-                padding: 2rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body id="top">
     <header class="header">
         <nav class="nav-container">
-            <img src="https://img1.wsimg.com/isteam/ip/01bc495d-6774-4b39-b524-0672041c6694/Kaizen%20Waste%20Logo.png" alt="Kaizen Waste Logo" class="logo">
-            <ul class="nav-menu">
-                <li><a href="#top" class="nav-link">Home</a></li>
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li class="nav-dropdown">
-                    <a href="#" class="nav-link">For You</a>
-                    <div class="dropdown-content">
-                        <a href="pages/property-managers.html" class="dropdown-link">For Property Managers</a>
-                        <a href="pages/residents.html" class="dropdown-link">For Residents</a>
-                        <a href="pages/owners.html" class="dropdown-link">For Owners</a>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <div style="width: 40px; height: 40px; border: 2px solid white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <div style="width: 20px; height: 20px; background: white; border-radius: 50%;"></div>
+                </div>
+                <span style="color: white; font-weight: 500; font-size: 1.125rem;">Kaizen Waste</span>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primary-navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="primary-navigation">
+                <li class="services-dropdown has-submenu">
+                    <a href="pages/services.html" class="nav-link">Services</a>
+                    <div class="services-dropdown-content">
+                        <a href="pages/doorstep-collection.html" class="services-dropdown-link">
+                            <i class="fas fa-home"></i>
+                            Doorstep Collection
+                        </a>
+                        <a href="pages/bulk-waste-removal.html" class="services-dropdown-link">
+                            <i class="fas fa-truck"></i>
+                            Bulk Waste Removal
+                        </a>
+                        <a href="pages/waste-advisory.html" class="services-dropdown-link">
+                            <i class="fas fa-chart-line"></i>
+                            Waste Advisory
+                        </a>
                     </div>
                 </li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="pages/technology.html" class="nav-link">Technology</a></li>
+                <li class="nav-dropdown has-submenu">
+                    <a href="#" class="nav-link">Company</a>
+                    <div class="dropdown-content">
+                        <a href="pages/about.html" class="dropdown-link">About Us</a>
+                        <a href="pages/careers.html" class="dropdown-link">Careers</a>
+                    </div>
+                </li>
+                <li><a href="pages/property-managers.html" class="nav-link">Property Managers</a></li>
+                <li><a href="pages/residents.html" class="nav-link">Residents</a></li>
+                <li><a href="pages/quote.html" class="nav-link">Get Quote</a></li>
             </ul>
         </nav>
     </header>
 
+    <!-- Hero Section: Mission-Critical Waste Services -->
     <section class="hero">
+        <div class="hero-video-background">
+            <!-- High-quality hero background -->
+            <div style="width: 100%; height: 100%; background: url('https://apollostore.blob.core.windows.net/multifamilybiz/News/Aiya_in_Gilbert_10677.jpg'); background-size: cover; background-position: center;"></div>
+        </div>
         <div class="hero-content">
-            <h1 class="hero-title">Professional Waste Solutions</h1>
-            <p class="hero-subtitle">Efficient, Reliable, and Constantly Iterated Waste Services for Apartments and Multi-Family Communities</p>
-            <a href="#contact" class="cta-button">
-                Request a Quote <i class="fas fa-arrow-right"></i>
+            <h1 class="hero-title">Premium Waste Services<br>for Multi-family Communities</h1>
+            <p class="hero-subtitle">Doorstep to dumpster—clean, compliant, cared for.</p>
+            <div style="display: flex; gap: 1.5rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 3rem;">
+                <a href="pages/quote.html" class="cta-button">
+                    Request a Quote <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="pages/services.html" class="pill-button">
+                    Learn More <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div style="margin-top: 4rem;">
+                <div style="width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; cursor: pointer;" onclick="document.querySelector('.problem-solution-grid').scrollIntoView({behavior: 'smooth'})">
+                    <i class="fas fa-chevron-down" style="font-size: 1rem; opacity: 0.7; color: white;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Problem & Promise -->
+    <section style="background: #f5f6f7; padding: 2rem 0;">
+        <div class="problem-solution-container">
+            <div class="problem-solution-content corner-brackets">
+                <div class="problem-text">
+                    For too long, national waste providers have dominated multi-family properties — charging premium fees, offering inconsistent pickup times, and delivering impersonal support.
+                </div>
+                <div class="solution-statement">
+                    <strong>Kaizen changes that.</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section style="background: #ffffff; padding: 6rem 0;">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 2rem;">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <span class="section-label" style="color: var(--primary-color);">OUR SERVICES</span>
+                <h2 style="font-size: 3rem; font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; color: #333; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    Three core services that keep your community clean and compliant
+                </h2>
+                <p style="font-size: 1.1rem; line-height: 1.7; color: #666; max-width: 700px; margin: 0 auto;">
+                    Daily pickup, bulk removal, and advisory — seamlessly integrated.
+                </p>
+            </div>
+            
+            <!-- Service Cards Grid -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; margin-bottom: 3rem;">
+                <!-- Doorstep Collection -->
+                <div style="background: #ffffff; border-radius: 16px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #f0f0f0; transition: all 0.3s ease; position: relative;">
+                    <div style="width: 100%; height: 200px; background: url('https://jammhauling.com/site/wp-content/uploads/5.jpg'); background-size: cover; background-position: center; border-radius: 12px; margin-bottom: 1.5rem; position: relative;">
+                        <div style="position: absolute; bottom: 12px; right: 12px; width: 40px; height: 40px; background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-home" style="color: white; font-size: 1rem;"></i>
+                        </div>
+                    </div>
+                    <h3 style="font-size: 1.5rem; font-weight: 600; color: #333; margin-bottom: 1rem;">Doorstep Collection</h3>
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 1.5rem; font-size: 1rem;">
+                        Quiet, reliable doorstep pickup by uniformed staff.
+                    </p>
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                            <span style="font-size: 0.9rem; color: #666;">Daily pickup schedules</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                            <span style="font-size: 0.9rem; color: #666;">Uniformed, trained staff</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                            <span style="font-size: 0.9rem; color: #666;">Resident convenience focus</span>
+                        </div>
+                    </div>
+                    <a href="pages/doorstep-collection.html" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary-color); font-weight: 500; text-decoration: none; font-size: 0.95rem; transition: all 0.3s ease;">
+                        Learn More <i class="fas fa-arrow-right" style="font-size: 0.875rem;"></i>
+                    </a>
+                </div>
+
+                <!-- Bulk Waste Removal -->
+                <div style="background: #ffffff; border-radius: 16px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #f0f0f0; transition: all 0.3s ease; position: relative;">
+                    <div style="width: 100%; height: 200px; background: url('https://images.unsplash.com/photo-1704393741708-792c3200f6c6?auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center; border-radius: 12px; margin-bottom: 1.5rem; position: relative;">
+                        <div style="position: absolute; bottom: 12px; right: 12px; width: 40px; height: 40px; background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-truck" style="color: white; font-size: 1rem;"></i>
+                        </div>
+                    </div>
+                    <h3 style="font-size: 1.5rem; font-weight: 600; color: #333; margin-bottom: 1rem;">Bulk Waste Removal</h3>
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 1.5rem; font-size: 1rem;">
+                        Overflow, cleanouts, and dumpster care—handled fast.
+                    </p>
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                            <span style="font-size: 0.9rem; color: #666;">Dumpster maintenance</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                            <span style="font-size: 0.9rem; color: #666;">Emergency cleanouts</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                            <span style="font-size: 0.9rem; color: #666;">Compliance monitoring</span>
+                        </div>
+                    </div>
+                    <a href="pages/bulk-waste-removal.html" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary-color); font-weight: 500; text-decoration: none; font-size: 0.95rem; transition: all 0.3s ease;">
+                        Learn More <i class="fas fa-arrow-right" style="font-size: 0.875rem;"></i>
+                    </a>
+                </div>
+
+                <!-- Waste Advisory -->
+                <div style="background: #ffffff; border-radius: 16px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #f0f0f0; transition: all 0.3s ease; position: relative;">
+                    <div style="width: 100%; height: 200px; background: url('images/waste-consulting.jpg'); background-size: cover; background-position: center; border-radius: 12px; margin-bottom: 1.5rem; position: relative;">
+                        <div style="position: absolute; bottom: 12px; right: 12px; width: 40px; height: 40px; background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-chart-line" style="color: white; font-size: 1rem;"></i>
+                        </div>
+                    </div>
+                    <h3 style="font-size: 1.5rem; font-weight: 600; color: #333; margin-bottom: 1rem;">Waste Advisory</h3>
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 1.5rem; font-size: 1rem;">
+                        Audits, savings, and sustainability recommendations.
+                    </p>
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                            <span style="font-size: 0.9rem; color: #666;">Cost optimization analysis</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                            <span style="font-size: 0.9rem; color: #666;">Compliance audits</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                            <span style="font-size: 0.9rem; color: #666;">Strategic planning</span>
+                        </div>
+                    </div>
+                    <a href="pages/waste-advisory.html" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary-color); font-weight: 500; text-decoration: none; font-size: 0.95rem; transition: all 0.3s ease;">
+                        Learn More <i class="fas fa-arrow-right" style="font-size: 0.875rem;"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Integration Message -->
+            <div style="text-align: center; padding: 2rem; background: #f8f9fa; border-radius: 12px;">
+                <p style="font-size: 1.1rem; color: #666; margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Designed to work together for multi-family properties.
+                </p>
+                <a href="pages/services.html" class="pill-button" style="color: var(--primary-color); border-color: var(--primary-color);">
+                    See All Services <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Kaizen -->
+    <section style="background: #fafbfc; padding: 6rem 0;">
+        <div class="story-layout">
+            <div class="story-left-content">
+                <span class="section-label" style="color: var(--primary-color);">WHY CHOOSE KAIZEN</span>
+                <h2 style="font-size: 2.5rem; font-weight: 300; line-height: 1.2; margin-bottom: var(--spacing-md); color: var(--text-color);">
+                    Mission-critical reliability for your community
+                </h2>
+                <div style="width: 100%; height: 250px; background: url('https://images.unsplash.com/photo-1662826479300-6cc4ced8a1cc?auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center; border-radius: 12px; margin: 2rem 0;"></div>
+                <p class="company-description">
+                    Reliable, transparent, and personal—built for multifamily.
+                </p>
+            </div>
+            
+            <div class="story-right-tiles">
+                <div class="story-tile">
+                    <div class="story-tile-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <path d="M12 16L15 19L20 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 4V2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M16 30V28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M28 16H30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M2 16H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="story-tile-content">
+                        <h3 class="story-tile-title">Reliable performance. Verified results</h3>
+                        <p class="story-tile-description">
+                            Uniformed pros. GPS and photo proof.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="story-tile">
+                    <div class="story-tile-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 2C18.5 2 20.5 4 20.5 6.5C20.5 9 18.5 11 16 11C13.5 11 11.5 9 11.5 6.5C11.5 4 13.5 2 16 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <path d="M24 21C24 23.5 21.5 26 16 26C10.5 26 8 23.5 8 21C8 18.5 10.5 16 16 16C21.5 16 24 18.5 24 21Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <path d="M20 30H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M22 28H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="story-tile-content">
+                        <h3 class="story-tile-title">A partner. Not a provider</h3>
+                        <p class="story-tile-description">
+                            Shared KPIs, proactive check-ins, real accountability.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="story-tile">
+                    <div class="story-tile-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <path d="M16 8V16L20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 4L4 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M24 4L28 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="story-tile-content">
+                        <h3 class="story-tile-title">All your waste needs. One partner</h3>
+                        <p class="story-tile-description">
+                            Doorstep, bulk, and advisory—seamlessly handled together.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proven Results -->
+    <section style="background: #ffffff; padding: 8rem 0;">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 2rem;">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <span class="section-label" style="color: var(--primary-color);">PROVEN RESULTS</span>
+                <h2 style="font-size: 3rem; font-weight: 300; line-height: 1.2; margin-bottom: 2rem; color: #333; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    Trusted by property managers
+                </h2>
+                <div style="width: 100%; max-width: 600px; height: 200px; background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center; border-radius: 12px; margin: 2rem auto;"></div>
+                <p class="company-description" style="margin-bottom: 4rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center;">
+                    Measurable results residents and managers notice.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Three Pillars -->
+        <div class="expertise-columns">
+            <div class="expertise-column">
+                <div class="expertise-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="expertise-title">Resident-first service model</h3>
+                <p class="expertise-description">Resident-friendly schedules and quiet, courteous runners.</p>
+            </div>
+            <div class="expertise-column">
+                <div class="expertise-icon">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <h3 class="expertise-title">Compliance-driven processes</h3>
+                <p class="expertise-description">Municipal codes followed, documentation provided.</p>
+            </div>
+            <div class="expertise-column">
+                <div class="expertise-icon">
+                    <i class="fas fa-route"></i>
+                </div>
+                <h3 class="expertise-title">Intelligent route optimization</h3>
+                <p class="expertise-description">Optimized routes reduce travel and ensure on-time service.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Hero & Call to Action -->
+    <section class="final-hero" style="background-image: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.8) 100%), url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+        <div class="final-hero-content">
+            <h2 class="final-hero-title">Our work keeps communities clean</h2>
+            <p class="final-hero-subtitle">Mission-critical waste services residents rely on.</p>
+            <a href="pages/quote.html" class="cta-button primary">
+                Get Your Quote <i class="fas fa-arrow-right"></i>
             </a>
         </div>
     </section>
 
-    <section id="services" class="section">
-        <h2 class="section-title">Our Services</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <i class="fas fa-door-open feature-icon"></i>
-                <h3 class="feature-title">Valet Doorstep Removal</h3>
-                <p class="feature-description">Convenient doorstep collection service that saves time and enhances property cleanliness.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-balance-scale feature-icon"></i>
-                <h3 class="feature-title">Waste Leveling</h3>
-                <p class="feature-description">Smart waste management solutions that optimize collection schedules and reduce costs.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-lightbulb feature-icon"></i>
-                <h3 class="feature-title">Waste Advising</h3>
-                <p class="feature-description">Expert guidance on waste management strategies to improve efficiency and sustainability.</p>
-            </div>
-        </div>
-    </section>
 
-    <section id="about" class="section about-section">
-        <h2 class="section-title">About Kaizen Waste</h2>
-        <div class="about-grid">
-            <div class="about-content">
-                <div class="about-text">
-                    <h3 class="about-title">Simplifying Waste Management</h3>
-                    <p class="about-description">At Kaizen Waste, we're optimizing the way properties handle waste management. From doorstep removal, to waste leveling, to equipment advising - we're everything but your hauler.</p>
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-number">100%</div>
-                            <div class="stat-label">Service Guarantee</div>
-                            <div class="stat-small">*Or Your Money Back*</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">5-7</div>
-                            <div class="stat-label">Day Service Week</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">24/7</div>
-                            <div class="stat-label">Support Available</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image-container">
-                    <div class="about-image">
-                        <img src="https://img1.wsimg.com/isteam/ip/01bc495d-6774-4b39-b524-0672041c6694/team-photo.jpg" alt="Kaizen Waste Team Members">
-                        <div class="image-overlay"></div>
-                    </div>
-                </div>
+    <footer class="footer-section section">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p>&copy; 2025 Kaizen Waste. All Rights Reserved.</p>
             </div>
         </div>
-        <div class="values-grid">
-            <div class="value-card">
-                <i class="fas fa-leaf value-icon"></i>
-                <h4 class="value-title">Sustainability</h4>
-                <div class="value-dropdown">
-                    <ul class="value-list">
-                        <li>Eco-friendly waste disposal methods</li>
-                        <li>Recycling optimization programs</li>
-                        <li>Carbon footprint reduction</li>
-                        <li>Green technology implementation</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="value-card">
-                <i class="fas fa-microchip value-icon"></i>
-                <h4 class="value-title">Innovation</h4>
-                <div class="value-dropdown">
-                    <ul class="value-list">
-                        <li>AI-Driven Efficiency Tracking <a href="pages/ai-efficiency.html" style="color: var(--primary-color); text-decoration: none; margin-left: 0.5rem; font-size: 0.9rem;">Learn More →</a></li>
-                        <li>Audit-Ready Service Documentation</li>
-                        <li>Live GPS Monitoring of Runners</li>
-                        <li>Real Time Arrival/Departure Alerts</li>
-                        <li>Performance Analytics Dashboard</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="value-card">
-                <i class="fas fa-handshake value-icon"></i>
-                <h4 class="value-title">Partnership</h4>
-                <div class="value-dropdown">
-                    <ul class="value-list">
-                        <li>Dedicated Account Manager</li>
-                        <li>24/7 Remediation Support</li>
-                        <li>Tailored Service Solutions</li>
-                        <li>Monthly Performance Reviews</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+    </footer>
 
-    <section id="contact" class="section contact-section">
-        <h2 class="section-title">Contact Us</h2>
-        <div class="contact-container">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3 class="contact-title">Get in Touch</h3>
-                    <p class="contact-description">Fill out the form below and we'll get back to you with a personalized quote for your property.</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>support@kaizen-waste.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>(602) 341-5575</span>
-                        </div>
-                    </div>
-                </div>
-                <form id="contactForm" class="contact-form">
-                    <div class="form-group">
-                        <label for="name" class="required">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="required">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="propertyName">Property Name</label>
-                        <input type="text" id="propertyName" name="propertyName">
-                    </div>
-                    <div class="form-group">
-                        <label for="complexSize">Size of Complex (# of Units)</label>
-                        <input type="number" id="complexSize" name="complexSize" min="1">
-                    </div>
-                    <div class="form-group">
-                        <label for="complexStyle">Complex Style</label>
-                        <select id="complexStyle" name="complexStyle">
-                            <option value="">Select a style</option>
-                            <option value="garden">Garden Style</option>
-                            <option value="midrise">Mid-Rise</option>
-                            <option value="highrise">High-Rise</option>
-                            <option value="townhome">Townhome</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="role" class="required">I am a...</label>
-                        <select id="role" name="role" required>
-                            <option value="">Select your role</option>
-                            <option value="owner">Property Owner</option>
-                            <option value="manager">Property Manager</option>
-                            <option value="resident">Resident</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="notes">Notes</label>
-                        <textarea id="notes" name="notes" rows="4" placeholder="Any additional information you'd like to share..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-button">Send Message</button>
-                    <p class="form-note">* Required fields</p>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+    <script src="js/script.js"></script>
+    
+    <style>
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
             }
-        });
-
-        // Units Counter with API
-        const counterElement = document.getElementById('unitsCounter');
-        let unitsCount = 4000;
-
-        // Initial count fetch
-        fetch('https://api.kaizen-waste.com/counter')
-            .then(response => response.json())
-            .then(data => {
-                unitsCount = data.count;
-                counterElement.textContent = unitsCount.toLocaleString();
-            })
-            .catch(error => console.error('Error fetching count:', error));
-
-        // Update count every 5 seconds
-        setInterval(() => {
-            fetch('https://api.kaizen-waste.com/counter/increment', { method: 'POST' })
-                .then(response => response.json())
-                .then(data => {
-                    unitsCount = data.count;
-                    counterElement.textContent = unitsCount.toLocaleString();
-                })
-                .catch(error => console.error('Error updating count:', error));
-        }, 5000);
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Add animation on scroll for About section
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.stat-item, .value-card').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Form submission handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
-            
-            // Here you would typically send the data to your server
-            console.log('Form submitted:', data);
-            
-            // Show success message
-            alert('Thank you for your request! We will get back to you soon.');
-            this.reset();
-        });
-    </script>
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
 </body>
-</html> 
+</html>
