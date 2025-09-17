@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
+  <defs>
+    <radialGradient id="softLight" cx="50%" cy="10%" r="90%" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="45%" stop-color="#f5f7fb" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#e9eef7" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="softShade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fdfdfd" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#dfe6f2" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#softShade)"/>
+  <ellipse cx="800" cy="-80" rx="900" ry="600" fill="url(#softLight)"/>
+  <ellipse cx="200" cy="900" rx="700" ry="500" fill="#f6f8fc" fill-opacity="0.6"/>
+</svg>
