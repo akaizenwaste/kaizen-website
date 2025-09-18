@@ -5,457 +5,439 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Property Managers - Kaizen Waste</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #ff6347;  /* Tomato Red */
-            --secondary-color: #e74c3c;  /* Darker Red */
-            --accent-color: #ff7f50;  /* Coral Red */
-            --text-color: #333;
-            --light-bg: #f8f9fa;
-            --white: #ffffff;
-            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            overflow-x: hidden;
-            background: var(--light-bg);
-        }
-
-        /* Header styles from main page */
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: var(--transition);
-            height: 80px;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            height: 100%;
-        }
-
-        .logo {
-            height: 45px;
-            transition: var(--transition);
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-            margin-left: auto;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            position: absolute;
-            right: 2rem;
-        }
-
-        .nav-link {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            background: var(--gradient);
-            box-shadow: 0 4px 15px rgba(255,99,71,0.2);
-        }
-
-        .nav-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255,99,71,0.3);
-        }
-
-        .nav-dropdown {
-            position: relative;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background: var(--white);
-            min-width: 200px;
-            box-shadow: var(--shadow);
-            border-radius: 12px;
-            padding: 0.8rem 0;
-            z-index: 1000;
-            transform: translateY(10px);
-            opacity: 0;
-            transition: var(--transition);
-            top: 100%;
-            right: 0;
-        }
-
-        .nav-dropdown:hover .dropdown-content {
-            display: block;
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .dropdown-link {
-            display: block;
-            padding: 0.8rem 1.5rem;
-            color: var(--text-color);
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 0.95rem;
-        }
-
-        .dropdown-link:hover {
-            background: var(--light-bg);
-            color: var(--primary-color);
-            padding-left: 2rem;
-        }
-
-        .page-wrapper {
-            padding-top: 80px;
-            min-height: 100vh;
-            background: linear-gradient(135deg, rgba(255,99,71,0.05) 0%, rgba(231,76,60,0.05) 100%);
-        }
-
-        .hero-section {
-            position: relative;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%);
-        }
-
-        .hero-content {
-            text-align: center;
-            color: var(--white);
-            z-index: 2;
-            max-width: 800px;
-            padding: 0 2rem;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .hero-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 2rem;
-            max-width: 1400px;
-            margin: -100px auto 0;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .main-content {
-            grid-column: 1 / 9;
-            background: var(--white);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .main-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255,99,71,0.05) 0%, rgba(231,76,60,0.05) 100%);
-            z-index: 0;
-        }
-
-        .sidebar {
-            grid-column: 9 / 13;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .info-card {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(255,99,71,0.15);
-        }
-
-        .info-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .info-card p {
-            color: var(--text-color);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        .feature-list {
-            list-style: none;
-            margin-top: 2rem;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: var(--light-bg);
-            border-radius: 12px;
-            transition: var(--transition);
-        }
-
-        .feature-item:hover {
-            transform: translateX(10px);
-            background: var(--white);
-            box-shadow: var(--shadow);
-        }
-
-        .feature-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 1.2rem;
-        }
-
-        .feature-content h4 {
-            color: var(--text-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-content p {
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        .cta-section {
-            text-align: center;
-            margin-top: 3rem;
-            padding: 2rem;
-            background: var(--gradient);
-            border-radius: 20px;
-            color: var(--white);
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem 2rem;
-            background: var(--white);
-            color: var(--primary-color);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            margin-top: 1.5rem;
-            transition: var(--transition);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        @media (max-width: 1024px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .main-content, .sidebar {
-                grid-column: 1 / -1;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-
-            .main-content {
-                padding: 2rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
     <header class="header">
         <nav class="nav-container">
-            <img src="https://img1.wsimg.com/isteam/ip/01bc495d-6774-4b39-b524-0672041c6694/Kaizen%20Waste%20Logo.png" alt="Kaizen Waste Logo" class="logo">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <div style="width: 40px; height: 40px; border: 2px solid white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <div style="width: 20px; height: 20px; background: white; border-radius: 50%;"></div>
+                </div>
+                <a href="../index.html" style="color: white; font-weight: 500; font-size: 1.125rem; text-decoration: none;">Kaizen Waste</a>
+            </div>
             <ul class="nav-menu">
-                <li><a href="../index.html" class="nav-link">Home</a></li>
-                <li><a href="../index.html#services" class="nav-link">Services</a></li>
-                <li><a href="../index.html#about" class="nav-link">About</a></li>
-                <li class="nav-dropdown">
-                    <a href="#" class="nav-link">For You</a>
-                    <div class="dropdown-content">
-                        <a href="property-managers.html" class="dropdown-link">For Property Managers</a>
-                        <a href="residents.html" class="dropdown-link">For Residents</a>
-                        <a href="owners.html" class="dropdown-link">For Owners</a>
+                <li class="services-dropdown">
+                    <a href="services.html" class="nav-link">Services</a>
+                    <div class="services-dropdown-content">
+                        <a href="doorstep-collection.html" class="services-dropdown-link">
+                            <i class="fas fa-home"></i>
+                            Doorstep Collection
+                        </a>
+                        <a href="bulk-waste-removal.html" class="services-dropdown-link">
+                            <i class="fas fa-truck"></i>
+                            Bulk Waste Removal
+                        </a>
+                        <a href="waste-advisory.html" class="services-dropdown-link">
+                            <i class="fas fa-chart-line"></i>
+                            Waste Advisory
+                        </a>
                     </div>
                 </li>
-                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+                <li><a href="technology.html" class="nav-link">Technology</a></li>
+                <li class="nav-dropdown">
+                    <a href="#" class="nav-link">Company</a>
+                    <div class="dropdown-content">
+                        <a href="about.html" class="dropdown-link">About Us</a>
+                        <a href="careers.html" class="dropdown-link">Careers</a>
+                    </div>
+                </li>
+                <li><a href="property-managers.html" class="nav-link">Property Managers</a></li>
+                <li><a href="residents.html" class="nav-link">Residents</a></li>
+                <li><a href="quote.html" class="nav-link">Get Quote</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="page-wrapper">
-        <section class="hero-section">
-            <div class="hero-content">
-                <h1 class="hero-title">For Property Managers</h1>
-                <p class="hero-subtitle">Streamline Your Operations with Smart Waste Management Solutions</p>
-            </div>
-        </section>
-
-        <div class="content-grid">
-            <main class="main-content">
-                <h2>Simplify Your Waste Management</h2>
-                <p>At Kaizen Waste, we provide property managers with innovative waste solutions that simplify operations, reduce costs, and enhance resident satisfaction. Our technology-driven approach makes waste management efficient and headache free.</p>
-
-                <ul class="feature-list">
-                    <li class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-tasks"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h4>Streamlined Operations</h4>
-                            <p>Automated scheduling, tracking, and monitoring of your waste collection.</p>
-                        </div>
-                    </li>
-                    <li class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h4>Performance Clarity</h4>
-                            <p>Timestamped photo evidence of every unit, every night - bringing transparency to the industry in an entirely novel way.</p>
-                        </div>
-                    </li>
-                    <li class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-file-alt"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h4>Seamless Reporting</h4>
-                            <p>Easily send automated or customized service reports to individual residents or your on-site team.</p>
-                        </div>
-                    </li>
-                </ul>
-
-                <div class="cta-section">
-                    <h3>Ready to Optimize Your Property?</h3>
-                    <p>Get a personalized quote and see how we can streamline your waste management operations.</p>
-                    <a href="../index.html#contact" class="cta-button">
-                        Request a Quote <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </main>
-
-            <aside class="sidebar">
-                <div class="info-card">
-                    <h3>Management Tools</h3>
-                    <p>• Modular Performance Dashboard</p>
-                    <p>• Nightly Computer Vision Evidence Reporting</p>
-                    <p>• "No Can Left Unserviced" Guarantee</p>
-                </div>
-
-                <div class="info-card">
-                    <h3>Why Choose Us</h3>
-                    <p>• Complete service tracking and reporting system</p>
-                    <p>• Daily doorstep collection status updates</p>
-                    <p>• Expert waste leveling and advisory services</p>
-                </div>
-            </aside>
+    <!-- Property Manager Hero -->
+    <section class="service-hero-banner" style="background-image: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 100%), url('https://www.multihousingnews.com/wp-content/uploads/sites/57/2025/01/Marquis-at-Desert-Ridge.jpg');">
+        <div class="service-hero-content">
+            <span class="section-label" style="color: rgba(255,255,255,0.8);">FOR PROPERTY MANAGERS</span>
+            <h1 class="service-hero-title">Your Doorstep Concierge for Waste Management</h1>
+            <p class="service-hero-subtitle">Transform waste operations into a premium amenity that residents love and property managers trust</p>
+            <a href="quote.html" class="pill-button primary">
+                Get Custom Quote <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
-    </div>
+    </section>
 
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+    <!-- Platform Overview -->
+    <section style="background: #ffffff; padding: var(--spacing-xl) 0;">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 var(--spacing-md);">
+            <div class="story-layout">
+                <div class="story-left-content">
+                    <span class="section-label" style="color: var(--primary-color);">PROPERTY MANAGEMENT SOLUTIONS</span>
+                    <h2 style="font-size: 2.5rem; font-weight: 300; line-height: 1.2; margin-bottom: var(--spacing-md); color: var(--text-color);">
+                        Built for property managers who demand excellence
+                    </h2>
+                    <p class="company-description">
+                        Our doorstep collection service transforms waste management from a daily operational challenge into a premium resident amenity. Property managers gain complete visibility, residents enjoy unmatched convenience, and your property stands out in a competitive market.
+                    </p>
+                    <p class="company-description">
+                        From nightly doorstep pickup to comprehensive compliance reporting, we handle every aspect of waste management so you can focus on what matters most - creating exceptional living experiences for your residents.
+                    </p>
+                </div>
+                
+                <div class="story-right-tiles">
+                    <div class="story-tile">
+                        <div class="story-tile-icon">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 2L28 8V24L16 30L4 24V8L16 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                <circle cx="16" cy="16" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                <path d="M16 12V8" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M16 24V20" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+                        <div class="story-tile-content">
+                            <h3 class="story-tile-title">Premium Resident Amenity</h3>
+                            <p class="story-tile-description">
+                                Doorstep collection becomes your property's signature service, improving resident satisfaction and lease renewals.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="story-tile">
+                        <div class="story-tile-icon">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 6H28V26H4V6Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                <path d="M8 10H24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M8 14H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M8 18H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    <div class="story-tile-content">
+                        <h3 class="story-tile-title">Complete Transparency</h3>
+                        <p class="story-tile-description">
+                            Comprehensive service verification and reporting systems provide clear visibility into waste operations.
+                        </p>
+                    </div>
+                    </div>
+                    
+                    <div class="story-tile">
+                        <div class="story-tile-icon">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                <path d="M16 8V16L20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="16" cy="8" r="2" fill="currentColor"/>
+                                <circle cx="20" cy="20" r="2" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div class="story-tile-content">
+                            <h3 class="story-tile-title">Operational Excellence</h3>
+                            <p class="story-tile-description">
+                                Streamlined operations with automated scheduling, real-time monitoring, and comprehensive reporting systems.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+    <!-- Management Features -->
+    <section style="background: var(--light-bg); padding: var(--spacing-xl) 0;">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 var(--spacing-md); text-align: center;">
+            <span class="section-label" style="color: var(--primary-color);">MANAGEMENT TOOLS</span>
+            <h2 style="font-size: 2.5rem; font-weight: 300; line-height: 1.2; margin-bottom: var(--spacing-xl); color: var(--text-color);">
+                Everything you need to manage waste operations seamlessly
+            </h2>
+        </div>
+        
+        <div class="technology-feature">
+            <div class="tech-content">
+                <h3 class="tech-title">Performance Dashboard</h3>
+                <p class="tech-description">
+                    Your command center for waste operations across all properties. Monitor service completion rates, track resident satisfaction, and identify optimization opportunities through our intuitive dashboard that integrates seamlessly with your existing property management systems.
+                </p>
+                <div style="margin-top: var(--spacing-md);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                        <span style="font-size: 0.95rem; color: var(--text-light);">Real-time service completion tracking</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                        <span style="font-size: 0.95rem; color: var(--text-light);">Property management system integration</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                        <span style="font-size: 0.95rem; color: var(--text-light);">Customizable reporting and analytics</span>
+                    </div>
+                </div>
+            </div>
+            <div class="tech-visual">
+                <img src="https://images.pexels.com/photos/669619/pexels-photo-669619.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop" alt="Performance dashboard showing multi-property service metrics" style="width: 100%; height: auto; border-radius: 12px; display: block;"/>
+            </div>
+        </div>
+        
+        <div class="technology-feature">
+            <div class="tech-content">
+                <h3 class="tech-title">Service Documentation System</h3>
+                <p class="tech-description">
+                    Comprehensive service verification and reporting system that provides clear documentation of service completion. Our quality monitoring system helps identify potential issues and ensures consistent service delivery across all properties.
+                </p>
+                <div style="margin-top: var(--spacing-md);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                        <span style="font-size: 0.95rem; color: var(--text-light);">Service completion verification</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                        <span style="font-size: 0.95rem; color: var(--text-light);">Timestamped service records</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                        <span style="font-size: 0.95rem; color: var(--text-light);">Quality monitoring and alerts</span>
+                    </div>
+                </div>
+            </div>
+            <div class="tech-visual">
+                <img src="https://images.pexels.com/photos/5151667/pexels-photo-5151667.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop" alt="Service verification with timestamped photo documentation" style="width: 100%; height: auto; border-radius: 12px; display: block;"/>
+            </div>
+        </div>
+        
+        <div class="technology-feature">
+            <div class="tech-content">
+                <h3 class="tech-title">Quality Assurance Program</h3>
+                <p class="tech-description">
+                    Our comprehensive quality assurance program ensures reliable service delivery through systematic monitoring and responsive issue resolution. When service concerns arise, our dedicated support team addresses them promptly to maintain your property's operational standards.
+                </p>
+                <div style="margin-top: var(--spacing-md);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                        <span style="font-size: 0.95rem; color: var(--text-light);">Reliable service delivery standards</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                        <span style="font-size: 0.95rem; color: var(--text-light);">Responsive issue resolution</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                        <span style="font-size: 0.95rem; color: var(--text-light);">Continuous quality monitoring</span>
+                    </div>
+                </div>
+            </div>
+            <div class="tech-visual">
+                <img src="https://images.pexels.com/photos/3184636/pexels-photo-3184636.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop" alt="Quality assurance dashboard with alerts and trends" style="width: 100%; height: auto; border-radius: 12px; display: block;"/>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Verification -->
+    <section class="verification-showcase">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 var(--spacing-md); text-align: center;">
+            <span class="section-label" style="color: var(--primary-color);">SERVICE VERIFICATION</span>
+            <h2 style="font-size: 2.5rem; font-weight: 300; line-height: 1.2; margin-bottom: var(--spacing-xl); color: var(--text-color);">
+                Transparency that transforms property management
+            </h2>
+        </div>
+        
+        <div class="verification-grid">
+            <div class="verification-item">
+                <div class="verification-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3 class="verification-title">Service Documentation</h3>
+                <p class="verification-description">
+                    Comprehensive service verification creates a clear record of completion and quality for property management oversight.
+                </p>
+            </div>
+            
+            <div class="verification-item">
+                <div class="verification-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="verification-title">Time Stamped</h3>
+                <p class="verification-description">
+                    Precise timing documentation ensures accountability and helps optimize service routes for maximum efficiency.
+                </p>
+            </div>
+            
+            <div class="verification-item">
+                <div class="verification-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3 class="verification-title">Automated Reports</h3>
+                <p class="verification-description">
+                    Daily, weekly, and monthly reports automatically generated and delivered to your preferred communication channels.
+                </p>
+            </div>
+            
+            <div class="verification-item">
+                <div class="verification-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3 class="verification-title">Mobile Access</h3>
+                <p class="verification-description">
+                    Access all service data, reports, and communication tools from your mobile device, anywhere, anytime.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Complete Waste Solutions -->
+    <section style="background: #ffffff; padding: var(--spacing-xl) 0;">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 var(--spacing-md); text-align: center;">
+            <span class="section-label" style="color: var(--primary-color);">COMPLETE WASTE SOLUTIONS</span>
+            <h2 style="font-size: 2.5rem; font-weight: 300; line-height: 1.2; margin-bottom: var(--spacing-xl); color: var(--text-color);">
+                Doorstep collection and bulk waste removal working together
+            </h2>
+        </div>
+        
+        <div class="story-layout" style="margin-bottom: var(--spacing-xl);">
+            <div class="story-left-content">
+                <h3 style="font-size: 1.75rem; font-weight: 400; margin-bottom: var(--spacing-md); color: var(--text-color);">
+                    Doorstep Collection
+                </h3>
+                <p class="company-description">
+                    Transform daily waste management into a premium resident amenity. Our nightly doorstep collection service eliminates the need for residents to walk to dumpsters, reducing hallway mess and improving property aesthetics while boosting resident satisfaction and lease renewals.
+                </p>
+                <div style="margin-top: var(--spacing-md);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                        <span style="font-size: 0.95rem; color: var(--text-light);">Nightly collection from resident doorsteps</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                        <span style="font-size: 0.95rem; color: var(--text-light);">Cleaner hallways and common areas</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                        <span style="font-size: 0.95rem; color: var(--text-light);">Premium amenity for resident retention</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="story-right-content">
+                <h3 style="font-size: 1.75rem; font-weight: 400; margin-bottom: var(--spacing-md); color: var(--text-color);">
+                    Bulk Waste Removal
+                </h3>
+                <p class="company-description">
+                    Proactive bulk waste management that prevents dumpster overflow, reduces municipal overage charges, and maintains property curb appeal. Our team monitors and manages large items, furniture, and excess waste before they become costly problems or resident complaints.
+                </p>
+                <div style="margin-top: var(--spacing-md);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                        <span style="font-size: 0.95rem; color: var(--text-light);">Prevents dumpster overflow and overage fees</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                        <span style="font-size: 0.95rem; color: var(--text-light);">Removes furniture and large items promptly</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-check" style="color: var(--primary-color); font-size: 0.875rem;"></i>
+                        <span style="font-size: 0.95rem; color: var(--text-light);">Maintains clean, professional property appearance</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="approach-columns">
+            <div class="approach-column">
+                <div class="approach-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3 class="approach-column-title">Resident Satisfaction</h3>
+                <p class="approach-column-description">
+                    Combined doorstep and bulk services create a comprehensive waste solution that dramatically improves resident satisfaction scores and lease renewal rates while reducing maintenance requests.
+                </p>
+            </div>
+            
+            <div class="approach-column">
+                <div class="approach-icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <h3 class="approach-column-title">Cost Optimization</h3>
+                <p class="approach-column-description">
+                    Prevent costly municipal overage charges from overflowing dumpsters while optimizing waste management expenses through efficient collection and transparent pricing.
+                </p>
+            </div>
+            
+            <div class="approach-column">
+                <div class="approach-icon">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <h3 class="approach-column-title">Property Value</h3>
+                <p class="approach-column-description">
+                    Maintain pristine property appearance and compliance standards while offering premium amenities that differentiate your property in the competitive rental market.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Metrics -->
+    <section style="background: var(--light-bg); padding: var(--spacing-xl) 0;">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 var(--spacing-md); text-align: center;">
+            <span class="section-label" style="color: var(--primary-color);">PROVEN RESULTS</span>
+            <h2 style="font-size: 2.5rem; font-weight: 300; line-height: 1.2; margin-bottom: var(--spacing-xl); color: var(--text-color);">
+                Performance metrics that matter to property managers
+            </h2>
+        </div>
+        
+        <div class="metrics-display">
+            <div class="metric-item">
+                <span class="metric-number">98%</span>
+                <div class="metric-label">Resident Satisfaction</div>
+                <div class="metric-description">Properties report improved resident satisfaction with doorstep service</div>
+            </div>
+            <div class="metric-item">
+                <span class="metric-number">75%</span>
+                <div class="metric-label">Complaint Reduction</div>
+                <div class="metric-description">Decrease in waste-related maintenance requests and complaints</div>
+            </div>
+            <div class="metric-item">
+                <span class="metric-number">95%</span>
+                <div class="metric-label">Service Reliability</div>
+                <div class="metric-description">Consistent service delivery and quality standards maintained</div>
+            </div>
+            <div class="metric-item">
+                <span class="metric-number">24hr</span>
+                <div class="metric-label">Issue Resolution</div>
+                <div class="metric-description">Average response time for service issues and concerns</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="testimonial-block">
+        <div class="testimonial-content">
+            <div class="testimonial-quote">
+                The doorstep collection service has transformed our property operations. Residents love the convenience, and we've seen a significant reduction in waste-related complaints. The photo documentation gives us complete confidence in service quality.
+            </div>
+            <div class="testimonial-author">Sarah Martinez</div>
+            <div class="testimonial-company">Property Manager, Sunset Ridge Apartments</div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="final-hero" style="background-image: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.8) 100%), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+        <div class="final-hero-content">
+            <h2 class="final-hero-title">Ready to elevate your property operations?</h2>
+            <p class="final-hero-subtitle">Transform waste management into a competitive advantage with doorstep collection</p>
+            <div style="display: flex; gap: 1.5rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: var(--spacing-lg);">
+                <a href="quote.html" class="cta-button primary">
+                    Get Custom Quote <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="tel:(602) 341-5575" class="pill-button" style="color: #ffffff; border-color: #ffffff;">
+                    Call (602) 341-5575 <i class="fas fa-phone"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-content">
+                <p>&copy; 2025 Kaizen Waste. All Rights Reserved.</p>
+                <ul class="footer-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="quote.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
 </body>
-</html> 
+</html>
