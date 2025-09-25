@@ -28,35 +28,54 @@ body {
 .slide-content.right {
   background-color: #FF4B37;
 }
+.testimonial-card.blog-item {
+  display: block;
+  padding: 1.65rem;
+  border-radius: 1.75rem;
+  background: rgba(115, 123, 245, 0.18);
+}
 .testimonial-card .blog-item-wrap {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  height: 100%;
+  padding: 2rem;
+  background: rgba(249, 251, 255, 0.9);
+  border-radius: 1.25rem;
+  box-shadow: 0 12px 26px rgba(31, 41, 55, 0.08);
+}
+.testimonial-card .read-more-wrap,
+.testimonial-card .read-more-arrow {
+  display: none !important;
 }
 .testimonial-card .blog-content {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  flex: 1 1 auto;
 }
-.testimonial-image {
+.testimonial-card .blog-top {
+  display: flex;
+  justify-content: flex-end;
+}
+.testimonial-card .blog-top .date-length {
   display: flex;
   align-items: center;
-  justify-content: center;
-  min-height: 220px;
-  border-radius: 1.25rem;
-  background: linear-gradient(135deg, #0f172a, #1f2937);
-  color: #ffffff;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #1e1f4b;
 }
-.quote-icon {
-  font-size: 4rem;
-  font-weight: 600;
-  line-height: 1;
+.testimonial-card .blog-bottom {
+  font-size: 2rem;
+  line-height: 1.3;
+  color: #121332;
 }
 .testimonial-quote {
   margin: 0;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #0f172a;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #1f2937;
 }
 .testimonial-card .testimonial-attribution {
   font-family: "PT Mono", monospace;
@@ -64,6 +83,348 @@ body {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #1f2937;
+}
+.testimonial-details {
+  margin-top: 0.5rem;
+}
+.testimonial-details summary {
+  cursor: pointer;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #111827;
+  font-weight: 700;
+  list-style: none;
+}
+.testimonial-details summary::-webkit-details-marker {
+  display: none;
+}
+.testimonial-details summary::after {
+  content: "\2193";
+  display: inline-block;
+  margin-left: 0.35rem;
+  transition: transform 0.2s ease;
+}
+.testimonial-details[open] summary::after {
+  transform: rotate(180deg);
+}
+.testimonial-details p {
+  margin-top: 0.85rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #1f2937;
+}
+.how-kaizen-section {
+  position: relative;
+  background: radial-gradient(120% 120% at 0% 0%, rgba(255, 75, 55, 0.18) 0%, rgba(255, 75, 55, 0) 46%), linear-gradient(135deg, #0b1535 0%, #182650 100%);
+  border-radius: 32px;
+  margin-top: 4rem;
+  color: #f6f9ff;
+  overflow: hidden;
+}
+.how-kaizen-section::after {
+  content: "";
+  position: absolute;
+  inset: auto -12% -42% auto;
+  width: 320px;
+  height: 320px;
+  background: rgba(255, 75, 55, 0.2);
+  filter: blur(150px);
+  opacity: 0.55;
+}
+.how-kaizen-section .container {
+  position: relative;
+  z-index: 1;
+}
+.how-wrap {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 3.25rem;
+  align-items: start;
+}
+.how-copy {
+  grid-column: span 5;
+  max-width: 32rem;
+  display: grid;
+  gap: 1.35rem;
+}
+.how-copy .display-6xl {
+  font-size: clamp(2.4rem, 3.6vw, 3.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+.how-kaizen-section .display-intro-text {
+  font-size: clamp(1.02rem, 1vw + 0.85rem, 1.28rem);
+  line-height: 1.7;
+  opacity: 0.88;
+}
+.how-kaizen-section .label-wrap,
+.how-kaizen-section .label-wrap div,
+.how-kaizen-section .display-xs,
+.how-kaizen-section .display-6xl,
+.how-kaizen-section .display-intro-text,
+.how-kaizen-section .display-large {
+  color: #f6f9ff;
+}
+.how-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 1.75rem 0 2rem;
+}
+.how-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 1.05rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: "PT Mono", monospace;
+  color: #f6f9ff;
+}
+.how-cta-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.how-cta-row .button {
+  padding: 0.85rem 1.6rem;
+}
+.how-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #f6f9ff;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-size: 0.95rem;
+}
+.how-cta-link::after {
+  content: "\2192";
+  font-size: 0.95rem;
+  transition: transform 0.2s ease;
+}
+.how-cta-link:hover::after {
+  transform: translateX(4px);
+}
+.how-panels {
+  grid-column: span 7;
+  position: relative;
+}
+.how-pipeline-card {
+  position: relative;
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(8, 17, 46, 0.78);
+  box-shadow: 0 24px 55px rgba(8, 14, 34, 0.45);
+}
+.how-pipeline-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+.how-pipeline-card::before {
+  content: "";
+  position: absolute;
+  left: 33.33%;
+  top: 2.5rem;
+  bottom: 2.5rem;
+  width: 1px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.04) 100%);
+}
+.how-pipeline-card .stage {
+  flex: 1 1 0;
+  display: grid;
+  gap: 1.25rem;
+}
+.how-stage-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+.how-stage-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.14);
+}
+.how-stage-title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.how-stage-body {
+  display: grid;
+  gap: 0.65rem;
+}
+.how-stage-body p {
+  margin: 0;
+  line-height: 1.6;
+  color: rgba(246, 249, 255, 0.8);
+  font-size: 0.95rem;
+}
+.how-stage-list {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.how-stage-list li {
+  display: flex;
+  gap: 0.45rem;
+  align-items: baseline;
+  font-size: 0.86rem;
+  color: rgba(246, 249, 255, 0.82);
+}
+.how-stage-list li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  margin-top: 0.35rem;
+}
+.how-stage-metric {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 75, 55, 0.18);
+  border: 1px solid rgba(255, 75, 55, 0.32);
+  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-family: "PT Mono", monospace;
+  color: #ffd7ce;
+}
+.how-stage-metric.secondary {
+  background: rgba(86, 162, 255, 0.2);
+  border-color: rgba(86, 162, 255, 0.32);
+  color: #e5f1ff;
+}
+.how-arrow-divider {
+  position: absolute;
+  top: 50%;
+  left: 33.33%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0));
+  color: rgba(8, 17, 46, 0.9);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.how-arrow-divider.second {
+  left: 66.66%;
+}
+.how-cta-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.how-cta-row .button {
+  padding: 0.85rem 1.6rem;
+}
+.how-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #f6f9ff;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-size: 0.95rem;
+}
+.how-cta-link::after {
+  content: "\2192";
+  font-size: 0.95rem;
+  transition: transform 0.2s ease;
+}
+.how-cta-link:hover::after {
+  transform: translateX(4px);
+}
+@media (max-width: 1199px) {
+  .how-wrap {
+    gap: 2.5rem;
+  }
+  .how-copy {
+    grid-column: span 6;
+  }
+  .how-panels {
+    grid-column: span 6;
+  }
+  .how-pipeline-card {
+    padding: 1.75rem;
+  }
+}
+@media (max-width: 991px) {
+  .how-wrap {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+  .how-copy,
+  .how-panels {
+    grid-column: span 12;
+    max-width: none;
+  }
+  .how-kaizen-section {
+    border-radius: 24px;
+    margin-top: 3rem;
+  }
+  .how-pipeline-card {
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+  .how-pipeline-card::before {
+    content: none;
+  }
+  .how-arrow-divider {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin: -0.5rem auto 0;
+  }
+  .how-arrow-divider.second {
+    left: auto;
+    margin: -0.5rem auto 0;
+  }
+}
+@media (max-width: 767px) {
+  .how-kaizen-section {
+    margin-top: 2.5rem;
+  }
+  .how-pipeline-card {
+    padding: 1.5rem;
+  }
+  .how-cta-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .how-cta-link {
+    font-size: 0.92rem;
+  }
 }
 </style>
 </head>
@@ -119,7 +480,7 @@ body {
 <div class="menu-overlay"></div></section><div id="Hero" class="section hero"><div class="hero-content">
 <div class="hero-content-wrapper">
 <div data-w-id="e9c54af6-1d6f-b4ff-e3eb-6661252f0024" style="-webkit-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="animation-up-0-1"><div class="hero-top"><div class="w-layout-grid _12-column-grid hero">
-<div id="w-node-_9a84e4f1-8302-797d-66ec-0df0ead5c9a2-eb05f678" class="hero-headline-text"><h2 class="display-7xl"><strong>The AI Waste Company</strong></h2></div>
+<div id="w-node-_9a84e4f1-8302-797d-66ec-0df0ead5c9a2-eb05f678" class="hero-headline-text"><h2 class="display-7xl"><strong>Premium Waste Services</strong></h2></div>
 <div id="w-node-_99f7e1eb-2c65-e7ab-c37c-9cae345006c7-eb05f678" class="home-hero-content-wrap">
 <p class="hero-intro-text">Doorstep to dumpster, Kaizen keeps multifamily communities clean, compliant, and cared for—night after night.<br><strong>Built for property teams.</strong><br></p>
 <a href="#get_in_touch" class="button secondary w-inline-block"><div class="button-text">Book an Assessment</div>
@@ -236,6 +597,68 @@ body {
 <div class="_30-ch-text-block"><div>Waste OS gives property teams one command view for every onsite service, even the work we don&rsquo;t run. <br><br><strong>Keep it as a standalone platform or pair it with Kaizen crews for instant updates.</strong> Either way you get live status, faster escalations, and far fewer surprises around your waste operation.</div></div>
 </div>
 </div></div></div></div>
+<div id="HowKaizenWorks" class="section how-kaizen-section"><div class="container"><div class="how-wrap">
+<div class="how-copy">
+<div class="label-wrap"><div>Service + Intelligence</div></div>
+<div class="_50ch-headline-wrap"><h2 class="display-6xl">Why Kaizen Delivers More Than Pickups</h2></div>
+<div class="display-intro-text">Every route we run feeds Waste OS with the proof to enforce standards, surface savings, and future-proof your properties.</div>
+<div class="how-pill-row">
+<div class="how-pill">Doorstep-to-dumpster crews</div>
+<div class="how-pill">Photo + NFC proof captured</div>
+<div class="how-pill">Portfolio optimization insights</div>
+</div>
+<div class="how-cta-row"><a href="technology.html" class="button w-inline-block"><div class="button-text">Walk through Waste OS</div>
+<div class="button-background cover"></div>
+<div class="icon-wrapper">
+<div class="button-icon-arrow hover w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+<div class="button-icon-arrow w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+</div></a>
+<a href="services.html#optimization" class="how-cta-link">See cost optimization playbook</a></div>
+</div>
+<div class="how-panels">
+<div class="how-pipeline-card">
+<div class="stage">
+<div class="how-stage-header"><div class="how-stage-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v4H3z"></path><path d="M5 7v9"></path><path d="M19 7v9"></path><path d="M9 16l3 5 3-5"></path></svg></div>
+<div class="how-stage-title">Field Service</div></div>
+<div class="how-stage-body"><p>Doorstep-to-dumpster crews follow one playbook to sweep properties and document every interaction.</p>
+<ul class="how-stage-list">
+<li>Photo + NFC proof captured at each pickup</li>
+<li>Contamination and overflow noted in-app</li>
+<li>Bulk and hauler events logged onsite</li>
+</ul>
+<span class="how-stage-metric">12,800+ doors serviced nightly</span>
+</div>
+</div>
+<div class="how-arrow-divider">→</div>
+<div class="stage">
+<div class="how-stage-header"><div class="how-stage-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="3"></rect><path d="M3 10h18"></path><path d="M7 16h.01"></path><path d="M11 16h.01"></path><path d="M15 16h.01"></path></svg></div>
+<div class="how-stage-title">Waste OS Data Core</div></div>
+<div class="how-stage-body"><p>Proof streams into Waste OS where we classify signals, enforce SLAs, and orchestrate responses in real time.</p>
+<ul class="how-stage-list">
+<li>Compliance score refreshed nightly</li>
+<li>Exception queue resolved in 17 minutes</li>
+<li>Portfolio trends surfaced automatically</li>
+</ul>
+<span class="how-stage-metric secondary">96% compliance vs 90% goal</span>
+</div>
+</div>
+<div class="how-arrow-divider second">→</div>
+<div class="stage">
+<div class="how-stage-header"><div class="how-stage-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M7 15l4-4 4 5 5-7"></path></svg></div>
+<div class="how-stage-title">Portfolio Outcomes</div></div>
+<div class="how-stage-body"><p>Teams receive verified insights that lower costs, delight residents, and plan the next phase of onsite waste.</p>
+<ul class="how-stage-list">
+<li>Resident-ready compliance reports</li>
+<li>Predictive hauling and staffing recommendations</li>
+<li>Integrated savings + ESG scorecards</li>
+</ul>
+<span class="how-stage-metric">99.2% on-time pickups</span>
+<span class="how-stage-metric secondary">$180+/unit annual savings identified</span>
+</div>
+</div>
+</div>
+</div>
+</div></div></div>
 <div id="Path" class="section circular"><div class="container"><div data-w-id="da2919f5-5556-ca22-9c79-2cafc1e4dd7a" style="-webkit-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="animation-up-0-1"><div class="_12-column-grid circular">
 <div id="w-node-_60bde03a-40a5-84a9-4e9c-bd9ab4fb083c-eb05f678" class="text-wrap"><div class="align-center"><div class="circular-headline-text-wrap"><h2 id="w-node-_60bde03a-40a5-84a9-4e9c-bd9ab4fb083e-eb05f678" data-w-id="60bde03a-40a5-84a9-4e9c-bd9ab4fb083e" style="-webkit-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="display-4xl">Our data is the first step towards waste management of the future.</h2></div></div></div>
 <div id="w-node-edfb548c-774d-fbda-65ac-87d5895109bc-eb05f678" data-w-id="edfb548c-774d-fbda-65ac-87d5895109bc" class="circular-svg-wrap">
@@ -315,9 +738,6 @@ body {
 <div id="w-node-f092b347-f8b7-ed18-64bc-1c4f3970fe4b-eb05f678" class="_50ch-headline-wrap"></div>
 <div id="w-node-_525f75b5-04e1-d3a8-23f4-192eb1ca7c17-eb05f678" class="collection-list-wrapper w-dyn-list"><div role="list" class="blog-colllection-list w-dyn-items">
 <div role="listitem" class="blog-collection-item w-dyn-item"><a data-w-id="1d64aac0-a45f-5968-b743-9b1d2539d571" href="#get_in_touch" class="blog-item w-inline-block testimonial-card"><div class="blog-item-wrap">
-<div class="blog-image-wrap testimonial-image">
-<div class="quote-icon" aria-hidden="true">&ldquo;</div>
-</div>
 <div class="blog-content">
 <div class="blog-top"><div class="date-length">
 <div class="display-xs">Testimonial</div>
@@ -330,18 +750,15 @@ body {
 </div>
 </div></a></div>
 <div role="listitem" class="blog-collection-item w-dyn-item"><a data-w-id="1d64aac0-a45f-5968-b743-9b1d2539d571" href="quote.html" class="blog-item w-inline-block testimonial-card"><div class="blog-item-wrap">
-<div class="blog-image-wrap testimonial-image">
-<div class="quote-icon" aria-hidden="true">&rdquo;</div>
-</div>
 <div class="blog-content">
 <div class="blog-top"><div class="date-length">
-<div class="display-xs">Share yours</div>
+<div class="display-xs">Testimonial</div>
 <div class="label-square"></div>
-<div class="display-xs">Property leaders</div>
+<div class="display-xs">Luxury lease-up</div>
 </div></div>
-<div class="blog-bottom"><div class="display-large">Your community could be the next feature</div></div>
-<p class="testimonial-quote">We&#39;re collecting more stories from property teams that rely on Kaizen for nightly operations. Submit your experience and help peers discover seamless waste management.</p>
-<div class="testimonial-attribution">Tell us your Kaizen story</div>
+<div class="blog-bottom"><div class="display-large">Support that feels like family</div></div>
+<p class="testimonial-quote">Ever since our property opened, Kaizen Valet Trash and their team have been nothing short of exceptional. From the very beginning, their professionalism, attentiveness, and genuine care have made such a positive impact on our community. Their communication is always clear and reliable, and they consistently go above and beyond to be patient and helpful, especially when it comes to new system rollouts that naturally require some adjusting for both residents and staff.<br><br>What truly sets Kaizen apart is the people behind the service. Pierce and JR have been so kind and thoughtful, always checking in to make sure our property is doing well and asking how they can be of help. That extra level of care and willingness to support us makes all the difference. It is clear that Kaizen doesn’t just provide a service; they truly invest in the well-being of the communities they serve.<br><br>We could not be more grateful for the partnership we have with Kaizen Valet Trash. Their dedication, consistency, and compassion shine through in everything they do, and it has brought such peace of mind knowing we can count on them day in and day out!</p>
+<div class="testimonial-attribution">Community operations director</div>
 </div>
 </div></a></div>
 </div></div>
