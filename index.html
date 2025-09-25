@@ -1,1063 +1,870 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- Last Published: Sat Jul 26 2025 02:17:19 GMT+0000 (Coordinated Universal Time) --><html data-wf-domain="www.orchard.ai" data-wf-page="67eddab088c635afeb05f678" data-wf-site="67eddaaf88c635afeb05f614" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaizen Waste - Modern Waste Management</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #ff6347;  /* Tomato Red */
-            --secondary-color: #e74c3c;  /* Darker Red */
-            --accent-color: #ff7f50;  /* Coral Red */
-            --text-color: #333;
-            --light-bg: #f8f9fa;
-            --white: #ffffff;
-            --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            overflow-x: hidden;
-        }
-
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: var(--transition);
-            height: 80px;
-            overflow: visible;
-        }
-
-        .header.scrolled {
-            background: var(--white);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            height: 100%;
-            z-index: 1000;
-        }
-
-        .logo {
-            height: 45px;
-            transition: var(--transition);
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-            margin-left: auto;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            position: absolute;
-            right: 2rem;
-            z-index: 1001;
-        }
-
-        .nav-menu li {
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-link {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            background: var(--gradient);
-            box-shadow: 0 4px 15px rgba(255,99,71,0.2);
-        }
-
-        .nav-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255,99,71,0.3);
-        }
-
-        .nav-dropdown {
-            position: relative;
-            z-index: 1002;
-        }
-
-        .dropdown-content {
-            display: block;
-            position: absolute;
-            background: var(--white);
-            min-width: 200px;
-            box-shadow: var(--shadow);
-            border-radius: 12px;
-            padding: 0.8rem 0;
-            z-index: 1003;
-            transform: translateY(10px);
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            top: 100%;
-            right: 0;
-            margin-top: 0.5rem;
-        }
-
-        .nav-dropdown:hover .dropdown-content {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .dropdown-link {
-            display: block;
-            padding: 0.7rem 1.5rem;
-            color: var(--text-color);
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 0.95rem;
-            position: relative;
-            z-index: 1004;
-        }
-
-        .dropdown-link:hover {
-            background: var(--light-bg);
-            color: var(--primary-color);
-            padding-left: 2rem;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://img1.wsimg.com/isteam/stock/109128/:/rs=w:1920,h:1080');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            padding: 0 1rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.2) 100%);
-            z-index: 1;
-        }
-
-        .hero-content {
-            max-width: 1000px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: 4.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero-subtitle {
-            font-size: 1.8rem;
-            margin-bottom: 2.5rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-            animation: fadeInUp 1s ease 0.2s;
-            opacity: 0;
-            animation-fill-mode: forwards;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.2rem 2.5rem;
-            background: var(--gradient);
-            color: var(--white);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.2rem;
-            transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(255,99,71,0.3);
-            animation: fadeInUp 1s ease 0.4s;
-            opacity: 0;
-            animation-fill-mode: forwards;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255,99,71,0.4);
-        }
-
-        .cta-button i {
-            font-size: 1.4rem;
-            transition: var(--transition);
-        }
-
-        .cta-button:hover i {
-            transform: translateX(5px);
-        }
-
-        .section {
-            padding: 8rem 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 4rem;
-            color: var(--text-color);
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255,99,71,0.1);
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient);
-            opacity: 0;
-            transition: var(--transition);
-            z-index: 1;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255,99,71,0.15);
-        }
-
-        .feature-card:hover::before {
-            opacity: 0.05;
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 2;
-            transition: var(--transition);
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1);
-        }
-
-        .feature-title {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-            position: relative;
-            z-index: 2;
-        }
-
-        .feature-description {
-            color: #666;
-            line-height: 1.6;
-            position: relative;
-            z-index: 2;
-            font-size: 1.1rem;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                height: 70px;
-            }
-
-            .logo {
-                height: 35px;
-                position: static;
-                transform: none;
-            }
-
-            .nav-menu {
-                display: none;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
-
-            .feature-card {
-                padding: 2rem;
-            }
-        }
-
-        .about-section {
-            background: var(--light-bg);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255,99,71,0.05) 0%, rgba(231,76,60,0.05) 100%);
-            z-index: 0;
-        }
-
-        .about-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-bottom: 4rem;
-        }
-
-        .about-text {
-            padding-right: 2rem;
-        }
-
-        .about-title {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .about-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-
-        .about-description {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-color);
-            margin-bottom: 2rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 1.5rem;
-            background: var(--white);
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(255,99,71,0.15);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            color: var(--text-color);
-            font-weight: 500;
-        }
-
-        .stat-small {
-            font-size: 0.8rem;
-            color: var(--text-color);
-            opacity: 0.8;
-            margin-top: 0.25rem;
-        }
-
-        .about-image-container {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-
-        .about-image {
-            position: relative;
-            padding-top: 75%;
-            overflow: hidden;
-        }
-
-        .about-image img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255,99,71,0.2) 0%, rgba(231,76,60,0.2) 100%);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .about-image-container:hover .about-image img {
-            transform: scale(1.05);
-        }
-
-        .about-image-container:hover .image-overlay {
-            opacity: 1;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 4rem;
-            position: relative;
-        }
-
-        .value-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            text-align: center;
-            position: relative;
-            overflow: visible;
-            cursor: pointer;
-            margin-bottom: 200px;
-        }
-
-        .value-dropdown {
-            position: absolute;
-            top: calc(100% + 1rem);
-            left: 0;
-            right: 0;
-            background: var(--white);
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            padding: 1.5rem;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: var(--transition);
-            z-index: 100;
-            min-height: 200px;
-        }
-
-        .value-card:hover .value-dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .value-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: left;
-        }
-
-        .value-list li {
-            padding: 0.8rem 0;
-            color: var(--text-color);
-            font-size: 1rem;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            transition: var(--transition);
-        }
-
-        .value-list li:hover {
-            color: var(--primary-color);
-            padding-left: 0.5rem;
-        }
-
-        .value-list li:last-child {
-            border-bottom: none;
-        }
-
-        .value-list li::before {
-            content: '•';
-            color: var(--primary-color);
-            font-weight: bold;
-            margin-right: 0.5rem;
-        }
-
-        .value-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255,99,71,0.15);
-        }
-
-        .value-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 2;
-            transition: var(--transition);
-        }
-
-        .value-card:hover .value-icon {
-            transform: scale(1.1);
-        }
-
-        .value-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-            position: relative;
-            z-index: 2;
-        }
-
-        @media (max-width: 1024px) {
-            .values-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .value-card {
-                margin-bottom: 150px;
-            }
-        }
-
-        .contact-section {
-            background: var(--light-bg);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .contact-info {
-            padding-right: 2rem;
-        }
-
-        .contact-title {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-description {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: var(--text-color);
-            margin-bottom: 2rem;
-        }
-
-        .contact-details {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .contact-item i {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-top: 0.2rem;
-        }
-
-        .contact-item span {
-            font-size: 1.1rem;
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        .contact-form {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
-            font-weight: 500;
-        }
-
-        .form-group label.required::after {
-            content: '*';
-            color: var(--primary-color);
-            margin-left: 4px;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(255,99,71,0.1);
-        }
-
-        .form-note {
-            font-size: 0.9rem;
-            color: var(--text-color);
-            opacity: 0.8;
-            margin-top: 1rem;
-        }
-
-        .submit-button {
-            background: var(--gradient);
-            color: var(--white);
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            width: 100%;
-            margin-top: 1rem;
-        }
-
-        .submit-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255,99,71,0.3);
-        }
-
-        @media (max-width: 1024px) {
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .contact-info {
-                padding-right: 0;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .contact-form {
-                padding: 2rem;
-            }
-        }
-    </style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Kaizen Waste</title>
+<meta content="Kaizen Waste delivers mission-critical waste operations, compliance, and reporting for multifamily communities." name="description">
+<meta content="Kaizen Waste" property="og:title">
+<meta content="Kaizen Waste delivers mission-critical waste operations, compliance, and reporting for multifamily communities." property="og:description">
+<meta content="https://img1.wsimg.com/isteam/ip/01bc495d-6774-4b39-b524-0672041c6694/team-photo.jpg" property="og:image">
+<meta content="Kaizen Waste" property="twitter:title">
+<meta content="Kaizen Waste delivers mission-critical waste operations, compliance, and reporting for multifamily communities." property="twitter:description">
+<meta content="https://img1.wsimg.com/isteam/ip/01bc495d-6774-4b39-b524-0672041c6694/team-photo.jpg" property="twitter:image">
+<meta property="og:type" content="website">
+<meta content="summary_large_image" name="twitter:card">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<link href="https://cdn.prod.website-files.com/67eddaaf88c635afeb05f614/css/or-test-site-again-2.webflow.shared.e818b1178.css" rel="stylesheet" type="text/css">
+<style>@media (min-width:992px) {html.w-mod-js:not(.w-mod-ix) [data-w-id="1d64aac0-a45f-5968-b743-9b1d2539d575"] {-webkit-transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);}}@media (max-width:991px) and (min-width:768px) {html.w-mod-js:not(.w-mod-ix) [data-w-id="1d64aac0-a45f-5968-b743-9b1d2539d575"] {-webkit-transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);}}@media (max-width:767px) and (min-width:480px) {html.w-mod-js:not(.w-mod-ix) [data-w-id="1d64aac0-a45f-5968-b743-9b1d2539d575"] {-webkit-transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);}}</style>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script><script type="text/javascript">WebFont.load({  google: {    families: ["Archivo:regular","Geist:regular,500","PT Mono:regular"]  }});</script><script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script><link href="https://img1.wsimg.com/isteam/ip/01bc495d-6774-4b39-b524-0672041c6694/favicon.png" rel="shortcut icon" type="image/x-icon">
+<link href="https://img1.wsimg.com/isteam/ip/01bc495d-6774-4b39-b524-0672041c6694/Kaizen%20Waste%20Logo.png" rel="apple-touch-icon">
+<style type="text/css">
+
+body {
+  -webkit-font-smoothing: antialiased;
+}      
+.slide-content.right {
+  background-color: #FF4B37;
+}
+.testimonial-card.blog-item {
+  display: block;
+  padding: 1.65rem;
+  border-radius: 1.75rem;
+  background: rgba(115, 123, 245, 0.18);
+}
+.testimonial-card .blog-item-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: 100%;
+  padding: 2rem;
+  background: rgba(249, 251, 255, 0.9);
+  border-radius: 1.25rem;
+  box-shadow: 0 12px 26px rgba(31, 41, 55, 0.08);
+}
+.testimonial-card .read-more-wrap,
+.testimonial-card .read-more-arrow {
+  display: none !important;
+}
+.testimonial-card .blog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1 1 auto;
+}
+.testimonial-card .blog-top {
+  display: flex;
+  justify-content: flex-end;
+}
+.testimonial-card .blog-top .date-length {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #1e1f4b;
+}
+.testimonial-card .blog-bottom {
+  font-size: 2rem;
+  line-height: 1.3;
+  color: #121332;
+}
+.testimonial-quote {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #1f2937;
+}
+.testimonial-card .testimonial-attribution {
+  font-family: "PT Mono", monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1f2937;
+}
+.testimonial-details {
+  margin-top: 0.5rem;
+}
+.testimonial-details summary {
+  cursor: pointer;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #111827;
+  font-weight: 700;
+  list-style: none;
+}
+.testimonial-details summary::-webkit-details-marker {
+  display: none;
+}
+.testimonial-details summary::after {
+  content: "\2193";
+  display: inline-block;
+  margin-left: 0.35rem;
+  transition: transform 0.2s ease;
+}
+.testimonial-details[open] summary::after {
+  transform: rotate(180deg);
+}
+.testimonial-details p {
+  margin-top: 0.85rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #1f2937;
+}
+.how-kaizen-section {
+  position: relative;
+  background: radial-gradient(120% 120% at 0% 0%, rgba(255, 75, 55, 0.18) 0%, rgba(255, 75, 55, 0) 46%), linear-gradient(135deg, #0b1535 0%, #182650 100%);
+  border-radius: 32px;
+  margin-top: 4rem;
+  color: #f6f9ff;
+  overflow: hidden;
+}
+.how-kaizen-section::after {
+  content: "";
+  position: absolute;
+  inset: auto -12% -42% auto;
+  width: 320px;
+  height: 320px;
+  background: rgba(255, 75, 55, 0.2);
+  filter: blur(150px);
+  opacity: 0.55;
+}
+.how-kaizen-section .container {
+  position: relative;
+  z-index: 1;
+}
+.how-wrap {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 3.25rem;
+  align-items: start;
+}
+.how-copy {
+  grid-column: span 5;
+  max-width: 32rem;
+  display: grid;
+  gap: 1.35rem;
+}
+.how-copy .display-6xl {
+  font-size: clamp(2.4rem, 3.6vw, 3.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+.how-kaizen-section .display-intro-text {
+  font-size: clamp(1.02rem, 1vw + 0.85rem, 1.28rem);
+  line-height: 1.7;
+  opacity: 0.88;
+}
+.how-kaizen-section .label-wrap,
+.how-kaizen-section .label-wrap div,
+.how-kaizen-section .display-xs,
+.how-kaizen-section .display-6xl,
+.how-kaizen-section .display-intro-text,
+.how-kaizen-section .display-large {
+  color: #f6f9ff;
+}
+.how-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 1.75rem 0 2rem;
+}
+.how-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 1.05rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: "PT Mono", monospace;
+  color: #f6f9ff;
+}
+.how-cta-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.how-cta-row .button {
+  padding: 0.85rem 1.6rem;
+}
+.how-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #f6f9ff;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-size: 0.95rem;
+}
+.how-cta-link::after {
+  content: "\2192";
+  font-size: 0.95rem;
+  transition: transform 0.2s ease;
+}
+.how-cta-link:hover::after {
+  transform: translateX(4px);
+}
+.how-panels {
+  grid-column: span 7;
+  position: relative;
+}
+.how-pipeline-card {
+  position: relative;
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(8, 17, 46, 0.78);
+  box-shadow: 0 24px 55px rgba(8, 14, 34, 0.45);
+}
+.how-pipeline-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+.how-pipeline-card::before {
+  content: "";
+  position: absolute;
+  left: 33.33%;
+  top: 2.5rem;
+  bottom: 2.5rem;
+  width: 1px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.04) 100%);
+}
+.how-pipeline-card .stage {
+  flex: 1 1 0;
+  display: grid;
+  gap: 1.25rem;
+}
+.how-stage-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+.how-stage-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.14);
+}
+.how-stage-title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.how-stage-body {
+  display: grid;
+  gap: 0.65rem;
+}
+.how-stage-body p {
+  margin: 0;
+  line-height: 1.6;
+  color: rgba(246, 249, 255, 0.8);
+  font-size: 0.95rem;
+}
+.how-stage-list {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.how-stage-list li {
+  display: flex;
+  gap: 0.45rem;
+  align-items: baseline;
+  font-size: 0.86rem;
+  color: rgba(246, 249, 255, 0.82);
+}
+.how-stage-list li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  margin-top: 0.35rem;
+}
+.how-stage-metric {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 75, 55, 0.18);
+  border: 1px solid rgba(255, 75, 55, 0.32);
+  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-family: "PT Mono", monospace;
+  color: #ffd7ce;
+}
+.how-stage-metric.secondary {
+  background: rgba(86, 162, 255, 0.2);
+  border-color: rgba(86, 162, 255, 0.32);
+  color: #e5f1ff;
+}
+.how-arrow-divider {
+  position: absolute;
+  top: 50%;
+  left: 33.33%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0));
+  color: rgba(8, 17, 46, 0.9);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.how-arrow-divider.second {
+  left: 66.66%;
+}
+.how-cta-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.how-cta-row .button {
+  padding: 0.85rem 1.6rem;
+}
+.how-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #f6f9ff;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-size: 0.95rem;
+}
+.how-cta-link::after {
+  content: "\2192";
+  font-size: 0.95rem;
+  transition: transform 0.2s ease;
+}
+.how-cta-link:hover::after {
+  transform: translateX(4px);
+}
+@media (max-width: 1199px) {
+  .how-wrap {
+    gap: 2.5rem;
+  }
+  .how-copy {
+    grid-column: span 6;
+  }
+  .how-panels {
+    grid-column: span 6;
+  }
+  .how-pipeline-card {
+    padding: 1.75rem;
+  }
+}
+@media (max-width: 991px) {
+  .how-wrap {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+  .how-copy,
+  .how-panels {
+    grid-column: span 12;
+    max-width: none;
+  }
+  .how-kaizen-section {
+    border-radius: 24px;
+    margin-top: 3rem;
+  }
+  .how-pipeline-card {
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+  .how-pipeline-card::before {
+    content: none;
+  }
+  .how-arrow-divider {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin: -0.5rem auto 0;
+  }
+  .how-arrow-divider.second {
+    left: auto;
+    margin: -0.5rem auto 0;
+  }
+}
+@media (max-width: 767px) {
+  .how-kaizen-section {
+    margin-top: 2.5rem;
+  }
+  .how-pipeline-card {
+    padding: 1.5rem;
+  }
+  .how-cta-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .how-cta-link {
+    font-size: 0.92rem;
+  }
+}
+</style>
 </head>
-<body id="top">
-    <header class="header">
-        <nav class="nav-container">
-            <img src="https://img1.wsimg.com/isteam/ip/01bc495d-6774-4b39-b524-0672041c6694/Kaizen%20Waste%20Logo.png" alt="Kaizen Waste Logo" class="logo">
-            <ul class="nav-menu">
-                <li><a href="#top" class="nav-link">Home</a></li>
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li class="nav-dropdown">
-                    <a href="#" class="nav-link">For You</a>
-                    <div class="dropdown-content">
-                        <a href="pages/property-managers.html" class="dropdown-link">For Property Managers</a>
-                        <a href="pages/residents.html" class="dropdown-link">For Residents</a>
-                        <a href="pages/owners.html" class="dropdown-link">For Owners</a>
-                    </div>
-                </li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Professional Waste Solutions</h1>
-            <p class="hero-subtitle">Efficient, Reliable, and Constantly Iterated Waste Services for Apartments and Multi-Family Communities</p>
-            <a href="#contact" class="cta-button">
-                Request a Quote <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </section>
-
-    <section id="services" class="section">
-        <h2 class="section-title">Our Services</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <i class="fas fa-door-open feature-icon"></i>
-                <h3 class="feature-title">Valet Doorstep Removal</h3>
-                <p class="feature-description">Convenient doorstep collection service that saves time and enhances property cleanliness.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-balance-scale feature-icon"></i>
-                <h3 class="feature-title">Waste Leveling</h3>
-                <p class="feature-description">Smart waste management solutions that optimize collection schedules and reduce costs.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-lightbulb feature-icon"></i>
-                <h3 class="feature-title">Waste Advising</h3>
-                <p class="feature-description">Expert guidance on waste management strategies to improve efficiency and sustainability.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="section about-section">
-        <h2 class="section-title">About Kaizen Waste</h2>
-        <div class="about-grid">
-            <div class="about-content">
-                <div class="about-text">
-                    <h3 class="about-title">Simplifying Waste Management</h3>
-                    <p class="about-description">At Kaizen Waste, we're optimizing the way properties handle waste management. From doorstep removal, to waste leveling, to equipment advising - we're everything but your hauler.</p>
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-number">100%</div>
-                            <div class="stat-label">Service Guarantee</div>
-                            <div class="stat-small">*Or Your Money Back*</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">5-7</div>
-                            <div class="stat-label">Day Service Week</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">24/7</div>
-                            <div class="stat-label">Support Available</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image-container">
-                    <div class="about-image">
-                        <img src="https://img1.wsimg.com/isteam/ip/01bc495d-6774-4b39-b524-0672041c6694/team-photo.jpg" alt="Kaizen Waste Team Members">
-                        <div class="image-overlay"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="values-grid">
-            <div class="value-card">
-                <i class="fas fa-leaf value-icon"></i>
-                <h4 class="value-title">Sustainability</h4>
-                <div class="value-dropdown">
-                    <ul class="value-list">
-                        <li>Eco-friendly waste disposal methods</li>
-                        <li>Recycling optimization programs</li>
-                        <li>Carbon footprint reduction</li>
-                        <li>Green technology implementation</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="value-card">
-                <i class="fas fa-microchip value-icon"></i>
-                <h4 class="value-title">Innovation</h4>
-                <div class="value-dropdown">
-                    <ul class="value-list">
-                        <li>AI-Driven Efficiency Tracking <a href="pages/ai-efficiency.html" style="color: var(--primary-color); text-decoration: none; margin-left: 0.5rem; font-size: 0.9rem;">Learn More →</a></li>
-                        <li>Audit-Ready Service Documentation</li>
-                        <li>Live GPS Monitoring of Runners</li>
-                        <li>Real Time Arrival/Departure Alerts</li>
-                        <li>Performance Analytics Dashboard</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="value-card">
-                <i class="fas fa-handshake value-icon"></i>
-                <h4 class="value-title">Partnership</h4>
-                <div class="value-dropdown">
-                    <ul class="value-list">
-                        <li>Dedicated Account Manager</li>
-                        <li>24/7 Remediation Support</li>
-                        <li>Tailored Service Solutions</li>
-                        <li>Monthly Performance Reviews</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="section contact-section">
-        <h2 class="section-title">Contact Us</h2>
-        <div class="contact-container">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3 class="contact-title">Get in Touch</h3>
-                    <p class="contact-description">Fill out the form below and we'll get back to you with a personalized quote for your property.</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>support@kaizen-waste.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>(602) 341-5575</span>
-                        </div>
-                    </div>
-                </div>
-                <form id="contactForm" class="contact-form">
-                    <div class="form-group">
-                        <label for="name" class="required">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="required">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="propertyName">Property Name</label>
-                        <input type="text" id="propertyName" name="propertyName">
-                    </div>
-                    <div class="form-group">
-                        <label for="complexSize">Size of Complex (# of Units)</label>
-                        <input type="number" id="complexSize" name="complexSize" min="1">
-                    </div>
-                    <div class="form-group">
-                        <label for="complexStyle">Complex Style</label>
-                        <select id="complexStyle" name="complexStyle">
-                            <option value="">Select a style</option>
-                            <option value="garden">Garden Style</option>
-                            <option value="midrise">Mid-Rise</option>
-                            <option value="highrise">High-Rise</option>
-                            <option value="townhome">Townhome</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="role" class="required">I am a...</label>
-                        <select id="role" name="role" required>
-                            <option value="">Select your role</option>
-                            <option value="owner">Property Owner</option>
-                            <option value="manager">Property Manager</option>
-                            <option value="resident">Resident</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="notes">Notes</label>
-                        <textarea id="notes" name="notes" rows="4" placeholder="Any additional information you'd like to share..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-button">Send Message</button>
-                    <p class="form-note">* Required fields</p>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Units Counter with API
-        const counterElement = document.getElementById('unitsCounter');
-        let unitsCount = 4000;
-
-        // Initial count fetch
-        fetch('https://api.kaizen-waste.com/counter')
-            .then(response => response.json())
-            .then(data => {
-                unitsCount = data.count;
-                counterElement.textContent = unitsCount.toLocaleString();
-            })
-            .catch(error => console.error('Error fetching count:', error));
-
-        // Update count every 5 seconds
-        setInterval(() => {
-            fetch('https://api.kaizen-waste.com/counter/increment', { method: 'POST' })
-                .then(response => response.json())
-                .then(data => {
-                    unitsCount = data.count;
-                    counterElement.textContent = unitsCount.toLocaleString();
-                })
-                .catch(error => console.error('Error updating count:', error));
-        }, 5000);
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Add animation on scroll for About section
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.stat-item, .value-card').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Form submission handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
-            
-            // Here you would typically send the data to your server
-            console.log('Form submitted:', data);
-            
-            // Show success message
-            alert('Thank you for your request! We will get back to you soon.');
-            this.reset();
-        });
-    </script>
+<body>
+<div class="page-wrapper">
+<div class="cursor-wrap"><div class="cursor"></div></div>
+<div class="hover-component"><div class="view-project"><div>&#8627; View</div></div></div>
+<div class="main-wrapper">
+<section id="Nav" class="navigation"><div class="nav-bar"><div class="container-nav">
+<a href="#Hero" class="logo-link w-inline-block"><img src="images/Kaizen%20Symbol.svg" loading="lazy" alt="Kaizen Waste" class="nav-logo"></a><div class="nav-content">
+<div class="nav-link-list">
+<div class="nav-link-item"><div class="nav-link-wrapper _1">
+<div class="display-xs">01.<br>
+</div>
+<a href="#Hero" class="nav-link">Home</a>
+</div></div>
+<div class="nav-link-item"><div class="nav-link-wrapper _2">
+<div class="display-xs">02.</div>
+<a href="#Mission" class="nav-link">Mission</a>
+</div></div>
+<div class="nav-link-item"><div class="nav-link-wrapper _3">
+<div class="display-xs">03.</div>
+<a href="#Services" class="nav-link">Services</a>
+</div></div>
+<div class="nav-link-item"><div class="nav-link-wrapper _4">
+<div class="display-xs">04.</div>
+<a href="#Operations" class="nav-link">Operations</a>
+</div></div>
+<div class="nav-link-item"><div class="nav-link-wrapper _5">
+<div class="display-xs">05.</div>
+<a href="#Results" class="nav-link">Results</a>
+</div></div>
+<div class="nav-link-item"><div class="nav-link-wrapper _6">
+<div class="display-xs">06.</div>
+<a href="#get_in_touch" class="nav-link">Contact</a>
+</div></div>
+</div>
+<div class="w-layout-grid social-icons-wrap">
+<a href="https://www.linkedin.com/company/kaizenwaste" target="_blank" class="social-icon-link w-inline-block"><div class="icon-embed w-embed"><svg width="100%" height="100%" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22 12.0611C22 6.50451 17.5229 2 12 2C6.47715 2 2 6.50451 2 12.0611C2 17.0828 5.65684 21.2452 10.4375 22V14.9694H7.89844V12.0611H10.4375V9.84452C10.4375 7.32296 11.9305 5.93012 14.2146 5.93012C15.3088 5.93012 16.4531 6.12663 16.4531 6.12663V8.60261H15.1922C13.95 8.60261 13.5625 9.37822 13.5625 10.1739V12.0611H16.3359L15.8926 14.9694H13.5625V22C18.3432 21.2452 22 17.083 22 12.0611Z" fill="CurrentColor"></path>
+</svg></div></a><a href="https://www.instagram.com/kaizenwaste" target="_blank" class="social-icon-link w-inline-block"><div class="icon-embed w-embed"><svg width="100%" height="100%" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M16 3H8C5.23858 3 3 5.23858 3 8V16C3 18.7614 5.23858 21 8 21H16C18.7614 21 21 18.7614 21 16V8C21 5.23858 18.7614 3 16 3ZM19.25 16C19.2445 17.7926 17.7926 19.2445 16 19.25H8C6.20735 19.2445 4.75549 17.7926 4.75 16V8C4.75549 6.20735 6.20735 4.75549 8 4.75H16C17.7926 4.75549 19.2445 6.20735 19.25 8V16ZM16.75 8.25C17.3023 8.25 17.75 7.80228 17.75 7.25C17.75 6.69772 17.3023 6.25 16.75 6.25C16.1977 6.25 15.75 6.69772 15.75 7.25C15.75 7.80228 16.1977 8.25 16.75 8.25ZM12 7.5C9.51472 7.5 7.5 9.51472 7.5 12C7.5 14.4853 9.51472 16.5 12 16.5C14.4853 16.5 16.5 14.4853 16.5 12C16.5027 10.8057 16.0294 9.65957 15.1849 8.81508C14.3404 7.97059 13.1943 7.49734 12 7.5ZM9.25 12C9.25 13.5188 10.4812 14.75 12 14.75C13.5188 14.75 14.75 13.5188 14.75 12C14.75 10.4812 13.5188 9.25 12 9.25C10.4812 9.25 9.25 10.4812 9.25 12Z" fill="CurrentColor"></path>
+</svg></div></a><a href="https://twitter.com/kaizenwaste" target="_blank" class="social-icon-link w-inline-block"><div class="icon-embed w-embed"><svg width="100%" height="100%" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.1761 4H19.9362L13.9061 10.7774L21 20H15.4456L11.0951 14.4066L6.11723 20H3.35544L9.80517 12.7508L3 4H8.69545L12.6279 9.11262L17.1761 4ZM16.2073 18.3754H17.7368L7.86441 5.53928H6.2232L16.2073 18.3754Z" fill="CurrentColor"></path>
+</svg></div></a><a href="mailto:hello@kaizenwaste.com" target="_blank" class="social-icon-link w-inline-block"><div class="icon-embed w-embed"><svg width="100%" height="100%" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 3C3.67157 3 3 3.67157 3 4.5V19.5C3 20.3284 3.67157 21 4.5 21H19.5C20.3284 21 21 20.3284 21 19.5V4.5C21 3.67157 20.3284 3 19.5 3H4.5ZM8.52076 7.00272C8.52639 7.95897 7.81061 8.54819 6.96123 8.54397C6.16107 8.53975 5.46357 7.90272 5.46779 7.00413C5.47201 6.15897 6.13998 5.47975 7.00764 5.49944C7.88795 5.51913 8.52639 6.1646 8.52076 7.00272ZM12.2797 9.76176H9.75971H9.7583V18.3216H12.4217V18.1219C12.4217 17.742 12.4214 17.362 12.4211 16.9819V16.9818V16.9816V16.9815V16.9812C12.4203 15.9674 12.4194 14.9532 12.4246 13.9397C12.426 13.6936 12.4372 13.4377 12.5005 13.2028C12.7381 12.3253 13.5271 11.7586 14.4074 11.8979C14.9727 11.9864 15.3467 12.3141 15.5042 12.8471C15.6013 13.1803 15.6449 13.5389 15.6491 13.8863C15.6605 14.9339 15.6589 15.9815 15.6573 17.0292V17.0294C15.6567 17.3992 15.6561 17.769 15.6561 18.1388V18.3202H18.328V18.1149C18.328 17.6629 18.3278 17.211 18.3275 16.7591V16.759V16.7588C18.327 15.6293 18.3264 14.5001 18.3294 13.3702C18.3308 12.8597 18.276 12.3563 18.1508 11.8627C17.9638 11.1286 17.5771 10.5211 16.9485 10.0824C16.5027 9.77019 16.0133 9.5691 15.4663 9.5466C15.404 9.54401 15.3412 9.54062 15.2781 9.53721L15.2781 9.53721L15.2781 9.53721C14.9984 9.52209 14.7141 9.50673 14.4467 9.56066C13.6817 9.71394 13.0096 10.0641 12.5019 10.6814C12.4429 10.7522 12.3852 10.8241 12.2991 10.9314L12.2991 10.9315L12.2797 10.9557V9.76176ZM5.68164 18.3244H8.33242V9.76733H5.68164V18.3244Z" fill="CurrentColor"></path>
+</svg></div></a><a href="tel:+14705951234" target="_blank" class="social-icon-link w-inline-block"><div class="icon-embed w-embed"><svg width="100%" height="100%" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M20.5686 4.77345C21.5163 5.02692 22.2555 5.76903 22.5118 6.71673C23.1821 9.42042 23.1385 14.5321 22.5259 17.278C22.2724 18.2257 21.5303 18.965 20.5826 19.2213C17.9071 19.8831 5.92356 19.8015 3.40294 19.2213C2.45524 18.9678 1.71595 18.2257 1.45966 17.278C0.827391 14.7011 0.871044 9.25144 1.44558 6.73081C1.69905 5.78311 2.44116 5.04382 3.38886 4.78753C6.96561 4.0412 19.2956 4.282 20.5686 4.77345ZM9.86682 8.70227L15.6122 11.9974L9.86682 15.2925V8.70227Z" fill="CurrentColor"></path>
+</svg></div></a>
+</div>
+</div>
+</div></div>
+<div class="menu-overlay"></div></section><div id="Hero" class="section hero"><div class="hero-content">
+<div class="hero-content-wrapper">
+<div data-w-id="e9c54af6-1d6f-b4ff-e3eb-6661252f0024" style="-webkit-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="animation-up-0-1"><div class="hero-top"><div class="w-layout-grid _12-column-grid hero">
+<div id="w-node-_9a84e4f1-8302-797d-66ec-0df0ead5c9a2-eb05f678" class="hero-headline-text"><h2 class="display-7xl"><strong>Premium Waste Services</strong></h2></div>
+<div id="w-node-_99f7e1eb-2c65-e7ab-c37c-9cae345006c7-eb05f678" class="home-hero-content-wrap">
+<p class="hero-intro-text">Doorstep to dumpster, Kaizen keeps multifamily communities clean, compliant, and cared for—night after night.<br><strong>Built for property teams.</strong><br></p>
+<a href="#get_in_touch" class="button secondary w-inline-block"><div class="button-text">Book an Assessment</div>
+<div class="button-background cover"></div>
+<div class="icon-wrapper">
+<div class="button-icon-arrow hover w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+<div class="button-icon-arrow w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+</div></a>
+</div>
+</div></div></div>
+<div class="hero-bottom"><div class="location-wrap">
+<div class="display-xs">2025</div>
+<div id="w-node-_713ecd43-4f95-9152-79f0-3b4197acf972-eb05f678" class="display-xs">Serving 12,800+ doors across metro Atlanta every evening</div>
+</div></div>
+</div>
+<div class="header-image-wrapper"><img data-w-id="3561d8df-5151-7e32-e083-b156f9abd845" loading="lazy" alt="Kaizen Waste home screen illustration" src="images/kaizen-home-screen.jpg" class="header-image"></div>
+</div></div>
+<div class="overlap-wrap">
+<div id="Mission" class="section"><div class="container"><div data-w-id="f6ed5937-9c72-a2e6-1c60-60657c81eec3" style="-webkit-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="animation-up-0-1"><div class="_12-column-grid align-middle">
+<div id="w-node-_5c6454c6-42ee-2638-77a0-214b1e247be9-eb05f678" class="label-wrap"><div id="w-node-_124d3e25-82a6-4c61-cfbe-08434a501db5-eb05f678">Our Mission</div></div>
+<div id="w-node-_58ed89af-a60f-6589-b887-5cb943dc3d22-eb05f678" class="about-text-wrap"><div class="display-intro-text">At Kaizen Waste, we&rsquo;re <span class="text-span">building the operating system for onsite waste.</span><br><br>&zwj;Our doorstep teams feed live proof into Waste OS so every community stays clean, efficient, and <span class="intro-text-span-2">accountable</span> every night.</div></div>
+<div id="w-node-b60af381-9b8f-f2eb-dd30-fc73a308abbf-eb05f678" class="button-wrap"><a href="#Operations" data-w-id="b60af381-9b8f-f2eb-dd30-fc73a308abc0" class="button w-inline-block"><div class="button-text">See Operations</div>
+<div style="-webkit-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="button-background cover"></div>
+<div class="icon-wrapper">
+<div style="-webkit-transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="button-icon-arrow hover w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+<div class="button-icon-arrow w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+</div></a></div>
+</div></div></div></div>
+<div id="Services" class="section"><div data-w-id="f29a1246-4ee5-af6a-19a3-fd21152cb53b" style="-webkit-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="animation-up-0-1"><div class="container">
+<div class="custom-margin"><div id="w-node-_667de9ba-8363-156a-e219-29f785437ff6-eb05f678" class="text-wrap"><div class="_50ch-headline-wrap"><h2 id="w-node-_667de9ba-8363-156a-e219-29f785437ff8-eb05f678" data-w-id="667de9ba-8363-156a-e219-29f785437ff8" style="-webkit-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="display-4xl">Service System</h2></div></div></div>
+<div class="_12-column-grid"><div id="w-node-e5f959a8-6f30-3b38-567d-64a6a55f46ae-eb05f678" data-w-id="e5f959a8-6f30-3b38-567d-64a6a55f46ae" class="cards-mover"><div class="sticky-viewbox"><div class="cards-wrapper">
+<div class="card-section left">
+<div class="card-side">
+<div class="card-image-mobile"><div class="slide-content"><img sizes="(max-width: 1347px) 100vw, 1347px" srcset="https://images.unsplash.com/photo-1580894897200-6ad2bfbf20d1?auto=format&fit=crop&w=500&q=80 500w, https://images.unsplash.com/photo-1580894897200-6ad2bfbf20d1?auto=format&fit=crop&w=800&q=80 800w, https://images.unsplash.com/photo-1580894897200-6ad2bfbf20d1?auto=format&fit=crop&w=1200&q=80 1200w" alt="Kaizen doorstep collection runners prepping carts" src="https://images.unsplash.com/photo-1580894897200-6ad2bfbf20d1?auto=format&fit=crop&w=1347&q=80" loading="lazy" class="full-image"></div></div>
+<div class="slide-content">
+<div class="service-svg-wrap"><img src="https://cdn.prod.website-files.com/67eddaaf88c635afeb05f614/67eddab088c635afeb05f8e8_triangle%20quad2.svg" loading="lazy" alt="" class="service-icon"></div>
+<div class="side-content-wrap">
+<h3 class="display-2xl black">Doorstep <strong>Collection</strong>
+</h3>
+<div>Kaizen crews handle nightly doorstep collection with geo-tagged photo proof and contamination notes for every building.<br><br>Residents wake up to clear corridors while property teams receive verified logs they can rely on.</div>
+</div>
+<div class="button-wrap"><a href="#get_in_touch" data-w-id="5e1a9e64-ae06-846e-aaef-028918009673" class="button w-inline-block"><div class="button-text">Learn More</div>
+<div style="-webkit-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="button-background cover"></div>
+<div class="icon-wrapper">
+<div style="-webkit-transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="button-icon-arrow hover w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+<div class="button-icon-arrow w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+</div></a></div>
+</div>
+</div>
+<div class="card-side">
+<div class="card-image-mobile"><div class="slide-content"><img sizes="(max-width: 1000px) 100vw, 1000px" srcset="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=500&q=80 500w, https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=800&q=80 800w, https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1000&q=80 1000w" alt="Bulk waste crew staging items" src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=80" loading="lazy" class="full-image"></div></div>
+<div class="slide-content">
+<div class="service-svg-wrap"><img src="https://cdn.prod.website-files.com/67eddaaf88c635afeb05f614/67eddab088c635afeb05f8e6_square%20stretch2.svg" loading="lazy" alt="" class="service-icon"></div>
+<div class="side-content-wrap">
+<h3 class="display-2xl black">Bulk &amp; <strong>On-Demand</strong>
+</h3>
+<p>On-call bulk removal, enclosure resets, and emergency cleanouts handled within 24 hours.<br><br>Every request includes before-and-after photos, notes, and hauler coordination so overflow never lingers.</p>
+</div>
+<div class="button-wrap"><a href="#get_in_touch" data-w-id="ac1d1311-fbbe-5282-1c06-dba777c19669" class="button w-inline-block"><div class="button-text">Learn More</div>
+<div style="-webkit-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="button-background cover"></div>
+<div class="icon-wrapper">
+<div style="-webkit-transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="button-icon-arrow hover w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+<div class="button-icon-arrow w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+</div></a></div>
+</div>
+</div>
+<div class="card-side">
+<div class="card-image-mobile"><div class="slide-content"><img sizes="(max-width: 1080px) 100vw, 1080px" srcset="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=500&q=80 500w, https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=800&q=80 800w, https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1080&q=80 1080w" alt="WasteOS operations dashboard in action" src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1280&q=80" loading="lazy" class="full-image"></div></div>
+<div class="slide-content">
+<div class="service-svg-wrap"><img src="https://cdn.prod.website-files.com/67eddaaf88c635afeb05f614/67eddab088c635afeb05f928_checker2.svg" loading="lazy" alt="" class="service-icon"></div>
+<div class="side-content-wrap">
+<h3 class="display-2xl black">Waste <strong>OS</strong>
+</h3>
+<p>Our modern waste management software suite, where data meets decision-making. View and make decisions based off all your waste data, and direct your management through our best-in-class software suite.<br><br>Data is only useful if it can be used. And you can only automate the things you fully know. Our Waste OS provides the interface to automating your waste.</p>
+</div>
+<div class="button-wrap"><a href="#get_in_touch" data-w-id="3cadf91c-0d03-1711-c7d9-c90224638b63" class="button w-inline-block"><div class="button-text">Learn More</div>
+<div style="-webkit-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="button-background cover"></div>
+<div class="icon-wrapper">
+<div style="-webkit-transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="button-icon-arrow hover w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+<div class="button-icon-arrow w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+</div></a></div>
+</div>
+</div>
+<div class="card-side">
+<div class="card-image-mobile"><div class="slide-content"><img sizes="(max-width: 1032px) 100vw, 1032px" srcset="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=500&q=80 500w, https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80 800w, https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1032&q=80 1032w" alt="Kaizen advisory review" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1300&q=80" loading="lazy" class="full-image"></div></div>
+<div class="slide-content">
+<div class="service-svg-wrap"><img src="https://cdn.prod.website-files.com/67eddaaf88c635afeb05f614/67eddab088c635afeb05f8e3_dot%20multi.svg" loading="lazy" alt="" class="service-icon"></div>
+<div class="side-content-wrap">
+<h3 class="display-2xl black">
+<strong>Waste Advisory</strong></h3>
+<p>We audit hauler contracts, recommend container right-sizing, and guide sustainability programs across your portfolio.<br><br>Our advisory team delivers quarterly reviews with savings opportunities, contamination insights, and compliance updates you can act on immediately.<br></p>
+</div>
+<div class="button-wrap"><a href="#get_in_touch" data-w-id="7f884948-d7d9-214c-a505-b517a8225c2b" class="button w-inline-block"><div class="button-text">Learn More</div>
+<div style="-webkit-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="button-background cover"></div>
+<div class="icon-wrapper">
+<div style="-webkit-transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="button-icon-arrow hover w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+<div class="button-icon-arrow w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+</div></a></div>
+</div>
+</div>
+</div>
+<div class="card-section right">
+<div class="card-side"><div class="slide-content right"><img loading="lazy" src="https://images.unsplash.com/photo-1580894897200-6ad2bfbf20d1?auto=format&fit=crop&w=1400&q=80" alt="Kaizen doorstep collection runners prepping carts" class="full-image"></div></div>
+<div class="card-side"><div class="slide-content right"><img loading="lazy" src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1400&q=80" alt="Bulk waste crew staging items" class="full-image"></div></div>
+<div class="card-side"><div class="slide-content right"><img loading="lazy" src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1400&q=80" alt="WasteOS operations dashboard in action" class="full-image"></div></div>
+<div class="card-side"><div class="slide-content right"><img loading="lazy" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80" alt="Kaizen advisory review" class="full-image"></div></div>
+</div>
+</div></div></div></div>
+</div></div></div>
+<div id="Operations" class="section"><div class="content-wrap"><div class="container"><div class="_12-column-grid">
+<div id="w-node-_82ce7aee-12b7-aa75-bdec-0f5afab0069c-eb05f678" class="_50ch-headline-wrap"><div class="text-wrap"><h2 id="w-node-_82ce7aee-12b7-aa75-bdec-0f5afab0069e-eb05f678" data-w-id="82ce7aee-12b7-aa75-bdec-0f5afab0069e" style="-webkit-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="display-6xl">Operations without blind spots</h2></div></div>
+<div id="w-node-_82ce7aee-12b7-aa75-bdec-0f5afab006a0-eb05f678" class="team-text-wrap">
+<div class="_30-ch-text-block"><div>Most communities juggle separate vendors for nightly pickups, bulk jobs, and hauler coordination. <br><br><strong>Kaizen puts the entire onsite waste cycle under one partner.</strong> Doorstep crews, bulk response, and hauler liaisons work from a single playbook and capture photo-and-timestamp proof every night—available on their own or ready to feed Waste OS automatically.</div></div>
+<div class="_30-ch-text-block"><div>Waste OS gives property teams one command view for every onsite service, even the work we don&rsquo;t run. <br><br><strong>Keep it as a standalone platform or pair it with Kaizen crews for instant updates.</strong> Either way you get live status, faster escalations, and far fewer surprises around your waste operation.</div></div>
+</div>
+</div></div></div></div>
+<div id="HowKaizenWorks" class="section how-kaizen-section"><div class="container"><div class="how-wrap">
+<div class="how-copy">
+<div class="label-wrap"><div>Service + Intelligence</div></div>
+<div class="_50ch-headline-wrap"><h2 class="display-6xl">Why Kaizen Delivers More Than Pickups</h2></div>
+<div class="display-intro-text">Every route we run feeds Waste OS with the proof to enforce standards, surface savings, and future-proof your properties.</div>
+<div class="how-pill-row">
+<div class="how-pill">Doorstep-to-dumpster crews</div>
+<div class="how-pill">Photo + NFC proof captured</div>
+<div class="how-pill">Portfolio optimization insights</div>
+</div>
+<div class="how-cta-row"><a href="technology.html" class="button w-inline-block"><div class="button-text">Walk through Waste OS</div>
+<div class="button-background cover"></div>
+<div class="icon-wrapper">
+<div class="button-icon-arrow hover w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+<div class="button-icon-arrow w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+</div></a>
+<a href="services.html#optimization" class="how-cta-link">See cost optimization playbook</a></div>
+</div>
+<div class="how-panels">
+<div class="how-pipeline-card">
+<div class="stage">
+<div class="how-stage-header"><div class="how-stage-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v4H3z"></path><path d="M5 7v9"></path><path d="M19 7v9"></path><path d="M9 16l3 5 3-5"></path></svg></div>
+<div class="how-stage-title">Field Service</div></div>
+<div class="how-stage-body"><p>Doorstep-to-dumpster crews follow one playbook to sweep properties and document every interaction.</p>
+<ul class="how-stage-list">
+<li>Photo + NFC proof captured at each pickup</li>
+<li>Contamination and overflow noted in-app</li>
+<li>Bulk and hauler events logged onsite</li>
+</ul>
+<span class="how-stage-metric">12,800+ doors serviced nightly</span>
+</div>
+</div>
+<div class="how-arrow-divider">→</div>
+<div class="stage">
+<div class="how-stage-header"><div class="how-stage-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="3"></rect><path d="M3 10h18"></path><path d="M7 16h.01"></path><path d="M11 16h.01"></path><path d="M15 16h.01"></path></svg></div>
+<div class="how-stage-title">Waste OS Data Core</div></div>
+<div class="how-stage-body"><p>Proof streams into Waste OS where we classify signals, enforce SLAs, and orchestrate responses in real time.</p>
+<ul class="how-stage-list">
+<li>Compliance score refreshed nightly</li>
+<li>Exception queue resolved in 17 minutes</li>
+<li>Portfolio trends surfaced automatically</li>
+</ul>
+<span class="how-stage-metric secondary">96% compliance vs 90% goal</span>
+</div>
+</div>
+<div class="how-arrow-divider second">→</div>
+<div class="stage">
+<div class="how-stage-header"><div class="how-stage-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M7 15l4-4 4 5 5-7"></path></svg></div>
+<div class="how-stage-title">Portfolio Outcomes</div></div>
+<div class="how-stage-body"><p>Teams receive verified insights that lower costs, delight residents, and plan the next phase of onsite waste.</p>
+<ul class="how-stage-list">
+<li>Resident-ready compliance reports</li>
+<li>Predictive hauling and staffing recommendations</li>
+<li>Integrated savings + ESG scorecards</li>
+</ul>
+<span class="how-stage-metric">99.2% on-time pickups</span>
+<span class="how-stage-metric secondary">$180+/unit annual savings identified</span>
+</div>
+</div>
+</div>
+</div>
+</div></div></div>
+<div id="Path" class="section circular"><div class="container"><div data-w-id="da2919f5-5556-ca22-9c79-2cafc1e4dd7a" style="-webkit-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="animation-up-0-1"><div class="_12-column-grid circular">
+<div id="w-node-_60bde03a-40a5-84a9-4e9c-bd9ab4fb083c-eb05f678" class="text-wrap"><div class="align-center"><div class="circular-headline-text-wrap"><h2 id="w-node-_60bde03a-40a5-84a9-4e9c-bd9ab4fb083e-eb05f678" data-w-id="60bde03a-40a5-84a9-4e9c-bd9ab4fb083e" style="-webkit-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="display-4xl">Our data is the first step towards waste management of the future.</h2></div></div></div>
+<div id="w-node-edfb548c-774d-fbda-65ac-87d5895109bc-eb05f678" data-w-id="edfb548c-774d-fbda-65ac-87d5895109bc" class="circular-svg-wrap">
+<img src="https://cdn.prod.website-files.com/67eddaaf88c635afeb05f614/67eddab088c635afeb05f8d8_SVG.svg" loading="lazy" id="w-node-_3192f9a7-5677-7695-e2e7-2cf2e76f76ef-eb05f678" alt="" class="circular-svg"><div class="circular-text-wrap"><div>Our path forward for property teams</div></div>
+</div>
+<div id="w-node-_5e7191b4-65e4-44f6-9033-d86dbff9c4d3-eb05f678" class="circular-content-wrap">
+<div class="label-wrap">
+<div class="label-square"></div>
+<div class="display-xs">01</div>
+</div>
+<div class="display-large">Full waste data</div>
+<div>Doorstep to Dumpster is the industry standard in thorough, precise, and consistent waste data collection. All year long, know everything about every unit, property, or portfolio.</div>
+</div>
+<div id="w-node-_9edb2c72-7fa7-afec-287d-45fd28ffc453-eb05f678" class="circular-content-wrap">
+<div class="label-wrap">
+<div class="label-square"></div>
+<div class="display-xs">02</div>
+</div>
+<div class="display-large">System-of-record</div>
+<div>Every decision onsite relies on proof. Waste OS centralizes doorstep, bulk, and hauler history across your portfolio so teams can act with confidence.</div>
+</div>
+<div id="w-node-_8efcc128-325b-d2a3-c48e-54e32c384904-eb05f678" class="circular-content-wrap">
+<div class="label-wrap">
+<div class="label-square"></div>
+<div class="display-xs">03</div>
+</div>
+<div class="display-large">Modern software interface</div>
+<div>Waste OS bridges the gap between the field and your desk. Direct workflows, assignments, and reporting through an interface built for property teams.</div>
+</div>
+<div id="w-node-_4af50c05-dd9f-f274-236c-ad36c69a92c2-eb05f678" class="circular-content-wrap">
+<div class="label-wrap">
+<div class="label-square"></div>
+<div class="display-xs">04</div>
+</div>
+<div class="display-large">AI-powered decision making</div>
+<div>Waste OS highlights patterns across thousands of pickups to surface route improvements, staffing needs, and chronic issues before they escalate.</div>
+</div>
+</div></div></div></div>
+<div id="Proof" class="section relative">
+<div class="container"><div id="w-node-_8cea151c-adf9-7ed8-d9b4-1b716e8ea0d7-eb05f678" class="text-wrap"><div class="align-center"><div class="testimonial-heading"><h2 id="w-node-_8cea151c-adf9-7ed8-d9b4-1b716e8ea0da-eb05f678" data-w-id="8cea151c-adf9-7ed8-d9b4-1b716e8ea0da" style="-webkit-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="display-6xl">Data is the bedrock of every waste decision.</h2></div></div></div></div>
+<div class="container"><div data-w-id="8cbd4ab5-10fb-4b7c-8bf8-2120dec35492" style="-webkit-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="animation-up-0-1"><div class="_12-column-grid locked">
+<div id="w-node-_14aeb63f-29a0-9ef9-9728-acf1957a9c66-eb05f678" class="card-wrap">
+<div class="card-top">
+<div class="icon-wrap"><img src="https://cdn.prod.website-files.com/67eddaaf88c635afeb05f614/67eddab088c635afeb05f8e6_square%20stretch2.svg" loading="lazy" alt="" class="icon"></div>
+<div class="display-large">Built for property teams</div>
+</div>
+<p>Every part of our services and software is designed for multifamily communities and the conditions they face daily.<br>&zwj;<br>Doorstep collection sweeps every building, captures photo-verified pickups, and restores enclosures so residents wake to a clean site.</p>
+</div>
+<div id="w-node-_8d506833-94cd-a696-163d-33baa31aa13e-eb05f678" class="card-wrap">
+<div class="card-top">
+<div class="icon-wrap"><img src="https://cdn.prod.website-files.com/67eddaaf88c635afeb05f614/67eddab088c635afeb05f8e3_dot%20multi.svg" loading="lazy" alt="" class="icon"></div>
+<div class="display-large">World-class support</div>
+</div>
+<p>The most advanced waste technology doesn&rsquo;t have to be hard to use. <br><br>Our launch crew and Waste OS specialists are on call to train your staff, handle resident comms, and keep nightly service running smoothly.</p>
+</div>
+<div id="w-node-bac548ac-cf7b-6441-3abf-ab4345c706f2-eb05f678" class="card-wrap">
+<div class="card-top">
+<div class="icon-wrap"><img src="https://cdn.prod.website-files.com/67eddaaf88c635afeb05f614/67eddab088c635afeb05f8e5_leaf%20quad.svg" loading="lazy" alt="" class="icon"></div>
+<div class="display-large">Operate with precision</div>
+</div>
+<p>Efficiency, sustainability, and savings align when every property gets exactly what it needs.<br><br>Use nightly insights to right-size routes, bulk response, and hauling schedules so you spend less time and budget while improving curb appeal.</p>
+</div>
+<div id="w-node-_64a11100-fc65-a2ab-aaa7-517418aadd0d-eb05f678" class="card-wrap">
+<div class="card-top">
+<div class="icon-wrap"><img src="https://cdn.prod.website-files.com/67eddaaf88c635afeb05f614/67eddab088c635afeb05f8e7_circle-con4.svg" loading="lazy" alt="" class="icon"></div>
+<div class="display-large">From data to action</div>
+</div>
+<p>Data is the bedrock of waste decision-making. Automation requires data about what you&rsquo;re managing, and it has to be usable.<br><br>Waste OS places every pickup, ticket, and hauler visit at your fingertips and integrates with how your property already operates.</p>
+</div>
+</div></div></div>
+<div data-w-id="c5826d9c-6226-aa4c-30d5-3e1890bbee4a" class="background-image-wrapper">
+<div class="gradient-image-overlay"></div>
+<img loading="eager" src="images/kaizen-soft-gradient.svg" alt="Soft gradient background" class="background-image">
+</div>
+</div>
+<div id="Results" class="section"><div class="container"><div data-w-id="5f53dee1-cd15-6047-2e1f-faa1a3bb03ce" style="-webkit-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="animation-up-0-1"><div class="_12-column-grid">
+<div id="w-node-f092b347-f8b7-ed18-64bc-1c4f3970fe4b-eb05f678" class="_50ch-headline-wrap"></div>
+<div id="w-node-_525f75b5-04e1-d3a8-23f4-192eb1ca7c17-eb05f678" class="collection-list-wrapper w-dyn-list"><div role="list" class="blog-colllection-list w-dyn-items">
+<div role="listitem" class="blog-collection-item w-dyn-item"><a data-w-id="1d64aac0-a45f-5968-b743-9b1d2539d571" href="#get_in_touch" class="blog-item w-inline-block testimonial-card"><div class="blog-item-wrap">
+<div class="blog-content">
+<div class="blog-top"><div class="date-length">
+<div class="display-xs">Testimonial</div>
+<div class="label-square"></div>
+<div class="display-xs">Multifamily community</div>
+</div></div>
+<div class="blog-bottom"><div class="display-large">Maintenance team time returned</div></div>
+<p class="testimonial-quote">Since we started using Kaizen Waste at our community, our maintenance team&#39;s burden of assisting with trash duties has diminished and the team now has much more free time to perform necessary maintenance requests, giving our residents the elevated customer service experience they expect and deserve. Kaizen is reliable, communicative and performs with efficiency. Pierce and JR are true examples of top tier, trustworthy, business owners. Right before we officially began using the service, we were in a pinch with a large amount of trash disposal and a sick team member, and both Pierce and JR made themselves available to personally assist us with the trash removal, in the pouring rain! I cannot express how grateful we were to see this kind of service, especially from the company founders. Kaizen has made our trash removal process so easy and I would definitely recommend them to any multifamily community!</p>
+<div class="testimonial-attribution">Community manager partner</div>
+</div>
+</div></a></div>
+<div role="listitem" class="blog-collection-item w-dyn-item"><a data-w-id="1d64aac0-a45f-5968-b743-9b1d2539d571" href="quote.html" class="blog-item w-inline-block testimonial-card"><div class="blog-item-wrap">
+<div class="blog-content">
+<div class="blog-top"><div class="date-length">
+<div class="display-xs">Testimonial</div>
+<div class="label-square"></div>
+<div class="display-xs">Luxury lease-up</div>
+</div></div>
+<div class="blog-bottom"><div class="display-large">Support that feels like family</div></div>
+<p class="testimonial-quote">Ever since our property opened, Kaizen Valet Trash and their team have been nothing short of exceptional. From the very beginning, their professionalism, attentiveness, and genuine care have made such a positive impact on our community. Their communication is always clear and reliable, and they consistently go above and beyond to be patient and helpful, especially when it comes to new system rollouts that naturally require some adjusting for both residents and staff.<br><br>What truly sets Kaizen apart is the people behind the service. Pierce and JR have been so kind and thoughtful, always checking in to make sure our property is doing well and asking how they can be of help. That extra level of care and willingness to support us makes all the difference. It is clear that Kaizen doesn’t just provide a service; they truly invest in the well-being of the communities they serve.<br><br>We could not be more grateful for the partnership we have with Kaizen Valet Trash. Their dedication, consistency, and compassion shine through in everything they do, and it has brought such peace of mind knowing we can count on them day in and day out!</p>
+<div class="testimonial-attribution">Community operations director</div>
+</div>
+</div></a></div>
+</div></div>
+<h1 id="w-node-_85f87f0c-4db7-f015-2ef1-dd1813b773d4-eb05f678" data-w-id="85f87f0c-4db7-f015-2ef1-dd1813b773d4" style="-webkit-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="display-6xl">Property teams trusting Kaizen</h1>
+</div></div></div></div>
+<div id="CTA" class="section no-padding-top"><div data-w-id="f7988306-afb2-c369-941e-dd85aaa3da27" style="-webkit-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="animation-up-0-1"><div data-w-id="6a1d684e-2a2a-cca3-47ba-a9476d980cd4" class="image-wrapper-content">
+<div class="background-image-wrapper">
+<div class="image-overlay"></div>
+<img loading="eager" src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1600&q=80" alt="Kaizen crew staging bins" class="background-image">
+</div>
+<div class="text-wrap"><div class="_50ch-headline-wrap"><h2 id="w-node-_6a1d684e-2a2a-cca3-47ba-a9476d980cda-eb05f678" data-w-id="6a1d684e-2a2a-cca3-47ba-a9476d980cda" style="-webkit-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="display-4xl">Ready to modernize your waste program?<a href="#get_in_touch"></a>
+</h2></div></div>
+<a href="#get_in_touch" data-w-id="e9248fbd-0d06-135f-2a7f-0b05f927227e" class="button secondary w-inline-block"><div class="button-text">Book Kaizen Assessment</div>
+<div style="-webkit-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-100%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="button-background cover"></div>
+<div class="icon-wrapper">
+<div style="-webkit-transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(-16%, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="button-icon-arrow hover w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+<div class="button-icon-arrow w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+</div></a>
+</div></div></div>
+<div id="FAQ" class="section"><div class="container"><div data-w-id="1fcf2ddb-432a-976a-c3b6-465a1969ce47" style="-webkit-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="animation-up-0-1"><div class="_12-column-grid">
+<div id="w-node-_1fcf2ddb-432a-976a-c3b6-465a1969ce49-eb05f678" class="text-wrap"><div class="align-center"><h2 id="w-node-_1fcf2ddb-432a-976a-c3b6-465a1969ce4b-eb05f678" data-w-id="1fcf2ddb-432a-976a-c3b6-465a1969ce4b" style="-webkit-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 105%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="display-6xl">FAQ</h2></div></div>
+<div id="w-node-_1fcf2ddb-432a-976a-c3b6-465a1969ce4d-eb05f678" class="accordion-wrap">
+<div data-click="faq" class="accordion-row">
+<div class="accordion-top">
+<div class="accordion-top-wrap"><h3 class="display-2xl">Which services do you handle?</h3></div>
+<div class="accordion-top-icon"><div class="accordion-top-icon-wrap">
+<div class="accordion-icon-stripe-1"></div>
+<div class="accordion-icon-stripe-2"></div>
+</div></div>
+</div>
+<div class="accordion-bottom">
+<div class="accordion-divider-wrap"><div class="accordion-divider"></div></div>
+<div class="accordion-bottom-wrap"><p class="accordion-bottom-text">Kaizen manages doorstep collection, bulk & on-demand removal, enclosure resets, and waste advisory for multifamily communities. Tell us what you need and we&rsquo;ll build the nightly playbook.</p></div>
+</div>
+</div>
+<div data-click="faq" class="accordion-row">
+<div class="accordion-top">
+<div class="accordion-top-wrap"><h2 class="display-2xl">How fast can you launch at a new community?</h2></div>
+<div class="accordion-top-icon"><div class="accordion-top-icon-wrap">
+<div class="accordion-icon-stripe-1"></div>
+<div class="accordion-icon-stripe-2"></div>
+</div></div>
+</div>
+<div class="accordion-bottom">
+<div class="accordion-divider-wrap"><div class="accordion-divider"></div></div>
+<div class="accordion-bottom-wrap"><p class="accordion-bottom-text">Most properties go live within 10-14 days. We complete a site assessment, deliver resident communications, and train crews before the first pickup so launch night is seamless.</p></div>
+</div>
+</div>
+<div data-click="faq" class="accordion-row">
+<div class="accordion-top">
+<div class="accordion-top-wrap"><h3 class="display-2xl">How is pricing structured?</h3></div>
+<div class="accordion-top-icon"><div class="accordion-top-icon-wrap">
+<div class="accordion-icon-stripe-1"></div>
+<div class="accordion-icon-stripe-2"></div>
+</div></div>
+</div>
+<div class="accordion-bottom">
+<div class="accordion-divider-wrap"><div class="accordion-divider"></div></div>
+<div class="accordion-bottom-wrap"><p class="accordion-bottom-text">We structure pricing per door per month with volume tiers for portfolios. Bulk and advisory services are scoped à la carte so you only pay for the coverage you need.<br></p></div>
+</div>
+</div>
+<div data-click="faq" class="accordion-row">
+<div class="accordion-top">
+<div class="accordion-top-wrap"><h3 class="display-2xl">How do residents get support during service?</h3></div>
+<div class="accordion-top-icon"><div class="accordion-top-icon-wrap">
+<div class="accordion-icon-stripe-1"></div>
+<div class="accordion-icon-stripe-2"></div>
+</div></div>
+</div>
+<div class="accordion-bottom">
+<div class="accordion-divider-wrap"><div class="accordion-divider"></div></div>
+<div class="accordion-bottom-wrap"><p class="accordion-bottom-text">Residents can text, email, or scan a QR code to reach the WasteOS support desk. Our team responds within minutes and loops your onsite staff in on every resolution.<br></p></div>
+</div>
+</div>
+</div>
+</div></div></div></div>
+<div id="get_in_touch" class="section let-s-connect"><div class="container"><div data-w-id="71fa9479-8d68-34a5-a522-c4e650c2eda9" class="animation-up-0-1"><div class="_12-column-grid">
+<div id="w-node-_6dd116de-d0b6-461f-60d6-5b54b526b451-b526b44e" class="let-s-connect-content">
+<div class="display-2xl">
+<strong>Ready to see Kaizen on your property?</strong><br>
+</div>
+<div>We partner with property managers, asset teams, and residents to keep communities spotless.<br><br>Book a walkthrough to review your current waste cycle and design a Kaizen launch plan.<br>
+</div>
+<div class="mono-text">Email hello@kaizenwaste.com • Call (470) 595-1234</div>
+</div>
+<div id="w-node-_6dd116de-d0b6-461f-60d6-5b54b526b458-b526b44e" class="let-s-connect-divider"></div>
+<div id="w-node-_6dd116de-d0b6-461f-60d6-5b54b526b459-b526b44e" class="block"><a href="mailto:hello@kaizenwaste.com" data-w-id="e90632fc-e163-01eb-cc83-2af0651199b1" class="let-s-connect-button w-inline-block"><div>Email Kaizen</div>
+<div class="button-bottom-line"></div>
+<div class="hover-line"></div>
+<div class="arrows-container">
+<div class="arrow-right w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+<div class="arrow-right-hover w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+</div></a></div>
+</div></div></div></div>
+<div data-w-id="f20c429f-86ea-b28b-490e-a2c266520684" class="footer"><div class="container _1rem"><div class="footer-content">
+<div class="footer-center">
+<div id="w-node-f20c429f-86ea-b28b-490e-a2c266520699-66520684" class="footer-logo-wrap"><img src="https://img1.wsimg.com/isteam/ip/01bc495d-6774-4b39-b524-0672041c6694/Kaizen%20Waste%20Logo.png" loading="lazy" alt="Kaizen Waste" class="footer-logo"></div>
+<div class="mono-text">Proudly supporting multifamily communities across the Southeast &#127482;&#127480;</div>
+</div>
+<div class="footer-legal-wrapper">
+<a href="#CTA" class="footer-link">Book Kaizen</a><a href="mailto:hello@kaizenwaste.com" class="footer-link">hello@kaizenwaste.com</a><div>&copy; 2025 Kaizen Waste</div>
+</div>
+</div></div></div>
+</div>
+</div>
+</div>
+<script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=67eddaaf88c635afeb05f614" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script><script src="https://cdn.prod.website-files.com/67eddaaf88c635afeb05f614/js/webflow.schunk.36b8fb49256177c8.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/67eddaaf88c635afeb05f614/js/webflow.schunk.4b0c596418499d32.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/67eddaaf88c635afeb05f614/js/webflow.ebdacfef.dabb5b507f144bdd.js" type="text/javascript"></script>
 </body>
-</html> 
+</html>
